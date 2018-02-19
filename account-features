@@ -1,0 +1,9 @@
+Account Functionalities:	Features pertaining to account creation and handling
+Register	Create an account and store it in the database
+Login	Check if user exists and check password input
+Logout	Takes user back to login page
+Reset Password (email feature)	Retrieves user email to send a reset password link
+
+Hibernate Parts
+Angular Parts
+Springboot Parts
