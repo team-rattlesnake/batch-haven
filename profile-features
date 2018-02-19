@@ -1,8 +1,9 @@
-Account Functionalities:	Features pertaining to account creation and handling
-Register	Create an account and store it in the database
-Login	Check if user exists and check password input
-Logout	Takes user back to login page
-Reset Password (email feature)	Retrieves user email to send a reset password link
+
+Profile Functionalities:	Features pertaining to user profiles
+Modify their information	Displays input fields for user to edit info
+Upload a profile picture	
+View own profile (including posts)	Displays user’s posts and profile info that is stored in the database
+See their feed (show everyone’s posts)	Displays all user posts that is stored in the database
 
 Hibernate Parts
 Angular Parts
