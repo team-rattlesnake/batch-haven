@@ -18,15 +18,13 @@ export class ModifyUserInfoComponent implements OnInit {
   ngOnInit() {
     
   }
-  getUserFormData(firstname,lastname,company,email,username,password,confirmation){
+  getUserFormData(firstname,lastname,company,pack,email,username,password,confirmation){
     this.userform = {firstname : firstname,lastname : lastname, company : company,
-    email : email, username : username,password : password, pass_confirm : confirmation};
-    console.log(this.userform.firstname, this.userform.password);
+    pack : pack, email : email, username : username,password : password, pass_confirm : confirmation};
+    console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
+    this.userform.pack, this.userform.email,this.userform.username,this.userform.password,
+  this.userform.pass_confirm);
    }
-  //  hero: Hero = {
-  //   id: 1,
-  //   name: 'Windstorm'
-  // };
 
   }
 
