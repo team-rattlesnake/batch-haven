@@ -4,7 +4,7 @@ import { FormsModule }   from '@angular/forms';//practice
 
 import { AppComponent } from './app.component';
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
-
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -13,8 +13,10 @@ import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.com
     ModifyUserInfoComponent
   ],
   imports: [
-    BrowserModule
-  ],
+    BrowserModule,
+    AppRoutingModule
+],
+
   providers: [],
   bootstrap: [AppComponent]
 })

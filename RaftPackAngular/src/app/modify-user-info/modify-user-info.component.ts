@@ -21,9 +21,10 @@ export class ModifyUserInfoComponent implements OnInit {
   getUserFormData(firstname,lastname,company,pack,email,username,password,confirmation){
     this.userform = {firstname : firstname,lastname : lastname, company : company,
     pack : pack, email : email, username : username,password : password, pass_confirm : confirmation};
+   
     console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
     this.userform.pack, this.userform.email,this.userform.username,this.userform.password,
-  this.userform.pass_confirm);
+    this.userform.pass_confirm);
    }
 
   }
