@@ -1,0 +1,21 @@
+<div *ngIf="profile">
+
+  <h2>{{ profile.name}}</h2>
+  <div>
+    <div><span>name: </span>{{profile.name}}</div>
+    <div><span>gender: </span>{{profile.gender}}</div>
+    <div><span>email: </span>{{profile.email}}</div>
+    <div><span>birthdate: </span>{{profile.DOB}}</div>
+    </div>
+    <div>
+      <h3>Update Information</h3>
+      <label>name:
+        <input [(ngModel)]="profile.name" placeholder="name"/>
+      </label><br>
+      <label>email:
+          <input [(ngModel)]="profile.email" placeholder="email"/>
+      </label>
+      <button class="btn-primary" (click)="save()">save</button>
+    </div>
+   
+</div>
