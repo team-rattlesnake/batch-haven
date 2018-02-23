@@ -1,0 +1,89 @@
+.form-horizontal{
+    background-color: lightblue;
+    width: 600px;
+}
+
+.form-control{
+   align-content: center;
+}
+
+#fname{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#lname{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#compname{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#ename{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#uname{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#pname{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#cname{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+#pnum{
+    position: relative;
+    left : 90px;
+    width: 400px;
+    
+}
+
+.alert.alert-info.alert-dismissable{
+    width:600px;
+}
+
+h3{
+    position : relative;
+    right : 110px;
+
+}
+
+.btn.btn-primary{
+    position: relative;
+    left : 85px;
+}
+
+.btn.btn-default{
+    position: relative;
+    left : 85px;
+    width : 140px;
+}
+
+.avatar.img-circle{
+    height : 200px;
+}
