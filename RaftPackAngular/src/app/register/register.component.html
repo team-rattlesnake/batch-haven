@@ -1,58 +1,26 @@
 <h2 style="text-align: center">Register</h2>
 
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">First Name</label>
-    <input type="text" class="form-control" id="firstname" aria-describedby="firstnameHelp" placeholder="FirstName">
-    <small id="firstnameHelp" class="form-text text-muted"></small>
+<div class="panel-heading">
+  <span class="label label-default label-center">{{title}}</span>
+</div>
+<div class="panel-body">
+<div class="list-group">
+  <div class="list-group-item list-group-item-demo">
+          <div class="form-group">
+              <input [(ngModel)]="user.firstname" placeholder="FirstName" class="form-control" />
+              <input [(ngModel)]="user.lastname" placeholder="LastName" class="form-control" />
+              <input [(ngModel)]="user.email" placeholder="Email" class="form-control" />
+              <input [(ngModel)]="user.password" placeholder="Password" class="form-control" />
+              <input [(ngModel)]="user.age" placeholder="Age" class="form-control" />
+          </div>
+          <div>
+              <button class="btn btn-primary btn-center" (click)="registerUser()">Register</button>
+          </div>
+          <div>
+              {{ message.text }}
+          </div>
   </div>
-
-  <br>
-
-  <div class="form-group">
-    <label for="exampleInputEmail1">Last Name</label>
-    <input type="text" class="form-control" id="lastname" aria-describedby="lastnameHelp" placeholder="LastName">
-    <small id="lastnameHelp" class="form-text text-muted"></small>
-  </div>
-
-  <br>
-
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email Address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted"></small>
-  </div>
-
-  <br>
-
-  <div class="form-group">
-    <label for="exampleInputEmail2">Email Address</label>
-    <input type="email" class="form-control" id="email2" aria-describedby="emailHelp" placeholder="Confirm Email">
-    <small id="emailHelp" class="form-text text-muted"></small>
-  </div>
-
-  <br>
-
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Confirm Password">
-  </div>
-
-  <br>
-
-  <div class="form-group">
-    <label for="exampleInputPassword2">Password</label>
-    <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
-  </div>
-
-  <br>
-
-  <div class="form-group">
-    <label for="age">Age</label>
-    <input type="number" class="form-control" id="age" placeholder="Enter Current Age">
-  </div>
-
-  <br>
-
-  <button type="submit" class="btn btn-outline-secondary">Register</button>
-</form>
+</div>
+</div>
+<div class="panel-footer">
+</div>
