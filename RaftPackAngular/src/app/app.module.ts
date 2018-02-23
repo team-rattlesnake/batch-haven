@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,13 +19,16 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { ProfileService } from './profile.service';
 import { MessageService } from './message.service';
+import { RegisterService } from './service/register.service';
+
 import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterComponent,
     LoginComponent,
-    ModifyUserInfoComponent,    
+    ModifyUserInfoComponent,
     ProfileComponent,
     ProfileDetailComponent,
     MessagesComponent
@@ -40,7 +42,7 @@ import { MessagesComponent } from './messages/messages.component';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false })
   ],
-  providers: [ProfileService, MessageService,LoginService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
