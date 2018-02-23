@@ -11,6 +11,7 @@ import { Message } from '../model/message.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   title = 'User Registration';
 
   constructor(private registerService: RegisterService ) { }
@@ -26,5 +27,9 @@ export class RegisterComponent implements OnInit {
      message => this.message = message,
      error => this.message.text = 'Something went wrong.');
  }
+
+ ngOnInit(): void {
+  throw new Error('Method not implemented.');
+}
 
 }
