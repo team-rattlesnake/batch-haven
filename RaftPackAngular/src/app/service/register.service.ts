@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 // For Map
 import "rxjs/Rx";
 
-import { User } from '../model/user.model';
+import { User } from '../model/user/user.model';
 import { Message } from '../model/message.model';
 
 @Injectable()
@@ -17,7 +17,7 @@ export class RegisterService {
         const options: RequestOptions = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(`http://localhost:8090/SpringSampleMVC/registerHero.app`, body, options)
+            .post(`http://localhost:8090/SpringSampleMVC/registerUser.app`, body, options)
             .map((response: Response) => {
                 return <Message>response.json();
             })

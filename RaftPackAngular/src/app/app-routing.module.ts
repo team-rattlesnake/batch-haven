@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -7,6 +8,7 @@ import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.com
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component : RegisterComponent},
     { path: 'modify-user-info', component : ModifyUserInfoComponent}
 
 ];

@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
  // To message the user
  public message: Message = new Message('');
 
- registerHero(): void {
+ registerUser(): void {
    this.registerService.registerUser(this.user).subscribe(
      message => this.message = message,
-     error => this.message.text = 'Something went wrong.');
+     error => this.message.text = 'An error has occured...');
  }
 
  ngOnInit(): void {
