@@ -23,6 +23,7 @@
     "@angular/router": "^5.2.0",
     "angular-in-memory-web-api": "^0.5.3",
     "angular4-datepicker": "^1.0.1",
+    "aws-sdk": "^2.202.0",
     "core-js": "^2.4.1",
     "install": "^0.10.4",
     "rxjs": "^5.5.6",
