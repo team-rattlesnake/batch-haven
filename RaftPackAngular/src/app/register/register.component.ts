@@ -13,23 +13,24 @@ import { Message } from '../model/message.model';
 export class RegisterComponent implements OnInit {
 
   title = 'User Registration';
+ 
+  constructor(private registerService: RegisterService) { }
+  emailTyped: Boolean = false;
+  passwordTyped: Boolean = false;
+  // For data binding
+  public user: User = new User('', '', '', '', '', '');
 
-  constructor(private registerService: RegisterService ) { }
+  // To message the user
+  public message: Message = new Message('');
 
- // For data binding
- public user: User = new User('', '', '', '', 0);
+  registerUser(): void {
+    this.registerService.registerUser(this.user).subscribe(
+      message => this.message = message,
+      error => this.message.text = 'An error has occured...');
+  }
 
- // To message the user
- public message: Message = new Message('');
+  ngOnInit(): void {
 
- registerUser(): void {
-   this.registerService.registerUser(this.user).subscribe(
-     message => this.message = message,
-     error => this.message.text = 'An error has occured...');
- }
-
- ngOnInit(): void {
-  throw new Error('Method not implemented.');
-}
+  }
 
 }
