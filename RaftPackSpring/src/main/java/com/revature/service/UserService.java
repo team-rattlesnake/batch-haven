@@ -8,4 +8,5 @@ public interface UserService {
 	List<User> getAllUsers();
 	void registerUser(User user);
 	User findUser(User user);
+	User findUser(String email);
 }

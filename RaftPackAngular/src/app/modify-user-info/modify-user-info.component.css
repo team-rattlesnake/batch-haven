@@ -1,66 +1,69 @@
 .form-horizontal{
-    background-color: lightblue;
-    width: 600px;
+    width: 45%;
+    align-content: center;
 }
 
 .form-control{
    align-content: center;
 }
 
+.form-control{
+   align-content: center;
+}
 #fname{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #lname{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #compname{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #ename{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #uname{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #pname{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #cname{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #pnum{
-    position: relative;
+    position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 .alert.alert-info.alert-dismissable{
@@ -68,7 +71,7 @@
 }
 
 h3{
-    position : relative;
+    position : center;
     right : 110px;
 
 }

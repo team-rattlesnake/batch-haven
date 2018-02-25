@@ -8,11 +8,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.revature.model.Profile;
 
 @Repository("profileRepository")
 @Transactional
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProfileRepositoryImpl implements ProfileRepository{
 
 	@Autowired
@@ -31,7 +33,14 @@ public class ProfileRepositoryImpl implements ProfileRepository{
 
 	@Override
 	public Profile findByProfileId(int profileId) {
-		return (Profile) sessionFactory.getCurrentSession().get(Profile.class, profileId);
+		try {
+			return (Profile) sessionFactory.getCurrentSession().createCriteria(Profile.class)
+					.add(Restrictions.like("profileId", profileId))
+					.list()
+					.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

@@ -8,11 +8,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.revature.model.User;
 
 @Repository("userRepository")
 @Transactional
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserRepositoryImpl implements UserRepository{
 
 	@Autowired
@@ -40,7 +42,7 @@ public class UserRepositoryImpl implements UserRepository{
 			return (User) sessionFactory.getCurrentSession().createCriteria(User.class)
 					.add(Restrictions.like("userEmail", userEmail))
 					.list()
-					.get(0);
+					.get(1);
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
