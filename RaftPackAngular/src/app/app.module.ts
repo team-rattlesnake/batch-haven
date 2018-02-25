@@ -17,10 +17,12 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
 import { ProfileComponent } from './profile/profile.component';
+import { UploadFileService } from './upload.service';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { ProfileService } from './profile.service';
 import { MessageService } from './message.service';
 import { RegisterService } from './service/register.service';
+import { ModifyUserInfoService } from './modify-user-info.service';
 
 import { MessagesComponent } from './messages/messages.component';
 
@@ -31,8 +33,8 @@ import { MessagesComponent } from './messages/messages.component';
     LoginComponent,
     ModifyUserInfoComponent,
     ProfileComponent,
+    MessagesComponent,
     ProfileDetailComponent,
-    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import { MessagesComponent } from './messages/messages.component';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false })
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService,ModifyUserInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

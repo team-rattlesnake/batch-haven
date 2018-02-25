@@ -17,7 +17,7 @@ export class ProfileDetailComponent implements OnInit {
   }
 
   getProfile(): void {
-    this.profileService.getProfile(123)
+    this.profileService.getProfilec(123)
       .subscribe(profile => this.profile = profile);
   }
 

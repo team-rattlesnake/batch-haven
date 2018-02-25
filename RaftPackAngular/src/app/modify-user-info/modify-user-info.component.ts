@@ -1,32 +1,31 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {UserForm} from '../user-form';
+import { UserForm } from '../user-form';
+import { ModifyUserInfoService} from '../modify-user-info.service';
 
 @Component({
   selector: 'app-modify-user-info',
   templateUrl: './modify-user-info.component.html',
   styleUrls: ['./modify-user-info.component.css']
- 
+
 })
 export class ModifyUserInfoComponent implements OnInit {
-  userform : UserForm;
+  userform: UserForm;
+  userformRet: UserForm;
+  message : String = "";
 
-  constructor()
-   { 
-  
-  }
+  constructor(private modifyuserinfoService : ModifyUserInfoService) {}
 
   ngOnInit() {
+
+  }
+  getUserFormData(profilepic,firstname, lastname, useremail, pack, gender, biography) {
+    this.userform = {
+      profilepic: profilepic,firstname: firstname, lastname: lastname, useremail: useremail,
+      pack: pack, gender: gender, biography: biography};
     
+    this.modifyuserinfoService.modifyuserinfoGo(this.userform).subscribe(
+               message => this.userformRet = message,
+               error => this.message = 'An error has occured...');
+      
   }
-  getUserFormData(firstname,lastname,company,pack,email,username,password,confirmation){
-    this.userform = {firstname : firstname,lastname : lastname, company : company,
-    pack : pack, email : email, username : username,password : password, pass_confirm : confirmation};
-   
-    console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
-    this.userform.pack, this.userform.email,this.userform.username,this.userform.password,
-    this.userform.pass_confirm);
-   }
-
-  }
-
-
+}
