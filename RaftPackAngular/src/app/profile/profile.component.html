@@ -1,0 +1,21 @@
+<div *ngIf="profile">
+    <img src={{profile.profileImage}}/>
+</div>
+
+<div *ngIf="profile">
+    <b>Name</b>: {{user.firstName}} {{user.lastName}}
+    <br>
+    <b>Birthday</b>: {{user.monthOfBirth}} {{user.dayOfBirth}}, {{user.yearOfBirth}}
+    <br>
+    <b>Gender</b>: {{user.gender}}
+    <br>
+    <b>Bio</b>: {{profile.biography}}</div>
+<button *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
+<button class="button btn-info" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
+<div [hidden]="!show">
+    <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)">
+    </label>
+    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button><br>
+    <app-modify-user-info></app-modify-user-info>
+</div>

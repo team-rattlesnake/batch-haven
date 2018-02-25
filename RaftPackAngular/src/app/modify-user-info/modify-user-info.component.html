@@ -1,0 +1,52 @@
+ 
+  <div class="container">
+<div class="row">
+    <!-- left column -->
+      <div class="text-center">
+        <h6>Upload a different photo...</h6>
+      </div>
+    
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">First name:</label>
+          <div class="col-sm-8">
+            <input #firstname type="text" id="fname">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Last name:</label>
+          <div class="col-sm-8">
+            <input #lastname type="text" id="lname">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email:</label>
+          <div class="col-sm-8">
+            <input  #email type="text" id="ename">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Password:</label>
+          <div class="col-sm-8">
+            <input  #password type="password" id="pname">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Confirm password:</label>
+          <div class="col-sm-8">
+            <input  #confirmation type="password" id="cname">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input (click)="getUserFormData(firstname.value,lastname.value,company.value,
+            pack.value,email.value,username.value,password.value,confirmation.value)" type="button" 
+            class="btn btn-primary" value="Save Changes">
+            <span></span>
+            <input type="reset" class="btn btn-default" value="Cancel">
+          </div>
+        </div>
+      </form>
+</div>
+</div>
