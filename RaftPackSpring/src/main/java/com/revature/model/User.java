@@ -46,8 +46,6 @@ public class User {
 	private String dateOfBirth;
 	
 	
-	
-	
 	@OneToOne
 	private Profile profile;
 	

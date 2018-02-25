@@ -7,24 +7,26 @@
 <div class="list-group">
   <div class="list-group-item list-group-item-demo">
           <div class="form-group">
-              <input [(ngModel)]="user.firstname" placeholder="FirstName" class="form-control" />
-              <input [(ngModel)]="user.lastname" placeholder="LastName" class="form-control" />
+              <!-- <input [(ngModel)]="user.first_name" placeholder="FirstName" class="form-control" /> -->
+              <input [value]="user.first_name" (input)="user.first_name = $event.target.value" placeholder="FirstName" class="form-control">
 
-              <input [(ngModel)]="user.email" type ="email" placeholder="Email" class="form-control" (blur)="emailTyped= true" />
+              <input [(ngModel)]="user.last_name" placeholder="LastName" class="form-control" />
+
+              <input [(ngModel)]="user.user_email" type ="email" placeholder="Email" class="form-control" (blur)="emailTyped= true" />
             
               <div *ngIf="emailTyped">
-              <input [(ngModel)]="user.email" type ="email" placeholder="Confirm Email" class="form-control" />
+              <input [(ngModel)]="user.user_email" type ="email" placeholder="Confirm Email" class="form-control" />
             </div>
-              <input [(ngModel)]="user.password" type ="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true" />
+              <input [(ngModel)]="user.user_password" type ="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true" />
               
               <div *ngIf="passwordTyped">
-              <input [(ngModel)]="user.password" type ="password" placeholder="Confirm Password" class="form-control" />
+              <input [(ngModel)]="user.user_password" type ="password" placeholder="Confirm Password" class="form-control" />
                 </div>
 
                 <input [(ngModel)]="user.gender" type="gender" placeholder="Gender" class="form-control" />
 
               <p style="text-align: left">Enter your Date of Birth</p>
-              <input [(ngModel)]="user.dob" type ="date" placeholder="Date Of Birth" class="form-control" />
+              <input [(ngModel)]="user.date_of_birth" type ="date" placeholder="Date Of Birth" class="form-control" />
 
           </div>
           <div>
