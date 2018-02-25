@@ -20,14 +20,17 @@ import com.revature.service.UserService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
+	//tomcat admin port 8005. ajp 8009
+	
 	@Autowired
 	private UserService userService;
 	
 	//@RequestMapping(value="/registerHero.app", method=RequestMethod.POST)
 	@PostMapping("/registerUser.app")
 	public @ResponseBody ResponseEntity<Message> registerUser(@RequestBody User user) {
+		System.out.println("Sending this now: " + user);
 		userService.registerUser(user);
-		return new ResponseEntity<>(new Message("USER REGISTERED SUCCESSFULLY."), HttpStatus.OK);
+		return new ResponseEntity<>(new Message("USER REGISTERED SUCCESSFULLY..."), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAllUsers.app")
