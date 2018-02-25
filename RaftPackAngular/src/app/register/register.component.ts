@@ -14,22 +14,24 @@ export class RegisterComponent implements OnInit {
 
   title = 'User Registration';
 
-  constructor(private registerService: RegisterService ) { }
+  constructor(private registerService: RegisterService) { }
+  emailTyped: Boolean = false;
 
- // For data binding
- public user: User = new User('', '', '', '', 0);
+  passwordTyped: Boolean = false;
+  // For data binding
+  public user: User = new User('', '', '', '', '', '');
 
- // To message the user
- public message: Message = new Message('');
+  // To message the user
+  public message: Message = new Message('');
 
- registerUser(): void {
-   this.registerService.registerUser(this.user).subscribe(
-     message => this.message = message,
-     error => this.message.text = 'An error has occured...');
- }
+  registerUser(): void {
+    this.registerService.registerUser(this.user).subscribe(
+      message => this.message = message,
+      error => this.message.text = 'An error has occured...');
+  }
 
- ngOnInit(): void {
-  throw new Error('Method not implemented.');
-}
+  ngOnInit(): void {
+   
+  }
 
 }

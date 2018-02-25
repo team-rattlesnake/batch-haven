@@ -27,29 +27,26 @@ public class User {
 	@Column(name="USER_ID")
 	private int userId;
 	
-	@Column(name="USER_EMAIL")
-	private String userEmail;
-	
-	@Column(name="USER_PASSWORD")
-	private String userPassword;
-	
 	@Column(name="FIRST_NAME")
 	private String firstName;
 	
 	@Column(name="LAST_NAME")
 	private String lastName;
 	
-	@Column(name="MONTH_OF_BIRTH")
-	private String monthOfBirth;
+	@Column(name="USER_EMAIL")
+	private String userEmail;
 	
-	@Column(name="DAY_OF_BIRTH")
-	private int dayOfBirth;
-	
-	@Column(name="YEAR_OF_BIRTH")
-	private int yearOfBirth;
+	@Column(name="USER_PASSWORD")
+	private String userPassword;
 	
 	@Column(name="GENDER")
 	private String gender;
+	
+	@Column(name="DATE_OF_BIRTH")
+	private String dateOfBirth;
+	
+	
+	
 	
 	@OneToOne
 	private Profile profile;
@@ -70,19 +67,39 @@ public class User {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 	}
+	
+	
 
-	public User(int userId, String userEmail, String userPassword, String firstName, String lastName,
-			String monthOfBirth, int dayOfBirth, int yearOfBirth, String gender, Profile profile, List<Post> myPosts,
-			List<User> friends, List<Post> likedPosts) {
+	public User( String userEmail, String userPassword, String firstName, String lastName, String gender) {
 		super();
-		this.userId = userId;
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.monthOfBirth = monthOfBirth;
-		this.dayOfBirth = dayOfBirth;
-		this.yearOfBirth = yearOfBirth;
+		this.gender = gender;
+	}
+	
+	
+
+	public User(String firstName, String lastName, String userEmail, String userPassword, String gender,
+			String dateOfBirth) {
+		super();
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+	}
+
+	public User(String userEmail, String userPassword, String firstName, String lastName,
+			 String gender, Profile profile, List<Post> myPosts,
+			List<User> friends, List<Post> likedPosts) {
+		super();
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.gender = gender;
 		this.profile = profile;
 		this.myPosts = myPosts;
@@ -130,28 +147,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getMonthOfBirth() {
-		return monthOfBirth;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setMonthOfBirth(String monthOfBirth) {
-		this.monthOfBirth = monthOfBirth;
-	}
-
-	public int getDayOfBirth() {
-		return dayOfBirth;
-	}
-
-	public void setDayOfBirth(int dayOfBirth) {
-		this.dayOfBirth = dayOfBirth;
-	}
-
-	public int getYearOfBirth() {
-		return yearOfBirth;
-	}
-
-	public void setYearOfBirth(int yearOfBirth) {
-		this.yearOfBirth = yearOfBirth;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getGender() {
@@ -194,13 +195,7 @@ public class User {
 		this.likedPosts = likedPosts;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", monthOfBirth=" + monthOfBirth + ", dayOfBirth=" + dayOfBirth
-				+ ", yearOfBirth=" + yearOfBirth + ", gender=" + gender + ", profile=" + profile + ", myPosts="
-				+ myPosts + ", friends=" + printFriends(friends) + ", likedPosts=" + likedPosts + "]";
-	}
+
 	
 	public List<String> printFriends(List<User> friends) {
 		List<String> myFriends = new ArrayList<>();
@@ -210,29 +205,36 @@ public class User {
 		return myFriends;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "User [userEmail=" + userEmail + ", userPassword=" + userPassword + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
+				+ ", profile=" + profile + ", myPosts=" + myPosts + ", friends=" + friends + ", likedPosts="
+				+ likedPosts + "]";
+	}
+
 	public String toStringTwo() {
 		return "User [userId=" + userId + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", monthOfBirth=" + monthOfBirth + ", dayOfBirth=" + dayOfBirth
-				+ ", yearOfBirth=" + yearOfBirth + ", gender=" + gender + ", profile=" + profile + "]";
+				+ firstName + ", lastName=" + lastName + ", gender=" + gender + ", profile=" + profile + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + dayOfBirth;
+	
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((friends == null) ? 0 : friends.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((likedPosts == null) ? 0 : likedPosts.hashCode());
-		result = prime * result + ((monthOfBirth == null) ? 0 : monthOfBirth.hashCode());
 		result = prime * result + ((myPosts == null) ? 0 : myPosts.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
-		result = prime * result + yearOfBirth;
 		return result;
 	}
 
@@ -245,8 +247,7 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (dayOfBirth != other.dayOfBirth)
-			return false;
+		
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -272,11 +273,6 @@ public class User {
 				return false;
 		} else if (!likedPosts.equals(other.likedPosts))
 			return false;
-		if (monthOfBirth == null) {
-			if (other.monthOfBirth != null)
-				return false;
-		} else if (!monthOfBirth.equals(other.monthOfBirth))
-			return false;
 		if (myPosts == null) {
 			if (other.myPosts != null)
 				return false;
@@ -298,8 +294,6 @@ public class User {
 			if (other.userPassword != null)
 				return false;
 		} else if (!userPassword.equals(other.userPassword))
-			return false;
-		if (yearOfBirth != other.yearOfBirth)
 			return false;
 		return true;
 	}

@@ -72,39 +72,18 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> findByMonthOfBirth(String monthOfBirth) {
+	public List<User> findByDoB(String dob) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("monthOfBirth", monthOfBirth))
+					.add(Restrictions.like("dob", dob))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> findByDayOfBirth(int dayOfBirth) {
-		try {
-			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.eq("dayOfBirth", dayOfBirth))
-					.list();
-		} catch (IndexOutOfBoundsException e) {
-			return null;
-		}
-	}
+	
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> findByYearOfBirth(int yearOfBirth) {
-		try {
-			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.eq("yearOfBirth", yearOfBirth))
-					.list();
-		} catch (IndexOutOfBoundsException e) {
-			return null;
-		}
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override

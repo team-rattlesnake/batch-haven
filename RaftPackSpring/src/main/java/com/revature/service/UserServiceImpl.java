@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void registerUser(User user) {
+		System.out.println("Registering User...");
+		System.out.println("User being registered:" + user);
 		userRepository.create(user);
 	}
 

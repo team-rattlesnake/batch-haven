@@ -12,9 +12,7 @@ public interface UserRepository {
 	User findByUserEmail(String userEmail);
 	List<User> findByFirstName(String firstName);
 	List<User> findByLastName(String lastName);
-	List<User> findByMonthOfBirth(String monthOfBirth);
-	List<User> findByDayOfBirth(int dayOfBirth);
-	List<User> findByYearOfBirth(int yearOfBirth);
+	List<User> findByDoB(String dob);
 	List<User> findByGender(String gender);
 	void update(User user);
 	void delete(User user);
