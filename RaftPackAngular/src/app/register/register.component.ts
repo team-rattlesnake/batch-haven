@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   constructor(private registerService: RegisterService ) { }
 
  // For data binding
- public user: User = new User(123, '', '', '', '', 25);
+ public user: User = new User('', '', '', '', 0);
 
  // To message the user
  public message: Message = new Message('');

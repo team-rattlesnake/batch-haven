@@ -9,10 +9,12 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class LoginService {
+
   constructor(private http: Http) { }
+
   public fetchUserInformation(email: string): Observable<User> {
     return this.http
-            .get(`https://localhost:8090/getUser.app/`)
+            .get(`http://localhost:9005/login/${email}`)
             .map((response: Response) => {
                 return <User> response.json();
             })

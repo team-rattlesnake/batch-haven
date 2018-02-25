@@ -16,10 +16,12 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
 import { ProfileComponent } from './profile/profile.component';
+import { UploadFileService } from './upload.service';
+import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { ProfileService } from './profile.service';
 import { MessageService } from './message.service';
 import { RegisterService } from './service/register.service';
-import {UploadFileService} from './upload.service';
+
 import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
@@ -30,13 +32,16 @@ import { MessagesComponent } from './messages/messages.component';
     ModifyUserInfoComponent,
     ProfileComponent,
     MessagesComponent,
+    ProfileDetailComponent,
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false })
   ],
   providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService],
   bootstrap: [AppComponent]

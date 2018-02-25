@@ -29,21 +29,18 @@ export class LoginComponent implements OnInit {
       this.loginService.fetchUserInformation(this.user.userEmail)
         .subscribe(
           user => this.user = user,
-          error => console.log(`Error: ${this.user.firstName}`)
+          error => console.log(`Error: ${error}`)
         );
-        this.getUser();
       if (this.enteredPassword === this.user.userPassword) {
         console.log(this.user.userEmail + ' \n ' + this.user.userPassword);
       } else {
         console.log('Invalid credentials');
       }
+    } else {
+      console.log('The field(s) are missing input.');
     }
-
   }
 
-  getUser() {
-    return this.user;
-  }
   ngOnInit() {
   }
 

@@ -11,11 +11,15 @@ export class User {
     dayOfBirth: number;
     yearOfBirth: number;
     gender: string;
+    profile: Profile;
+    myPosts: Post[];
+    friends: User[];
+    likedPosts: Post[];
 
     constructor(userId: number, userEmail: string, userPassword: string,
                 firstName: string, lastName: string, monthOfBirth: string,
                 dayOfBirth: number, yearOfBirth: number, gender: string,
-                ) {
+                profile: Profile, myPosts: Post[], friends: User[], likedPosts: Post[]) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -25,5 +29,9 @@ export class User {
         this.dayOfBirth = dayOfBirth;
         this.yearOfBirth = yearOfBirth;
         this.gender = gender;
+        this.profile = profile;
+        this.myPosts = myPosts;
+        this.friends = friends;
+        this.likedPosts = likedPosts;
     }
 }
