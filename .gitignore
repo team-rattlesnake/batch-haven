@@ -1,3 +1,6 @@
+# Compiled Java Classes
+RaftPackSpring/target
+
 # Logs
 logs
 *.log
