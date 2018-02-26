@@ -68,9 +68,9 @@ public class User {
 	
 	
 
-	public User( String userEmail, String user_password, String first_name, String last_name, String gender) {
+	public User( String user_email, String user_password, String first_name, String last_name, String gender) {
 		super();
-		this.user_email = userEmail;
+		this.user_email = user_email;
 		this.user_password = user_password;
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -79,22 +79,22 @@ public class User {
 	
 	
 
-	public User(String first_name, String last_name, String userEmail, String user_password, String gender,
-			String dateOfBirth) {
+	public User(String first_name, String last_name, String user_email, String user_password, String gender,
+			String date_of_birth) {
 		super();
-		this.user_email = userEmail;
+		this.user_email = user_email;
 		this.user_password = user_password;
 		this.first_name = first_name;
 		this.last_name = last_name;
-		this.date_of_birth = dateOfBirth;
+		this.date_of_birth = date_of_birth;
 		this.gender = gender;
 	}
 
-	public User(String userEmail, String user_password, String first_name, String last_name,
+	public User(String user_email, String user_password, String first_name, String last_name,
 			 String gender, Profile profile, List<Post> myPosts,
 			List<User> friends, List<Post> likedPosts) {
 		super();
-		this.user_email = userEmail;
+		this.user_email = user_email;
 		this.user_password = user_password;
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -113,12 +113,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserEmail() {
+	public String getuser_email() {
 		return user_email;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.user_email = userEmail;
+	public void setuser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
 	public String getuser_password() {
@@ -145,12 +145,12 @@ public class User {
 		this.last_name = last_name;
 	}
 
-	public String getDateOfBirth() {
+	public String getdate_of_birth() {
 		return date_of_birth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.date_of_birth = dateOfBirth;
+	public void setdate_of_birth(String date_of_birth) {
+		this.date_of_birth = date_of_birth;
 	}
 
 	public String getGender() {
@@ -207,14 +207,14 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", dateOfBirth=" + date_of_birth + ", gender=" + gender
+		return "User [user_email=" + user_email + ", user_password=" + user_password + ", first_name="
+				+ first_name + ", last_name=" + last_name + ", date_of_birth=" + date_of_birth + ", gender=" + gender
 				+ ", profile=" + profile + ", myPosts=" + myPosts + ", friends=" + friends + ", likedPosts="
 				+ likedPosts + "]";
 	}
 
 	public String toStringTwo() {
-		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
+		return "User [userId=" + userId + ", user_email=" + user_email + ", user_password=" + user_password + ", first_name="
 				+ first_name + ", last_name=" + last_name + ", gender=" + gender + ", profile=" + profile + "]";
 	}
 
