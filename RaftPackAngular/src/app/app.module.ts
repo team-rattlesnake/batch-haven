@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { HttpModule } from '@angular/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,7 @@ import { MessagesComponent } from './messages/messages.component';
     ProfileComponent,
     MessagesComponent,
     ProfileDetailComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

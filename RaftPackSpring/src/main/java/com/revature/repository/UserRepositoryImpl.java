@@ -23,6 +23,7 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public void create(User user) {
 		sessionFactory.getCurrentSession().save(user);
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -42,7 +43,7 @@ public class UserRepositoryImpl implements UserRepository{
 			return (User) sessionFactory.getCurrentSession().createCriteria(User.class)
 					.add(Restrictions.like("user_email", user_email))
 					.list()
-					.get(1);
+					.get(0);
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}

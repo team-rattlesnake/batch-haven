@@ -13,6 +13,7 @@ export const routes: Routes = [
     { path: 'modify-user-info', component : ModifyUserInfoComponent},
     { path: 'profile', component : ProfileComponent}
 
+
 ];
 
 @NgModule({

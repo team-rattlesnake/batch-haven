@@ -21,7 +21,7 @@ export class RegisterService {
 
 
         return this.http
-            .post(`http://localhost:8070/RaftPackSpring/registerUser.app`, body, options)
+            .post(`http://localhost:8090/RaftPackSpring/registerUser.app`, body, options)
             .map((response: Response) => {
 
                 return <Message>response.json();
