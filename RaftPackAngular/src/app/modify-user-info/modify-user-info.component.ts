@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserForm } from '../models/user-form';
-import { User } from '../models/user.model';
+import { UserForm } from '../user-form';
+import { ModifyUserInfoService} from '../modify-user-info.service';
 
 @Component({
   selector: 'app-modify-user-info',
@@ -10,29 +10,22 @@ import { User } from '../models/user.model';
 })
 export class ModifyUserInfoComponent implements OnInit {
   userform: UserForm;
-  user: User;
+  userformRet: UserForm;
+  message : String = "";
 
-  constructor() {
-
-  }
+  constructor(private modifyuserinfoService : ModifyUserInfoService) {}
 
   ngOnInit() {
 
   }
-
-  getUserFormData(firstname, lastname, company, pack, email, username, password, confirmation) {
+  getUserFormData(profilepic,firstname, lastname, useremail, pack, gender, biography) {
     this.userform = {
-      firstname: firstname, lastname: lastname, company: company,
-      pack: pack, email: email, username: username, password: password, pass_confirm: confirmation
-    };
-    /* need to combine these somehow... */
-    this.user = new User(0, firstname, lastname, email, password, 'female', '07/21/1993');
-
-    console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
-      this.userform.pack, this.userform.email, this.userform.username, this.userform.password,
-      this.userform.pass_confirm);
+      profilepic: profilepic,firstname: firstname, lastname: lastname, useremail: useremail,
+      pack: pack, gender: gender, biography: biography};
+    
+    this.modifyuserinfoService.modifyuserinfoGo(this.userform).subscribe(
+               message => this.userformRet = message,
+               error => this.message = 'An error has occured...');
+      
   }
-
 }
-
-
