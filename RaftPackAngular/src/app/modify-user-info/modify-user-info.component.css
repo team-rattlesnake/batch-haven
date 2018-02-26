@@ -6,6 +6,7 @@
 .form-control{
    align-content: center;
 }
+
 .form-control{
    align-content: center;
 }
@@ -13,56 +14,56 @@
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #lname{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #compname{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #ename{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #uname{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #pname{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #cname{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 #pnum{
     position: center;
     left : 90px;
     width: 400px;
-    
+
 }
 
 .alert.alert-info.alert-dismissable{

@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import { MessageService } from './message.service';
+import { Http, RequestOptions, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Post } from '../models/post.model';
+import { User } from 'aws-sdk/clients/mq';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+@Injectable()
+export class PostService {
+
+  constructor(private httpc: HttpClient,
+    private messageService: MessageService) { }
+
+  private log(message: string) {
+    this.messageService.add(message);
+  }
+
+  public getPosts(profile: number): Observable<Post[]> {
+    const body: string = JSON.stringify(profile);
+    const headers: Headers = new Headers({ 'Content-Type': 'application/json'});
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+
+    return this.httpc
+        .post(`http://localhost:9005/RaftPackSpring/getPosts.app`, body, httpOptions)
+        .catch(this.handleError);
+  }
+
+  private handleError(error: Response) {
+      return Observable.throw(error.statusText);
+  }
+
+}

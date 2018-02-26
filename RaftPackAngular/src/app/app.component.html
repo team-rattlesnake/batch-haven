@@ -1,27 +1,14 @@
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
- <div style="text-align:left">
-   <div class="headerColor">
-      <h1><span class="badge badge-default">RaftPack</span></h1>
-    </div>
-      <div style="text-align:center">
-  <!-- For now putting in my app to view it since there is no routing up-->
-  <nav>
-    <a routerLink ="/profile">Profile</a>
-    <li><a routerLink="post/123">View Your Posts</a></li>
-  </nav>
-  <router-outlet></router-outlet> 
-  <app-login></app-login>
+<div style="text-align:left">
+  <div class="headerColor">
+    <h1>
+      <span class="badge badge-default">RaftPack</span>
+    </h1>
   </div>
+  <div style="text-align:center">
+    <nav>
+      <a routerLink="/profile">Profile</a>
+      <a routerLink="/post">View Your Posts</a>
+    </nav>
+    <router-outlet></router-outlet>
   </div>
-
-
-
-<!-- Latest compiled and minified JavaScript -->
-
+</div>

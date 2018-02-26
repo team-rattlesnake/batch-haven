@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../models/profile.model';
-import { ProfileService } from '../service/profile.service';
-import { User } from '../models/User.model';
+import { ProfileService } from '../services/profile.service';
+import { User } from '../models/user.model';
 import { LoginComponent } from '../login/login.component';
 import { Message } from '../models/message.model';
-import { UploadFileService } from '../service/upload.service';
+import { UploadFileService } from '../services/upload.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -12,23 +11,18 @@ import { UploadFileService } from '../service/upload.service';
 })
 export class ProfileComponent implements OnInit {
   show = false;
-  profile: Profile;
   selectedFiles: FileList;
-  user = this.user = {
-    userId: 123, userEmail: 'mnguyen5081@gmail.com', userPassword: 'password',
-    firstName: 'Mary', lastName: 'Nguyen', monthOfBirth: 'July', dayOfBirth: 21, yearOfBirth: 1993, gender: 'Female',
-    profile: null, myPosts: null, friends: null, likedPosts: null
-  };
+  user = new User(0, '', '', '', '', '', '', '', '');
   loginComponent: LoginComponent;
   constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
   }
 
   public message: Message = new Message('No profile to display.');
 
-  getProfile(): void {
-    this.profileService.getProfile(this.user).subscribe(
-      profile => this.profile = profile,
-      error => this.message.text = `Couldn't find Hero.`);
+  getProfile() {
+    this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
+      user => {this.user = user; console.log(this.user); console.log(document.cookie = this.user.userId.valueOf().toString()); },
+      error => this.message.text = `Couldn't find Profile.`);
   }
 
   ngOnInit(): void {

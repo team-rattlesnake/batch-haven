@@ -23,5 +23,10 @@
   	<servlet-name>dispatcher</servlet-name>
   	<url-pattern>*.app</url-pattern>
   </servlet-mapping>
+
+  <!-- Tells to activate Log4J -->
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
   
 </web-app>

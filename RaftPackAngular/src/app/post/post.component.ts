@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Post } from '../models/post.model';
-import { Profile } from '../models/profile.model';
-import { ProfileService } from '../service/profile.service';
-import { User } from '../models/User.model';
-import { PostService } from '../service/post.service';
+import { ProfileService } from '../services/profile.service';
+import { User } from '../models/user.model';
+import { PostService } from '../services/post.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -14,19 +13,20 @@ import { PostService } from '../service/post.service';
 export class PostComponent implements OnInit {
   public posts: Post[] = [];
   userId: number;
+
   constructor(private route: ActivatedRoute, private router: Router, private postService: PostService) {
-    this.route.params.subscribe(res => {
-      this.userId = res.id;
-    console.log(res.id);
-  });
 }
 
+  ngOnInit() {
+    // tslint:disable-next-line:radix
+    this.getAllPosts(parseInt(document.cookie, 10));
 
-  ngOnInit() {  this.getAllPosts(this.userId);
   }
+
   getAllPosts(profileId: number): void {
-    this.postService.getPosts(this.userId).subscribe(
-      posts => this.posts = posts);
+    this.postService.getPosts(profileId).subscribe(
+      posts => {this.posts = posts; console.log(posts);
+      });
   }
 
 

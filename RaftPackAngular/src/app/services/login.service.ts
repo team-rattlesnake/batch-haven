@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-// For Map
-import "rxjs/Rx";
 
-import { User } from '../model/user/user.model';
-import { Message } from '../model/message.model';
+import { User } from '../models/user.model';
+import { Message } from '../models/message.model';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class RegisterService {
+export class LoginService {
+
     constructor(private http: Http) { }
 
-    public registerUser(user: User): Observable<Message> {
+    public login(user: User): Observable<User> {
         const body  = JSON.stringify(user);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options: RequestOptions = new RequestOptions({ headers: headers });
 
         return this.http
-            .post(`http://localhost:8090/SpringSampleMVC/registerUser.app`, body, options)
+            .post(`http://localhost:8090/RaftPackSpring/login.app`, body, options)
             .map((response: Response) => {
-                return <Message>response.json();
+                return <User>response.json();
             })
             .catch(this.handleError);
     }
@@ -27,4 +29,5 @@ export class RegisterService {
     private handleError(error: Response) {
         return Observable.throw(error.statusText);
     }
+
 }

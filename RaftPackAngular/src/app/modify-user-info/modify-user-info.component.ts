@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserForm } from '../user-form';
+import { UserForm } from '../models/user-form';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-modify-user-info',
@@ -9,6 +10,7 @@ import { UserForm } from '../user-form';
 })
 export class ModifyUserInfoComponent implements OnInit {
   userform: UserForm;
+  user: User;
 
   constructor() {
 
@@ -17,11 +19,14 @@ export class ModifyUserInfoComponent implements OnInit {
   ngOnInit() {
 
   }
+
   getUserFormData(firstname, lastname, company, pack, email, username, password, confirmation) {
     this.userform = {
       firstname: firstname, lastname: lastname, company: company,
       pack: pack, email: email, username: username, password: password, pass_confirm: confirmation
     };
+    /* need to combine these somehow... */
+    this.user = new User(0, '', '', '', '', '', '', '', '');
 
     console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
       this.userform.pack, this.userform.email, this.userform.username, this.userform.password,

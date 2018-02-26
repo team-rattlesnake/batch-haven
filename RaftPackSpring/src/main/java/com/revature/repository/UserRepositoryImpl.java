@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.revature.model.Post;
 import com.revature.model.User;
 
 @Repository("userRepository")
@@ -23,9 +24,10 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public void create(User user) {
 		sessionFactory.getCurrentSession().save(user);
+		
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")  /* why suppressed */
 	@Override
 	public List<User> findAll() {
 		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
@@ -33,82 +35,66 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User findByUserId(int userId) {
-		return (User) sessionFactory.getCurrentSession().get(User.class, userId);
+		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
+		System.out.println(u);
+		return u;
+	}
+	
+	@Override
+	public List<Post> findPostByUserId(int userId){
+		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
+		return u.getMyPosts();
 	}
 
 	@Override
-	public User findByUserEmail(String userEmail) {
+	public User findByUserEmail(String user_email) {
 		try {
 			return (User) sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("userEmail", userEmail))
+					.add(Restrictions.like("user_email", user_email))
 					.list()
-					.get(1);
+					.get(0);
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")  /* why suppressed */
 	@Override
-	public List<User> findByFirstName(String firstName) {
+	public List<User> findByFirstName(String first_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("firstName", firstName))
+					.add(Restrictions.like("first_name", first_name))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")  /* why suppressed */
 	@Override
-	public List<User> findByLastName(String lastName) {
+	public List<User> findByLastName(String last_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("lastName", lastName))
+					.add(Restrictions.like("last_name", last_name))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")  /* why suppressed */
 	@Override
-	public List<User> findByMonthOfBirth(String monthOfBirth) {
+	public List<User> findByDoB(String date_of_birth) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("monthOfBirth", monthOfBirth))
+					.add(Restrictions.like("date_of_birth", date_of_birth))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> findByDayOfBirth(int dayOfBirth) {
-		try {
-			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.eq("dayOfBirth", dayOfBirth))
-					.list();
-		} catch (IndexOutOfBoundsException e) {
-			return null;
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> findByYearOfBirth(int yearOfBirth) {
-		try {
-			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.eq("yearOfBirth", yearOfBirth))
-					.list();
-		} catch (IndexOutOfBoundsException e) {
-			return null;
-		}
-	}
-
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")  /* why suppressed */
 	@Override
 	public List<User> findByGender(String gender) {
 		try {

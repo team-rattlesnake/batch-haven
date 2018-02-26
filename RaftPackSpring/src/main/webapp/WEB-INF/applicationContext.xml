@@ -22,7 +22,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@rattlesnake-db.cu7knzi3krpf.us-east-2.rds.amazonaws.com:1521:orcl" />
-		<property name="username" value="mary" />
+		<property name="username" value="test" />
 		<property name="password" value="p4ssw0rd" />
 	</bean>
 
