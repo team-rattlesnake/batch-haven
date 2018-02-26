@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // For Map
-import "rxjs/Rx";
+// tslint:disable-next-line:import-blacklist
+import 'rxjs/Rx';
 
 import { User } from '../model/user/user.model';
 import { Message } from '../model/message.model';
@@ -15,10 +16,14 @@ export class RegisterService {
         const body  = JSON.stringify(user);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options: RequestOptions = new RequestOptions({ headers: headers });
+        console.log('Sending: ' + body);
+
+
 
         return this.http
-            .post(`http://localhost:8090/SpringSampleMVC/registerUser.app`, body, options)
+            .post(`http://localhost:8090/RaftPackSpring/registerUser.app`, body, options)
             .map((response: Response) => {
+
                 return <Message>response.json();
             })
             .catch(this.handleError);

@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void registerUser(User user) {
+		System.out.println("Registering User...");
+		System.out.println("User being registered:" + user);
 		userRepository.create(user);
 	}
 
@@ -38,6 +40,18 @@ public class UserServiceImpl implements UserService {
 	public User findUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public User validateUser(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("User: " + user);
+		User temp = userRepository.findByUserEmail(user.getuser_email());
+		//System.out.println("Temp: " + temp);
+		if(user.getuser_password().equals(temp.getuser_password())) {
+			return temp;
+		}
+		return user;
 	}
 	
 }

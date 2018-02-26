@@ -19,14 +19,18 @@ import com.revature.service.UserService;
 @Controller("userController")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
+	
+	//tomcat admin port 8005. ajp 8009
+	
 	@Autowired
 	private UserService userService;
 	
 	//@RequestMapping(value="/registerHero.app", method=RequestMethod.POST)
 	@PostMapping("/registerUser.app")
 	public @ResponseBody ResponseEntity<Message> registerUser(@RequestBody User user) {
+		System.out.println("Sending this now: " + user);
 		userService.registerUser(user);
-		return new ResponseEntity<>(new Message("USER REGISTERED SUCCESSFULLY."), HttpStatus.OK);
+		return new ResponseEntity<>(new Message("USER REGISTERED SUCCESSFULLY..."), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAllUsers.app")
@@ -34,9 +38,18 @@ public class UserController {
 		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/getUser.app")
+	@GetMapping("/getUserByEmail.app")
 	public @ResponseBody ResponseEntity<User> getUser(@RequestBody String email) {
-		return new ResponseEntity<>(userService.findUser("mnguyen5081@gmail.com"), HttpStatus.OK);
-		
+		return new ResponseEntity<>(userService.findUser(email), HttpStatus.OK);
+	}
+	
+	@PostMapping("/getUser.app")
+	public @ResponseBody ResponseEntity<User> getUser(@RequestBody User user) {
+		return new ResponseEntity<>(userService.findUser(user), HttpStatus.OK);
+	}
+	
+	@PostMapping("/login.app")
+	public @ResponseBody ResponseEntity<User> login(@RequestBody User user) {
+		return new ResponseEntity<>(userService.validateUser(user), HttpStatus.OK);
 	}
 }

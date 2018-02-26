@@ -27,31 +27,26 @@ public class User {
 	@Column(name="USER_ID")
 	private int userId;
 	
-	@Column(name="USER_EMAIL")
-	private String userEmail;
-	
-	@Column(name="USER_PASSWORD")
-	private String userPassword;
-	
 	@Column(name="FIRST_NAME")
-	private String firstName;
+	private String first_name;
 	
 	@Column(name="LAST_NAME")
-	private String lastName;
+	private String last_name;
 	
-	@Column(name="MONTH_OF_BIRTH")
-	private String monthOfBirth;
+	@Column(name="USER_EMAIL")
+	private String user_email;
 	
-	@Column(name="DAY_OF_BIRTH")
-	private int dayOfBirth;
-	
-	@Column(name="YEAR_OF_BIRTH")
-	private int yearOfBirth;
+	@Column(name="USER_PASSWORD")
+	private String user_password;
 	
 	@Column(name="GENDER")
 	private String gender;
 	
-	@OneToOne
+	@Column(name="DATE_OF_BIRTH")
+	private String date_of_birth;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROFILE_ID")
 	private Profile profile;
 	
 	@OneToMany(mappedBy="postId", fetch=FetchType.LAZY)
@@ -65,25 +60,35 @@ public class User {
 	
 	public User() {}
 	
-	public User(String userEmail, String userPassword) {
+	public User(String user_email, String user_password) {
 		super();
-		this.userEmail = userEmail;
-		this.userPassword = userPassword;
+		this.user_email = user_email;
+		this.user_password = user_password;
 	}
 
-	public User(int userId, String userEmail, String userPassword, String firstName, String lastName,
-			String monthOfBirth, int dayOfBirth, int yearOfBirth, String gender, Profile profile, List<Post> myPosts,
-			List<User> friends, List<Post> likedPosts) {
+	public User(String first_name, String last_name, String user_email, String user_password, String gender,
+			String date_of_birth) {
+		super();
+		this.user_email = user_email;
+		this.user_password = user_password;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.date_of_birth = date_of_birth;
+		this.gender = gender;
+	}
+
+	
+
+	public User(int userId, String first_name, String last_name, String user_email, String user_password, String gender,
+			String date_of_birth, Profile profile, List<Post> myPosts, List<User> friends, List<Post> likedPosts) {
 		super();
 		this.userId = userId;
-		this.userEmail = userEmail;
-		this.userPassword = userPassword;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.monthOfBirth = monthOfBirth;
-		this.dayOfBirth = dayOfBirth;
-		this.yearOfBirth = yearOfBirth;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.user_email = user_email;
+		this.user_password = user_password;
 		this.gender = gender;
+		this.date_of_birth = date_of_birth;
 		this.profile = profile;
 		this.myPosts = myPosts;
 		this.friends = friends;
@@ -98,60 +103,44 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getuser_email() {
+		return user_email;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setuser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getuser_password() {
+		return user_password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setuser_password(String user_password) {
+		this.user_password = user_password;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getfirst_name() {
+		return first_name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setfirst_name(String first_name) {
+		this.first_name = first_name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getlast_name() {
+		return last_name;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setlast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
-	public String getMonthOfBirth() {
-		return monthOfBirth;
+	public String getdate_of_birth() {
+		return date_of_birth;
 	}
 
-	public void setMonthOfBirth(String monthOfBirth) {
-		this.monthOfBirth = monthOfBirth;
-	}
-
-	public int getDayOfBirth() {
-		return dayOfBirth;
-	}
-
-	public void setDayOfBirth(int dayOfBirth) {
-		this.dayOfBirth = dayOfBirth;
-	}
-
-	public int getYearOfBirth() {
-		return yearOfBirth;
-	}
-
-	public void setYearOfBirth(int yearOfBirth) {
-		this.yearOfBirth = yearOfBirth;
+	public void setDateOfBirth(String date_of_birth) {
+		this.date_of_birth = date_of_birth;
 	}
 
 	public String getGender() {
@@ -194,13 +183,7 @@ public class User {
 		this.likedPosts = likedPosts;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", monthOfBirth=" + monthOfBirth + ", dayOfBirth=" + dayOfBirth
-				+ ", yearOfBirth=" + yearOfBirth + ", gender=" + gender + ", profile=" + profile + ", myPosts="
-				+ myPosts + ", friends=" + printFriends(friends) + ", likedPosts=" + likedPosts + "]";
-	}
+
 	
 	public List<String> printFriends(List<User> friends) {
 		List<String> myFriends = new ArrayList<>();
@@ -210,29 +193,36 @@ public class User {
 		return myFriends;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
+				+ first_name + ", last_name=" + last_name + ", dateOfBirth=" + date_of_birth + ", gender=" + gender
+				+ ", profile=" + profile + ", myPosts=" + myPosts + ", friends=" + friends + ", likedPosts="
+				+ likedPosts + "]";
+	}
+
 	public String toStringTwo() {
-		return "User [userId=" + userId + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", monthOfBirth=" + monthOfBirth + ", dayOfBirth=" + dayOfBirth
-				+ ", yearOfBirth=" + yearOfBirth + ", gender=" + gender + ", profile=" + profile + "]";
+		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
+				+ first_name + ", last_name=" + last_name + ", gender=" + gender + ", profile=" + profile + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + dayOfBirth;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+	
+		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
 		result = prime * result + ((friends == null) ? 0 : friends.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((likedPosts == null) ? 0 : likedPosts.hashCode());
-		result = prime * result + ((monthOfBirth == null) ? 0 : monthOfBirth.hashCode());
 		result = prime * result + ((myPosts == null) ? 0 : myPosts.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
+		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		result = prime * result + userId;
-		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
-		result = prime * result + yearOfBirth;
+		result = prime * result + ((user_password == null) ? 0 : user_password.hashCode());
 		return result;
 	}
 
@@ -245,12 +235,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (dayOfBirth != other.dayOfBirth)
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
+		
+		if (first_name == null) {
+			if (other.first_name != null)
 				return false;
-		} else if (!firstName.equals(other.firstName))
+		} else if (!first_name.equals(other.first_name))
 			return false;
 		if (friends == null) {
 			if (other.friends != null)
@@ -262,20 +251,15 @@ public class User {
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
+		if (last_name == null) {
+			if (other.last_name != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		} else if (!last_name.equals(other.last_name))
 			return false;
 		if (likedPosts == null) {
 			if (other.likedPosts != null)
 				return false;
 		} else if (!likedPosts.equals(other.likedPosts))
-			return false;
-		if (monthOfBirth == null) {
-			if (other.monthOfBirth != null)
-				return false;
-		} else if (!monthOfBirth.equals(other.monthOfBirth))
 			return false;
 		if (myPosts == null) {
 			if (other.myPosts != null)
@@ -287,19 +271,17 @@ public class User {
 				return false;
 		} else if (!profile.equals(other.profile))
 			return false;
-		if (userEmail == null) {
-			if (other.userEmail != null)
+		if (user_email == null) {
+			if (other.user_email != null)
 				return false;
-		} else if (!userEmail.equals(other.userEmail))
+		} else if (!user_email.equals(other.user_email))
 			return false;
 		if (userId != other.userId)
 			return false;
-		if (userPassword == null) {
-			if (other.userPassword != null)
+		if (user_password == null) {
+			if (other.user_password != null)
 				return false;
-		} else if (!userPassword.equals(other.userPassword))
-			return false;
-		if (yearOfBirth != other.yearOfBirth)
+		} else if (!user_password.equals(other.user_password))
 			return false;
 		return true;
 	}

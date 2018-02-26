@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { LoginService } from './login.service';
 
-import { User } from '../models/User.model';
+import { User } from '../model/user/user.model';
+import { Message } from '../model/message.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +14,9 @@ import { User } from '../models/User.model';
 })
 export class LoginComponent implements OnInit {
 
-  public user: User = new User(0, '', '', '', '', '', 0,
-                               0, '', null, null, null, null);
-  private enteredPassword: string;
+  public user: User = new User(0, '', '', '', '', '', '');
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
   public login(): void {
@@ -24,26 +24,20 @@ export class LoginComponent implements OnInit {
   }
 
   getUserCredentials(): void {
-    if (this.user.userEmail.length > 0 && this.user.userPassword.length > 0) {
-      this.enteredPassword = this.user.userPassword;
-      this.loginService.fetchUserInformation(this.user.userEmail)
-        .subscribe(
-          user => this.user = user,
-          error => console.log(`Error: ${this.user.firstName}`)
-        );
-        this.getUser();
-      if (this.enteredPassword === this.user.userPassword) {
-        console.log(this.user.userEmail + ' \n ' + this.user.userPassword);
-      } else {
-        console.log('Invalid credentials');
-      }
+    this.loginService.login(this.user)
+      .subscribe(
+        user => this.user = user,
+        error => console.log(`Error: ${error}`)
+      );
+    if (this.user.userId > 0) {
+      console.log(this.user.user_email + ' \n ' + this.user.user_password);
+      this.router.navigate(['./profile']);
+    } else {
+      console.log('Invalid credentials');
+      this.router.navigate(['./register']);
     }
-
   }
 
-  getUser() {
-    return this.user;
-  }
   ngOnInit() {
   }
 

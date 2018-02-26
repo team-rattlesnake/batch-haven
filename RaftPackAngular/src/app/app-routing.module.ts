@@ -15,6 +15,7 @@ export const routes: Routes = [
     { path: 'profile', component : ProfileComponent},
     { path: 'post/:id', component : PostComponent}
 
+
 ];
 
 @NgModule({
