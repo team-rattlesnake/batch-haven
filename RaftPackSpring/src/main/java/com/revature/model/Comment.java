@@ -1,13 +1,15 @@
 package com.revature.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "COMMENTS")
@@ -24,11 +26,11 @@ public class Comment {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="POST_ID")
-	private POST post;
+	private Post post;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
-	private USER user;
+	private User user;
 
 	public Comment() {
 		super();

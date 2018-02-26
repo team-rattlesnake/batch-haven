@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   emailTyped: Boolean = false;
   passwordTyped: Boolean = false;
   // For data binding
-  public user: User = new User(0, '', '', '', '', '', '');
+  public user: User = new User(0, '', '', '', '', '', '', '', '');
 
   // To message the user
   public message: Message = new Message('');

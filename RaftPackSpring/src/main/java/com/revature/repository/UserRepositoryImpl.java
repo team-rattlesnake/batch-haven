@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.revature.model.Post;
 import com.revature.model.User;
 
 @Repository("userRepository")
@@ -34,7 +35,15 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User findByUserId(int userId) {
-		return (User) sessionFactory.getCurrentSession().get(User.class, userId);
+		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
+		System.out.println(u);
+		return u;
+	}
+	
+	@Override
+	public List<Post> findPostByUserId(int userId){
+		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
+		return u.getMyPosts();
 	}
 
 	@Override

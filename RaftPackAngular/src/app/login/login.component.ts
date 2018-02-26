@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public user: User = new User(0, '', '', '', '', '', '');
+  public user: User = new User(0, '', '', '', '', '', '', '', '');
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   getUserCredentials(): void {
     this.loginService.login(this.user)
       .subscribe(
-        user => this.user = user,
+        user => { this.user = user; console.log(document.cookie = this.user.userId.valueOf().toString());
+        },
         error => console.log(`Error: ${error}`)
       );
     if (this.user.userId > 0) {

@@ -2,6 +2,7 @@ package com.revature.repository;
 
 import java.util.List;
 
+import com.revature.model.Post;
 import com.revature.model.User;
 
 public interface UserRepository {
@@ -16,5 +17,6 @@ public interface UserRepository {
 	List<User> findByGender(String gender);
 	void update(User user);
 	void delete(User user);
+	List<Post> findPostByUserId(int userId);
 
 }
