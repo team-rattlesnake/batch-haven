@@ -20,11 +20,10 @@ import { ProfileService } from './services/profile.service';
 import { MessageService } from './services/message.service';
 import { RegisterService } from './services/register.service';
 import { UploadFileService } from './services/upload.service';
-import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
-
+import { PostService } from './services/post.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +34,6 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     MessagesComponent,
     PostComponent,
     PostDetailsComponent,
-    ProfileDetailComponent,
     NavbarComponent
   ],
   imports: [
@@ -45,7 +43,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

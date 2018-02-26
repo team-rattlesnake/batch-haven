@@ -30,10 +30,6 @@ public class PostRepositoryImpl implements PostRepository{
 		return sessionFactory.getCurrentSession().createCriteria(Post.class).list();
 	}
 
-	@Override
-	public Post findByPostId(int postId) {
-		return (Post) sessionFactory.getCurrentSession().get(Post.class, postId);
-	}
 
 	@Override
 	public void update(Post post) {
@@ -43,6 +39,12 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public void delete(Post post) {
 		sessionFactory.getCurrentSession().delete(post);
+	}
+
+	@Override
+	public Post findByPostId(int postId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

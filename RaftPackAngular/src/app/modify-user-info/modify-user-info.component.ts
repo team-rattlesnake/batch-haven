@@ -26,7 +26,7 @@ export class ModifyUserInfoComponent implements OnInit {
       pack: pack, email: email, username: username, password: password, pass_confirm: confirmation
     };
     /* need to combine these somehow... */
-    this.user = new User(0, firstname, lastname, email, password, 'female', '07/21/1993');
+    this.user = new User(0, '', '', '', '', '', '', '', '');
 
     console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
       this.userform.pack, this.userform.email, this.userform.username, this.userform.password,

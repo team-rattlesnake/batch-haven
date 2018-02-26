@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../models/profile.model';
 import { ProfileService } from '../services/profile.service';
 import { User } from '../models/user.model';
 import { LoginComponent } from '../login/login.component';
@@ -12,20 +11,17 @@ import { UploadFileService } from '../services/upload.service';
 })
 export class ProfileComponent implements OnInit {
   show = false;
-  profile: Profile;
   selectedFiles: FileList;
-  user = new User(
-    123, 'Mary', 'Nguyen', 'mnguyen5081@gmail.com', 'password', '07/21/1993', 'female'
-  );
+  user = new User(0, '', '', '', '', '', '', '', '');
   loginComponent: LoginComponent;
   constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
   }
 
   public message: Message = new Message('No profile to display.');
 
-  getProfile(): void {
-    this.profileService.getProfile(this.user).subscribe(
-      profile => this.profile = profile,
+  getProfile() {
+    this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
+      user => {this.user = user; console.log(this.user); console.log(document.cookie = this.user.userId.valueOf().toString()); },
       error => this.message.text = `Couldn't find Profile.`);
   }
 
