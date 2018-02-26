@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "IMAGES")
@@ -20,6 +21,10 @@ public class Image {
 	
 	@Column(name="IMAGE")
 	private String image;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="POST_ID")
+	private POST post;
 
 	public Image() {
 		super();

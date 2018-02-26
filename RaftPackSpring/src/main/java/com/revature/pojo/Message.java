@@ -1,10 +1,10 @@
 package com.revature.pojo;
 
 public class Message {
+
 	private String text;
 	
-	public Message() {
-	}
+	public Message() {}
 
 	public Message(String text) {
 		super();

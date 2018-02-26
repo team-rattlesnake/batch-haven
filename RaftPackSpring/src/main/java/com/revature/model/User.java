@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -45,17 +46,30 @@ public class User {
 	@Column(name="DATE_OF_BIRTH")
 	private String date_of_birth;
 	
-	
 	@OneToOne
+    @JoinColumn(name="PROFILE_ID")
 	private Profile profile;
 	
-	@OneToMany(mappedBy="postId", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user")
 	private List<Post> myPosts;
+
+	@OneToMany(mappedBy="user")
+	private List<Comment> myComments;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="USERS_FRIENDS",
+		joinColumns={@JoinColumn(name="USER_ID")},
+		inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
 	private List<User> friends;
 	
-	@OneToMany(mappedBy="postId", fetch=FetchType.LAZY)
+	/* needed for self-join many to many */
+	@ManyToMany(mappedBy="friends")
+	private List<User> others;
+
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="LIKED_POSTS",
+		joinColumns={@JoinColumn(name="USER_ID")},
+		inverseJoinColumns={@JoinColumn(name="POST_ID")})
 	private List<Post> likedPosts;
 	
 	public User() {}
@@ -65,40 +79,30 @@ public class User {
 		this.user_email = user_email;
 		this.user_password = user_password;
 	}
-	
-	
 
-	public User( String userEmail, String user_password, String first_name, String last_name, String gender) {
+	public User(String first_name, String last_name, String user_email, String user_password, String gender,
+			String date_of_birth) {
 		super();
-		this.user_email = userEmail;
+		this.user_email = user_email;
 		this.user_password = user_password;
 		this.first_name = first_name;
 		this.last_name = last_name;
-		this.gender = gender;
-	}
-	
-	
-
-	public User(String first_name, String last_name, String userEmail, String user_password, String gender,
-			String dateOfBirth) {
-		super();
-		this.user_email = userEmail;
-		this.user_password = user_password;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.date_of_birth = dateOfBirth;
+		this.date_of_birth = date_of_birth;
 		this.gender = gender;
 	}
 
-	public User(String userEmail, String user_password, String first_name, String last_name,
-			 String gender, Profile profile, List<Post> myPosts,
-			List<User> friends, List<Post> likedPosts) {
+	
+
+	public User(int userId, String first_name, String last_name, String user_email, String user_password, String gender,
+			String date_of_birth, Profile profile, List<Post> myPosts, List<User> friends, List<Post> likedPosts) {
 		super();
-		this.user_email = userEmail;
-		this.user_password = user_password;
+		this.userId = userId;
 		this.first_name = first_name;
 		this.last_name = last_name;
+		this.user_email = user_email;
+		this.user_password = user_password;
 		this.gender = gender;
+		this.date_of_birth = date_of_birth;
 		this.profile = profile;
 		this.myPosts = myPosts;
 		this.friends = friends;
@@ -113,12 +117,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserEmail() {
+	public String getuser_email() {
 		return user_email;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.user_email = userEmail;
+	public void setuser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
 	public String getuser_password() {
@@ -145,12 +149,12 @@ public class User {
 		this.last_name = last_name;
 	}
 
-	public String getDateOfBirth() {
+	public String getdate_of_birth() {
 		return date_of_birth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.date_of_birth = dateOfBirth;
+	public void setDateOfBirth(String date_of_birth) {
+		this.date_of_birth = date_of_birth;
 	}
 
 	public String getGender() {
@@ -192,8 +196,6 @@ public class User {
 	public void setLikedPosts(List<Post> likedPosts) {
 		this.likedPosts = likedPosts;
 	}
-
-
 	
 	public List<String> printFriends(List<User> friends) {
 		List<String> myFriends = new ArrayList<>();
@@ -202,9 +204,7 @@ public class User {
 		}
 		return myFriends;
 	}
-	
-	
-	
+		
 	@Override
 	public String toString() {
 		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="

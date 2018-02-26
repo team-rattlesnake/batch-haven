@@ -5,24 +5,25 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
+import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 
 import { ProfileComponent } from './profile/profile.component';
-import { UploadFileService } from './upload.service';
+import { ProfileService } from './services/profile.service';
+import { MessageService } from './services/message.service';
+import { RegisterService } from './services/register.service';
+import { UploadFileService } from './services/upload.service';
 import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
-import { ProfileService } from './profile.service';
-import { MessageService } from './message.service';
-import { RegisterService } from './service/register.service';
-
 import { MessagesComponent } from './messages/messages.component';
+import { PostComponent } from './post/post.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -32,16 +33,17 @@ import { MessagesComponent } from './messages/messages.component';
     ModifyUserInfoComponent,
     ProfileComponent,
     MessagesComponent,
+    PostComponent,
+    PostDetailsComponent,
     ProfileDetailComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false })
+    HttpClientModule
   ],
   providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService],
   bootstrap: [AppComponent]

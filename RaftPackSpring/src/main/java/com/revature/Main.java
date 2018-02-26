@@ -8,7 +8,7 @@ public class Main {
 static UserRepository up  = new UserRepositoryImpl();
 	public static void main(String[] args) {
 		UserServiceImpl usl = new UserServiceImpl(up);
-		System.out.println(up.findByUserEmail("mnguyen5081@gmail.com").getFirstName());
+		System.out.println(up.findByUserEmail("mnguyen5081@gmail.com").getfirst_name());
 	}
 
 }
