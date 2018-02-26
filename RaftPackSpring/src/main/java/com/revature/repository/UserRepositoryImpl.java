@@ -35,10 +35,10 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public User findByUserEmail(String userEmail) {
+	public User findByUserEmail(String user_email) {
 		try {
 			return (User) sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("userEmail", userEmail))
+					.add(Restrictions.like("user_email", user_email))
 					.list()
 					.get(0);
 		} catch (IndexOutOfBoundsException e) {
@@ -48,10 +48,10 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> findByFirstName(String firstName) {
+	public List<User> findByFirstName(String first_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("firstName", firstName))
+					.add(Restrictions.like("first_name", first_name))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;
@@ -60,10 +60,10 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> findByLastName(String lastName) {
+	public List<User> findByLastName(String last_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("lastName", lastName))
+					.add(Restrictions.like("last_name", last_name))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;
@@ -72,10 +72,10 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> findByDoB(String dob) {
+	public List<User> findByDoB(String date_of_birth) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("dob", dob))
+					.add(Restrictions.like("date_of_birth", date_of_birth))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;

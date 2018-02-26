@@ -13,10 +13,9 @@ import { Message } from '../model/message.model';
 export class RegisterComponent implements OnInit {
 
   title = 'User Registration';
-
+ 
   constructor(private registerService: RegisterService) { }
   emailTyped: Boolean = false;
-
   passwordTyped: Boolean = false;
   // For data binding
   public user: User = new User('', '', '', '', '', '');
