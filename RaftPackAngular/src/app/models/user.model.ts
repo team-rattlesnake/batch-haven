@@ -1,37 +1,23 @@
-import { Profile } from './profile.model';
-import { Post } from './post.model';
-
 export class User {
-    userId: number;
-    userEmail: string;
-    userPassword: string;
-    firstName: string;
-    lastName: string;
-    monthOfBirth: string;
-    dayOfBirth: number;
-    yearOfBirth: number;
-    gender: string;
-    profile: Profile;
-    myPosts: Post[];
-    friends: User[];
-    likedPosts: Post[];
+  userId: number;
+  first_name: string;
+  last_name: string;
+  user_email: string;
+  user_password: string;
+  date_of_birth: string;
+  gender: string;
 
-    constructor(userId: number, userEmail: string, userPassword: string,
-                firstName: string, lastName: string, monthOfBirth: string,
-                dayOfBirth: number, yearOfBirth: number, gender: string,
-                profile: Profile, myPosts: Post[], friends: User[], likedPosts: Post[]) {
-        this.userId = userId;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.monthOfBirth = monthOfBirth;
-        this.dayOfBirth = dayOfBirth;
-        this.yearOfBirth = yearOfBirth;
-        this.gender = gender;
-        this.profile = profile;
-        this.myPosts = myPosts;
-        this.friends = friends;
-        this.likedPosts = likedPosts;
-    }
+  constructor(userId: number, first_name: string, last_name: string, user_email: string,
+    user_password: string, gender: string,  date_of_birth: string) {
+    this.userId = userId;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.user_email = user_email;
+    this.user_password = user_password;
+    this.date_of_birth = date_of_birth;
+    this.gender = gender;
+  }
 }
+
+
+

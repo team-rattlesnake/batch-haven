@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Profile } from './../profile';
+import { Profile } from '../models/profile.model';
 import { ActivatedRoute } from '@angular/router';
-import { ProfileService } from './../profile.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile-detail',
@@ -22,7 +22,7 @@ export class ProfileDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.profileService.updateHero(this.profile).subscribe();
+    this.profileService.updateProfile(this.profile).subscribe();
   }
 
 }
