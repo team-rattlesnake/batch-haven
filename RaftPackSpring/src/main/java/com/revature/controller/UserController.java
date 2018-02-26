@@ -40,10 +40,16 @@ public class UserController {
 	
 	@GetMapping("/getUserByEmail.app")
 	public @ResponseBody ResponseEntity<User> getUser(@RequestBody String email) {
-		return new ResponseEntity<>(userService.findUser("mnguyen5081@gmail.com"), HttpStatus.OK);
-		
+		return new ResponseEntity<>(userService.findUser(email), HttpStatus.OK);
+	}
+	
 	@PostMapping("/getUser.app")
 	public @ResponseBody ResponseEntity<User> getUser(@RequestBody User user) {
 		return new ResponseEntity<>(userService.findUser(user), HttpStatus.OK);
+	}
+	
+	@PostMapping("/login.app")
+	public @ResponseBody ResponseEntity<User> login(@RequestBody User user) {
+		return new ResponseEntity<>(userService.validateUser(user), HttpStatus.OK);
 	}
 }

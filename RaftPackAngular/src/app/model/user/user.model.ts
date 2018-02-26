@@ -1,11 +1,5 @@
 export class User {
   userId: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  age: number;
-
   first_name: string;
   last_name: string;
   user_email: string;
@@ -13,7 +7,9 @@ export class User {
   date_of_birth: string;
   gender: string;
 
-  constructor(first_name: string, last_name: string, user_email: string, user_password: string, gender: string,  date_of_birth: string) {
+  constructor(userId: number, first_name: string, last_name: string, user_email: string,
+    user_password: string, gender: string,  date_of_birth: string) {
+    this.userId = userId;
     this.first_name = first_name;
     this.last_name = last_name;
     this.user_email = user_email;
