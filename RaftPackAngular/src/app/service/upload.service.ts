@@ -3,7 +3,7 @@ import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { FileUpload } from './file-upload';
+import { FileUpload } from '../models/file-upload';
 
 @Injectable()
 export class UploadFileService {

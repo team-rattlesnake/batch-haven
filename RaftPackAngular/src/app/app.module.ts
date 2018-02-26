@@ -13,14 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileService } from './profile.service';
-import { MessageService } from './message.service';
+import { ProfileService } from './service/profile.service';
+import { MessageService } from './service/message.service';
 import { RegisterService } from './service/register.service';
-import {UploadFileService} from './upload.service';
+import {UploadFileService} from './service/upload.service';
 import { MessagesComponent } from './messages/messages.component';
+import { PostComponent } from './post/post.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { MessagesComponent } from './messages/messages.component';
     ModifyUserInfoComponent,
     ProfileComponent,
     MessagesComponent,
+    PostComponent,
+    PostDetailsComponent,
   ],
   imports: [
   BrowserModule,

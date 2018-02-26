@@ -1,26 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { MessageService } from './message.service';
+import { Http, RequestOptions, Headers, Response } from '@angular/http';
+import { Profile } from '../models/profile.model';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Profile } from './profile';
-import { User } from './models/User.model';
+import { Post } from '../models/post.model';
 
 @Injectable()
-export class ProfileService {
-  constructor(
-    private http: Http,
+export class PostService {
+
+  constructor(private http: Http,
     private messageService: MessageService) { }
+
     private log(message: string) {
       this.messageService.add(message);
     }
-    // tslint:disable-next-line:member-ordering
-    // getProfiles (): Observable<Profile[]> {
-    //   return this.http.get<Profile[]>(this.profileUrl);
-    // }
-    public getProfile(user: User): Observable<Profile> {
-      const body: string = JSON.stringify(user);
+
+    public getPosts(profile: Profile): Observable<Post[]> {
+      const body: string = JSON.stringify(profile);
       const headers: Headers = new Headers({ 'Content-Type': 'application/json'});
       const options: RequestOptions = new RequestOptions({ headers: headers });
 
@@ -37,4 +33,3 @@ export class ProfileService {
   }
 
 }
-

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../profile';
-import { ProfileService } from './../profile.service';
+import { Profile } from '../models/profile.model';
+import { ProfileService } from '../service/profile.service';
 import { User } from '../models/User.model';
 import { LoginComponent } from '../login/login.component';
-import { Message } from '../model/message.model';
-import { UploadFileService } from '../upload.service';
+import { Message } from '../models/message.model';
+import { UploadFileService } from '../service/upload.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
