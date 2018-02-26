@@ -64,6 +64,24 @@ public class UserServiceImpl implements UserService {
 		// TODO: do some algorithm to hash password
 		return hash;
 	}
+
+	@Override
+	public User validateUser(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("User: " + user);
+		User temp = userRepository.findByUserEmail(user.getuser_email());
+		//System.out.println("Temp: " + temp);
+		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
+			return temp;
+		}
+		return user;
+	}
+
+	private String securePassword(String password) {
+		String hash = password;
+		// TODO: do some algorithm to hash password
+		return hash;
+	}
 	
 	@Override
 	public List<Post> getPosts(int userId){

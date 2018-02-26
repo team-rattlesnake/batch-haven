@@ -37,7 +37,7 @@ import { PostService } from './services/post.service';
     NavbarComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
