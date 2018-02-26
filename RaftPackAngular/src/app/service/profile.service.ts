@@ -5,12 +5,13 @@ import { MessageService } from './message.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Profile } from './profile';
-import { User } from './models/User.model';
-import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
+import { Profile } from '../models/profile.model';
+import { User } from '../models/user.model';
+import { ProfileDetailComponent } from '../profile-detail/profile-detail.component';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
 @Injectable()
 export class ProfileService {
   private profileUrl = 'api/profile';
@@ -54,8 +55,8 @@ export class ProfileService {
     }
     updateHero (profile: Profile): Observable<any> {
       return this.httpc.put(this.profileUrl, profile, httpOptions).pipe(
-        tap(_ => this.log(`updated name=${profile.name} |
-        updated email=${profile.email}`))
+        tap(_ => this.log(`updated name=${profile.user.firstName} |
+        updated email=${profile.user.userEmail}`))
       );
     }
 }
