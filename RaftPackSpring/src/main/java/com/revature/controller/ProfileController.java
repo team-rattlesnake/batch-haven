@@ -16,12 +16,15 @@ import com.revature.service.ProfileServiceImpl;
 @Controller("profileController")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProfileController {
+	
+	//tomcat admin port 8005. ajp 8009
+	//tomcat dev port 8090
 
 	@Autowired
 	private ProfileServiceImpl profileService;
 	
 	@PostMapping("/getProfile.app")
-	public @ResponseBody ResponseEntity<Profile> getHero(@RequestBody User user){
+	public @ResponseBody ResponseEntity<Profile> getProfile(@RequestBody User user){
 		return new ResponseEntity<>(profileService.findProfile(user),HttpStatus.OK);
 	}
 }

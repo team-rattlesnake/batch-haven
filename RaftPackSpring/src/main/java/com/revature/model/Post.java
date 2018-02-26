@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,15 +32,20 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
-	@OneToMany(mappedBy="imageId", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="post")
 	private List<Image> images;
+
+	@OneToMany(mappedBy="post")
+	private List<Comment> comments;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="USER_ID", insertable=false, updatable=false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="USER_ID")
 	private User user;
+
+	@ManyToMany(mappedBy="likedPosts")
+	private List<User> likers;
 	
-	public Post() {
-	}
+	public Post() {}
 
 	public Post(int postId, String message, List<Image> images, int numOfLikes, User user) {
 		super();

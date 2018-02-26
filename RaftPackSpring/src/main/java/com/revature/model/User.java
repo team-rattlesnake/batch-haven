@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -45,17 +46,30 @@ public class User {
 	@Column(name="DATE_OF_BIRTH")
 	private String date_of_birth;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROFILE_ID")
+	@OneToOne
+    @JoinColumn(name="PROFILE_ID")
 	private Profile profile;
 	
-	@OneToMany(mappedBy="postId", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user")
 	private List<Post> myPosts;
+
+	@OneToMany(mappedBy="user")
+	private List<Comment> myComments;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="USERS_FRIENDS",
+		joinColumns={@JoinColumn(name="USER_ID")},
+		inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
 	private List<User> friends;
 	
-	@OneToMany(mappedBy="postId", fetch=FetchType.LAZY)
+	/* needed for self-join many to many */
+	@ManyToMany(mappedBy="friends")
+	private List<User> others;
+
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="LIKED_POSTS",
+		joinColumns={@JoinColumn(name="USER_ID")},
+		inverseJoinColumns={@JoinColumn(name="POST_ID")})
 	private List<Post> likedPosts;
 	
 	public User() {}
@@ -182,8 +196,6 @@ public class User {
 	public void setLikedPosts(List<Post> likedPosts) {
 		this.likedPosts = likedPosts;
 	}
-
-
 	
 	public List<String> printFriends(List<User> friends) {
 		List<String> myFriends = new ArrayList<>();
@@ -192,9 +204,7 @@ public class User {
 		}
 		return myFriends;
 	}
-	
-	
-	
+		
 	@Override
 	public String toString() {
 		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="

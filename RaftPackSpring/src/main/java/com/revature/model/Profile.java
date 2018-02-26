@@ -24,8 +24,7 @@ public class Profile {
 	@Column(name="BIOGRAPHY")
 	private String biography;
 	
-	public Profile() {
-	}
+	public Profile() {}
 
 	public Profile(int profileId, String profileImage, String biography) {
 		super();

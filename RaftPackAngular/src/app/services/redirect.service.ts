@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../models/User.model';
+import { User } from '../models/user.model';
 import { ProfileService } from './profile.service';
 import { Profile } from '../models/profile.model';
 

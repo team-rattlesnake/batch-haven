@@ -1,4 +1,4 @@
-export class Profile {
+export class ProfileOld {
     profileId: number;
     profileImage: ImageBitmap;
     biography: string;

@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 	public void registerUser(User user) {
 		System.out.println("Registering User...");
 		System.out.println("User being registered:" + user);
+		user.setuser_password(securePassword(user.getuser_password()));
 		userRepository.create(user);
 	}
 
@@ -48,10 +49,16 @@ public class UserServiceImpl implements UserService {
 		System.out.println("User: " + user);
 		User temp = userRepository.findByUserEmail(user.getuser_email());
 		//System.out.println("Temp: " + temp);
-		if(user.getuser_password().equals(temp.getuser_password())) {
+		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
 			return temp;
 		}
 		return user;
+	}
+
+	private String securePassword(String password) {
+		String hash = password;
+		// TODO: do some algorithm to hash password
+		return hash;
 	}
 	
 }

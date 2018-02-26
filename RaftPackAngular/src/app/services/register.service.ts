@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
-import { User } from '../model/user/user.model';
-import { Message } from '../model/message.model';
+import { User } from '../models/user.model';
+import { Message } from '../models/message.model';
 
 @Injectable()
 export class RegisterService {

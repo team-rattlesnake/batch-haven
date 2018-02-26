@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../model/user/user.model';
-import { RegisterService } from '../service/register.service';
-import { Message } from '../model/message.model';
+import { User } from '../models/user.model';
+import { RegisterService } from '../services/register.service';
+import { Message } from '../models/message.model';
 import { Router } from '@angular/router';
 
 

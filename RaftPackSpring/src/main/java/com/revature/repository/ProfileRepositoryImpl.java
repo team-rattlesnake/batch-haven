@@ -25,7 +25,7 @@ public class ProfileRepositoryImpl implements ProfileRepository{
 		sessionFactory.getCurrentSession().save(profile);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") /* why suppressed */
 	@Override
 	public List<Profile> findAll() {
 		return sessionFactory.getCurrentSession().createCriteria(Profile.class).list();
@@ -43,7 +43,7 @@ public class ProfileRepositoryImpl implements ProfileRepository{
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") /* why suppressed */
 	@Override
 	public List<Profile> findByProfileImage(String profileImage) {
 		try {

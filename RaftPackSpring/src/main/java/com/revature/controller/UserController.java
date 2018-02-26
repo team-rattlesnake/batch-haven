@@ -21,6 +21,7 @@ import com.revature.service.UserService;
 public class UserController {
 	
 	//tomcat admin port 8005. ajp 8009
+	//tomcat dev port 8090
 	
 	@Autowired
 	private UserService userService;

@@ -11,7 +11,6 @@ export class UploadFileService {
   FOLDER = 'jsa-s3/';
   BUCKET = 'jsa-angular-bucket';
 
-
   constructor() { }
 
   private getS3Bucket(): any {

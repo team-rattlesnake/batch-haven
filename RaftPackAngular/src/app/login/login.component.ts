@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { LoginService } from './login.service';
+import { LoginService } from '../services/login.service';
 
-import { User } from '../model/user/user.model';
-import { Message } from '../model/message.model';
+import { User } from '../models/user.model';
+import { Message } from '../models/message.model';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
