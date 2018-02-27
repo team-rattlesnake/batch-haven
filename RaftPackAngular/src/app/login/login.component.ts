@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
           if (this.user.userId > 0) {
             console.log(this.user.user_email + ' \n ' + this.user.user_password);
             console.log(document.cookie = this.user.userId.valueOf().toString());
-            this.router.navigate(['./profile']);
+            this.router.navigate(['./dashboard']);
           } else {
             console.log('Invalid credentials');
             this.router.navigate(['./register']);

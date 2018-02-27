@@ -36,8 +36,8 @@ export class ModifyUserInfoComponent implements OnInit {
                error => this.message = 'An error has occured...');
 
                // Here I will have another function of uploadfileservice ready for the image
-    // The goal for the image is to show the image when modified and save the image
-    // session wide. In addition, the image is sent to be persisted Spring side.
+              // The goal for the image is to show the image when modified and save the image
+              // session wide. In addition, the image is sent to be persisted Spring side.
   }
 
 }
