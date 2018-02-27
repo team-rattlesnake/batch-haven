@@ -17,7 +17,7 @@ constructor(private http: Http) { }
         return this.http
             .post(`http://localhost:8090/RaftPackSpring/modifyuser.app`, body, options)
             .map((response: Response) => {
-                return <UserForm>response.json();
+                return <String>response.json();
             })
             .catch(this.handleError);
     }
