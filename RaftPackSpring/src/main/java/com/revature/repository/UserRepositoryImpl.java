@@ -49,11 +49,15 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public User findByUserEmail(String user_email) {
 		try {
-			return (User) sessionFactory.getCurrentSession().createCriteria(User.class)
+			System.out.println("User email: " + user_email);
+			User u = (User) sessionFactory.getCurrentSession().createCriteria(User.class)
 					.add(Restrictions.like("user_email", user_email))
 					.list()
 					.get(0);
+			System.out.println(u);
+			return u;
 		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

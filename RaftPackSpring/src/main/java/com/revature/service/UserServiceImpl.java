@@ -47,18 +47,6 @@ public class UserServiceImpl implements UserService {
 		return u;
 	}
 
-	@Override
-	public User validateUser(User user) {
-		// TODO Auto-generated method stub
-		System.out.println("User: " + user);
-		User temp = userRepository.findByUserEmail(user.getuser_email());
-		//System.out.println("Temp: " + temp);
-		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
-			return temp;
-		}
-		return user;
-	}
-
 	private String securePassword(String password) {
 		String hash = password;
 		// TODO: do some algorithm to hash password
@@ -70,17 +58,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		System.out.println("User: " + user);
 		User temp = userRepository.findByUserEmail(user.getuser_email());
-		//System.out.println("Temp: " + temp);
+		System.out.println("Temp: " + temp);
 		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
+			System.out.println("Temp password: " + temp.getuser_password());
 			return temp;
 		}
 		return user;
-	}
-
-	private String securePassword(String password) {
-		String hash = password;
-		// TODO: do some algorithm to hash password
-		return hash;
 	}
 	
 	@Override
