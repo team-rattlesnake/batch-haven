@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   show = false;
   selectedFiles: FileList;
   user = new User(0, '', '', '', '', '', '', '', '');
-  loginComponent: LoginComponent;
+  // loginComponent: LoginComponent;
   constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
   }
 
@@ -21,7 +21,11 @@ export class ProfileComponent implements OnInit {
 
   getProfile() {
     this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
-      user => {this.user = user; console.log(this.user); console.log(document.cookie = this.user.userId.valueOf().toString()); },
+      user => {
+        this.user = user;
+        console.log(this.user);
+        console.log(document.cookie = this.user.userId.valueOf().toString());
+      },
       error => this.message.text = `Couldn't find Profile.`);
   }
 

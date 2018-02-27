@@ -54,8 +54,7 @@ public class User {
 	@Column(name="PROFILE_IMAGE")
 	private String profile_image;
 	
-	
-	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Post> myPosts;
 
@@ -178,7 +177,7 @@ public class User {
 		return date_of_birth;
 	}
 
-	public void setDateOfBirth(String date_of_birth) {
+	public void setdate_of_birth(String date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 
@@ -189,8 +188,6 @@ public class User {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
-
 
 	public List<Post> getMyPosts() {
 		return myPosts;
