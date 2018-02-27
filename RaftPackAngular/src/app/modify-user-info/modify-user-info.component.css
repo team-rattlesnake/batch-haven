@@ -24,7 +24,10 @@ h3{
 
 }
 
-
+#raftpacklogo{
+    height:70px;
+    width:70px;
+}
 
 .btn.btn-primary{
     position: relative;

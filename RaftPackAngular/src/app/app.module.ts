@@ -24,6 +24,7 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
 import { MessagesComponent } from './messages/messages.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { ModifyUserService } from './services/modify-user.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService,ModifyUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
