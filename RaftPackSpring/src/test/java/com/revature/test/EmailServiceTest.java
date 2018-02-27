@@ -11,21 +11,23 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.revature.service.EmailService;
 
+//@ContextConfiguration("classpath:META-INF/spring/mydocuments-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:META-INF/spring/mydocuments-context.xml")
+@ContextConfiguration("EmailService.class")
 public class EmailServiceTest {
 
-	
-	
 		private static final Logger log = LoggerFactory.getLogger(EmailService.class);
+		
 		@Autowired
 		EmailService email;
+
 		@Test
 		public void testEmail() throws InterruptedException{
+			System.out.println("after testemail");
 		log.debug("Testing Email...");
 		assertNotNull(email);
 		long start = new Date().getTime();
-		email.send("user@gmail.com", "user@gmail.com", "New Document Add",
+		email.send("damondantin@gmail.com", "damondantin@yahoo.com", "New Document Add",
 		"A new document was added to the collection.");
 		long end = new Date().getTime();
 		long time = (end - start)/1000;
