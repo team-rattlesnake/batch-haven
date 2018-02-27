@@ -10,11 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "POSTS")
@@ -32,10 +35,12 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
-	@OneToMany(mappedBy="post")
+	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Image> images;
 
 	@OneToMany(mappedBy="post")
+	@JsonIgnore
 	private List<Comment> comments;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -43,6 +48,7 @@ public class Post {
 	private User user;
 
 	@ManyToMany(mappedBy="likedPosts")
+	@JsonIgnore
 	private List<User> likers;
 	
 	public Post() {}

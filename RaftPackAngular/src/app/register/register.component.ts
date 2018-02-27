@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   emailTyped: Boolean = false;
   passwordTyped: Boolean = false;
   // For data binding
-  public user: User = new User(0, '', '', '', '', '', '');
+  public user: User = new User(0, '', '', '', '', '', '', '', '');
 
   // To message the user
   public message: Message = new Message('');
@@ -29,11 +29,13 @@ export class RegisterComponent implements OnInit {
 
   registerUser(): void {
     this.registerService.registerUser(this.user).subscribe(
-      message => this.message = message,
+      message => {
+        this.message = message;
+        if (this.message.text.length > 0) {
+          this.router.navigate(['./']);
+        }
+      },
       error => console.log(`Error: ${error}`));
-    if (this.message.text.length > 0) {
-      this.router.navigate(['./login']);
-    }
   }
 
   ngOnInit(): void {

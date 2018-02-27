@@ -20,11 +20,13 @@ import { ProfileService } from './services/profile.service';
 import { MessageService } from './services/message.service';
 import { RegisterService } from './services/register.service';
 import { UploadFileService } from './services/upload.service';
-import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { ModifyUserService } from './services/modify-user.service';
+import { PostService } from './services/post.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +38,9 @@ import { ModifyUserService } from './services/modify-user.service';
     MessagesComponent,
     PostComponent,
     PostDetailsComponent,
-    ProfileDetailComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { ModifyUserService } from './services/modify-user.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService,ModifyUserService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService,ModifyUserService,PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
