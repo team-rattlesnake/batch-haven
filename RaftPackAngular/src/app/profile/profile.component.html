@@ -1,15 +1,14 @@
+<app-navbar></app-navbar>
 <div *ngIf="profile">
-    <img src={{profile.profileImage}}/>
+    <img src={{user.profile_image}}/>
 </div>
 
-<div *ngIf="profile">
-    <b>Name</b>: {{user.firstName}} {{user.lastName}}
-    <br>
-    <b>Birthday</b>: {{user.monthOfBirth}} {{user.dayOfBirth}}, {{user.yearOfBirth}}
+<div>
+    <b>Name</b>: {{user.first_name}} {{user.last_name}}
     <br>
     <b>Gender</b>: {{user.gender}}
     <br>
-    <b>Bio</b>: {{profile.biography}}</div>
+    <b>Bio</b>: {{user.biography}}</div>
 <button *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
 <button class="button btn-info" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
 <div [hidden]="!show">

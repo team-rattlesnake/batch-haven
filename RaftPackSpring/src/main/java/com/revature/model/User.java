@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "USERS")
 public class User {
@@ -46,17 +48,38 @@ public class User {
 	@Column(name="DATE_OF_BIRTH")
 	private String date_of_birth;
 	
-	@OneToOne
-    @JoinColumn(name="PROFILE_ID")
-	private Profile profile;
+	@Column(name="BIOGRAPHY")
+	private String biography;
 	
-	@OneToMany(mappedBy="user")
+	@Column(name="PROFILE_IMAGE")
+	private String profile_image;
+	
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Post> myPosts;
 
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
+
+	public String getProfile_image() {
+		return profile_image;
+	}
+
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+
 	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Comment> myComments;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
+	@JsonIgnore
 	@JoinTable(name="USERS_FRIENDS",
 		joinColumns={@JoinColumn(name="USER_ID")},
 		inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
@@ -64,9 +87,11 @@ public class User {
 	
 	/* needed for self-join many to many */
 	@ManyToMany(mappedBy="friends")
+	@JsonIgnore
 	private List<User> others;
 
 	@ManyToMany(cascade=CascadeType.ALL)
+	@JsonIgnore
 	@JoinTable(name="LIKED_POSTS",
 		joinColumns={@JoinColumn(name="USER_ID")},
 		inverseJoinColumns={@JoinColumn(name="POST_ID")})
@@ -94,7 +119,7 @@ public class User {
 	
 
 	public User(int userId, String first_name, String last_name, String user_email, String user_password, String gender,
-			String date_of_birth, Profile profile, List<Post> myPosts, List<User> friends, List<Post> likedPosts) {
+			String date_of_birth, List<Post> myPosts, List<User> friends, List<Post> likedPosts) {
 		super();
 		this.userId = userId;
 		this.first_name = first_name;
@@ -103,7 +128,6 @@ public class User {
 		this.user_password = user_password;
 		this.gender = gender;
 		this.date_of_birth = date_of_birth;
-		this.profile = profile;
 		this.myPosts = myPosts;
 		this.friends = friends;
 		this.likedPosts = likedPosts;
@@ -153,7 +177,7 @@ public class User {
 		return date_of_birth;
 	}
 
-	public void setDateOfBirth(String date_of_birth) {
+	public void setdate_of_birth(String date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 
@@ -163,14 +187,6 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
 	}
 
 	public List<Post> getMyPosts() {
@@ -209,13 +225,12 @@ public class User {
 	public String toString() {
 		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
 				+ first_name + ", last_name=" + last_name + ", dateOfBirth=" + date_of_birth + ", gender=" + gender
-				+ ", profile=" + profile + ", myPosts=" + myPosts + ", friends=" + friends + ", likedPosts="
-				+ likedPosts + "]";
+				+ ", profile="+"]";
 	}
 
 	public String toStringTwo() {
 		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", gender=" + gender + ", profile=" + profile + "]";
+				+ first_name + ", last_name=" + last_name + ", gender=" + gender + ", profile="  + "]";
 	}
 
 	@Override
@@ -228,8 +243,6 @@ public class User {
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((likedPosts == null) ? 0 : likedPosts.hashCode());
-		result = prime * result + ((myPosts == null) ? 0 : myPosts.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((user_password == null) ? 0 : user_password.hashCode());
@@ -275,11 +288,6 @@ public class User {
 			if (other.myPosts != null)
 				return false;
 		} else if (!myPosts.equals(other.myPosts))
-			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
 			return false;
 		if (user_email == null) {
 			if (other.user_email != null)

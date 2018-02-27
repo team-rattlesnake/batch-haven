@@ -12,30 +12,30 @@ import { UploadFileService } from '../services/upload.service';
 export class ModifyUserInfoComponent implements OnInit {
   userform: UserForm;
   userformRet: UserForm;
-  message : String = "";
+  message = '';
   profileImageSession: any;
   userId: Number = 0;
 
-  constructor(private modifyuserinfoService : ModifyUserService, private uploadfileservice: UploadFileService) {}
+  constructor(private modifyuserinfoService: ModifyUserService, private uploadfileservice: UploadFileService) {}
 
   ngOnInit() {
 
   }
-  getUserFormData(profilepic,firstname, lastname, useremail, gender, biography) {
-//Since I have only tomight to work on this - I will not go into trying to find the means fo 
-// getting the session User Id. I assume that the id is needed. 
+  getUserFormData(profilepic, firstname, lastname, useremail, gender, biography) {
+// Since I have only tomight to work on this - I will not go into trying to find the means fo
+// getting the session User Id. I assume that the id is needed.
     this.userform = {
-      userId: this.userId, profileImage: profilepic,firstname: firstname, lastname: lastname, useremail: useremail,
+      userId: this.userId, profileImage: profilepic, firstname: firstname, lastname: lastname, useremail: useremail,
       gender: gender, biography: biography};
-      //This holds the image for fileupload - server side unknown
-      
-      
-    
+      // This holds the image for fileupload - server side unknown
+
+
+
     this.modifyuserinfoService.modifyuserinfoGo(this.userform).subscribe(
                message => this.userformRet = message,
                error => this.message = 'An error has occured...');
-  
-    // Here I will have another function of uploadfileservice ready for the image
+
+               // Here I will have another function of uploadfileservice ready for the image
     // The goal for the image is to show the image when modified and save the image
     // session wide. In addition, the image is sent to be persisted Spring side.
   }

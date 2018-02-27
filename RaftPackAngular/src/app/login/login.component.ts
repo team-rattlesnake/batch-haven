@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public user: User = new User(0, '', '', '', '', '', '');
+  public user: User = new User(0, '', '', '', '', '', '', '', '');
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -25,16 +25,19 @@ export class LoginComponent implements OnInit {
   getUserCredentials(): void {
     this.loginService.login(this.user)
       .subscribe(
-        user => this.user = user,
+        user => {
+          this.user = user;
+          if (this.user.userId > 0) {
+            console.log(this.user.user_email + ' \n ' + this.user.user_password);
+            console.log(document.cookie = this.user.userId.valueOf().toString());
+            this.router.navigate(['./profile']);
+          } else {
+            console.log('Invalid credentials');
+            this.router.navigate(['./register']);
+          }
+        },
         error => console.log(`Error: ${error}`)
       );
-    if (this.user.userId > 0) {
-      console.log(this.user.user_email + ' \n ' + this.user.user_password);
-      this.router.navigate(['./profile']);
-    } else {
-      console.log('Invalid credentials');
-      this.router.navigate(['./register']);
-    }
   }
 
   ngOnInit() {
