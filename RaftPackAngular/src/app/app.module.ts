@@ -24,6 +24,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostService } from './services/post.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FeedComponent } from './feed/feed.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { PostService } from './services/post.service';
     MessagesComponent,
     PostComponent,
     PostDetailsComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,

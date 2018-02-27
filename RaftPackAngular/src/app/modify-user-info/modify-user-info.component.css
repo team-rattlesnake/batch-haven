@@ -5,65 +5,13 @@
 
 .form-control{
    align-content: center;
+   position: center;
+   left : 90px;
+   width: 400px;
 }
 
-.form-control{
-   align-content: center;
-}
-#fname{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#lname{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#compname{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#ename{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#uname{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#pname{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#cname{
-    position: center;
-    left : 90px;
-    width: 400px;
-
-}
-
-#pnum{
-    position: center;
-    left : 90px;
-    width: 400px;
-
+#pic{
+    width: 200px;
 }
 
 .alert.alert-info.alert-dismissable{
@@ -75,6 +23,8 @@ h3{
     right : 110px;
 
 }
+
+
 
 .btn.btn-primary{
     position: relative;
