@@ -22,7 +22,11 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@rattlesnake-db.cu7knzi3krpf.us-east-2.rds.amazonaws.com:1521:orcl" />
+<<<<<<< HEAD
 		<property name="username" value="demarques" />
+=======
+		<property name="username" value="stephen" />
+>>>>>>> 28a1f672b4950bafe8464c5e26fa0802fda120a3
 		<property name="password" value="p4ssw0rd" />
 	</bean>
 
@@ -45,4 +49,23 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+
+ <!-- EMAIL 
+	<context:component-scan base-package="com.revature.service.EmailService" />
+
+ <context:property-placeholder location="email.properties" />
+ <bean id="email" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+ <property name="host" value="${email.host}" />
+ <property name="port" value="${email.port}" />
+ <property name="username" value="${email.username}" />
+ <property name="password" value="${email.password}" />
+ <property name="javaMailProperties">
+ <props>
+ <prop key="mail.smtp.auth">true</prop>
+ <prop key="mail.smtp.starttls.enable">true</prop>
+ </props>
+ </property>
+ </bean>
+	-->
+	
 </beans>

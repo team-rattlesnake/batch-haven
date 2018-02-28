@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.revature.model.Post;
 import com.revature.model.User;
 
 @Repository("userRepository")
@@ -34,17 +35,29 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User findByUserId(int userId) {
-		return (User) sessionFactory.getCurrentSession().get(User.class, userId);
+		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
+		System.out.println(u);
+		return u;
+	}
+	
+	@Override
+	public List<Post> findPostByUserId(int userId){
+		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
+		return u.getMyPosts();
 	}
 
 	@Override
 	public User findByUserEmail(String user_email) {
 		try {
-			return (User) sessionFactory.getCurrentSession().createCriteria(User.class)
+			System.out.println("User email: " + user_email);
+			User u = (User) sessionFactory.getCurrentSession().createCriteria(User.class)
 					.add(Restrictions.like("user_email", user_email))
 					.list()
 					.get(0);
+			System.out.println(u);
+			return u;
 		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

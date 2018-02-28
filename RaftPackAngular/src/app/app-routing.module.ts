@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PostComponent } from './post/post.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -13,7 +14,8 @@ export const routes: Routes = [
     { path: 'register', component : RegisterComponent},
     { path: 'modify-user-info', component : ModifyUserInfoComponent},
     { path: 'profile', component : ProfileComponent},
-    { path: 'post/:id', component : PostComponent}
+    { path: 'post', component : PostComponent},
+    { path: 'dashboard', component : DashboardComponent}
 ];
 
 @NgModule({

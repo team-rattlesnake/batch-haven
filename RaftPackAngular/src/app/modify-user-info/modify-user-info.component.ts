@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserForm } from '../models/user-form';
-import { User } from '../models/user.model';
+import { ModifyUserService} from '../services/modify-user.service';
+import { UploadFileService } from '../services/upload.service';
 
 @Component({
   selector: 'app-modify-user-info',
@@ -10,29 +11,33 @@ import { User } from '../models/user.model';
 })
 export class ModifyUserInfoComponent implements OnInit {
   userform: UserForm;
-  user: User;
+  userformRet: UserForm;
+  message = '';
+  profileImageSession: any;
+  userId: Number = 0;
 
-  constructor() {
-
-  }
+  constructor(private modifyuserinfoService: ModifyUserService, private uploadfileservice: UploadFileService) {}
 
   ngOnInit() {
 
   }
-
-  getUserFormData(firstname, lastname, company, pack, email, username, password, confirmation) {
+  getUserFormData(profilepic, firstname, lastname, useremail, gender, biography) {
+// Since I have only tomight to work on this - I will not go into trying to find the means fo
+// getting the session User Id. I assume that the id is needed.
     this.userform = {
-      firstname: firstname, lastname: lastname, company: company,
-      pack: pack, email: email, username: username, password: password, pass_confirm: confirmation
-    };
-    /* need to combine these somehow... */
-    this.user = new User(0, firstname, lastname, email, password, 'female', '07/21/1993');
+      userId: this.userId, profileImage: profilepic, firstname: firstname, lastname: lastname, useremail: useremail,
+      gender: gender, biography: biography};
+      // This holds the image for fileupload - server side unknown
 
-    console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
-      this.userform.pack, this.userform.email, this.userform.username, this.userform.password,
-      this.userform.pass_confirm);
+
+
+    this.modifyuserinfoService.modifyuserinfoGo(this.userform).subscribe(
+               message => this.userformRet = message,
+               error => this.message = 'An error has occured...');
+
+               // Here I will have another function of uploadfileservice ready for the image
+              // The goal for the image is to show the image when modified and save the image
+              // session wide. In addition, the image is sent to be persisted Spring side.
   }
 
 }
-
-

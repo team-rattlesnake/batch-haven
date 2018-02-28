@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.model.Post;
 import com.revature.model.User;
 import com.revature.pojo.Message;
 import com.revature.service.UserService;
@@ -45,8 +46,13 @@ public class UserController {
 	}
 	
 	@PostMapping("/getUser.app")
-	public @ResponseBody ResponseEntity<User> getUser(@RequestBody User user) {
-		return new ResponseEntity<>(userService.findUser(user), HttpStatus.OK);
+	public @ResponseBody ResponseEntity<User> getUser(@RequestBody int userId) {
+		return new ResponseEntity<>(userService.findUser(userId), HttpStatus.OK);
+	}
+	
+	@PostMapping("/getPosts.app")
+	public @ResponseBody ResponseEntity<List<Post>> getPost(@RequestBody int userId) {
+		return new ResponseEntity<>(userService.getPosts(userId), HttpStatus.OK);
 	}
 	
 	@PostMapping("/login.app")

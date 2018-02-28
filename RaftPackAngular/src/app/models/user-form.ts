@@ -1,10 +1,9 @@
 export class UserForm {
+    userId: Number;
+    profileImage: ImageBitmap;
     firstname: String;
     lastname: String;
-    company: String;
-    pack: Number;
-    email: String;
-    username: String;
-    password: String;
-    pass_confirm: String;
+    useremail: String;
+    gender: String;
+    biography: String;
 }
