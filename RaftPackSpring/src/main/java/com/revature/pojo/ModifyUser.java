@@ -8,9 +8,9 @@ public class ModifyUser {
 	private String useremail;
 	private String gender;
 	private String biography;
-	
-	public ModifyUser(int userId,String profileImage, String firstname, String lastname, String useremail, String gender,
-			String biography) {
+
+	public ModifyUser(int userId, String profileImage, String firstname, String lastname, String useremail,
+			String gender, String biography) {
 		super();
 		this.userId = userId;
 		this.profileImage = profileImage;
@@ -20,8 +20,8 @@ public class ModifyUser {
 		this.gender = gender;
 		this.biography = biography;
 	}
-	
-	public ModifyUser(){
+
+	public ModifyUser() {
 	}
 
 	public int getUserId() {
@@ -79,7 +79,5 @@ public class ModifyUser {
 	public void setBiography(String biography) {
 		this.biography = biography;
 	}
-	
-	
-	
+
 }

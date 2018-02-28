@@ -67,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository{
 	public List<User> findByFirstName(String first_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("first_name", first_name))
+					.add(Restrictions.like("first_name", "%" + first_name + "%"))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;

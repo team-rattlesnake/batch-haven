@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.model.Post;
@@ -43,6 +45,16 @@ public class UserController {
 	@GetMapping("/getUserByEmail.app")
 	public @ResponseBody ResponseEntity<User> getUser(@RequestBody String email) {
 		return new ResponseEntity<>(userService.findUser(email), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getUsersByFirstName.app", params = {"firstName"})
+	public @ResponseBody ResponseEntity<List<User>> getUsersByFirstName(@RequestParam(value = "firstName") String firstName) {
+		return new ResponseEntity<>(userService.findUsersByFirstName(firstName), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getUserById.app", params = {"userId"})
+	public @ResponseBody ResponseEntity<User> getUserById(@RequestParam(value = "userId") int userId ) {
+		return new ResponseEntity<>(userService.findUser(userId), HttpStatus.OK);
 	}
 	
 	@PostMapping("/getUser.app")

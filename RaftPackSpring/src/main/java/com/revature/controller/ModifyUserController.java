@@ -13,26 +13,16 @@ import com.revature.pojo.Message;
 import com.revature.service.ModifyuserService;
 import com.revature.model.User;
 
-@Controller("modifyUserController")
+/*@Controller("modifyUserController")
 @CrossOrigin(origins = "http://localhost:4200")// This have no time to validate
 public class ModifyUserController {
 	@Autowired
 	private ModifyuserService moduserService;
-	@Autowired
-	private User user;
 	
 	//@RequestMapping(value="/registerHero.app", method=RequestMethod.POST)
 	@PostMapping("/modifyUser.app")
-	public @ResponseBody ResponseEntity<Message> registerUser(@RequestBody ModifyUser moduser) {
-		user.setUserId(moduser.getUserId());
-		user.setfirst_name(moduser.getFirstname());
-		user.setlast_name(moduser.getLastname());
-		user.setuser_email(moduser.getUseremail());
-		user.setGender(moduser.getGender());
-		//Have to do biography - forgot that one.
-
-		System.out.println("Sending this now: " + user);
-		moduserService.modifyUser(user);
+	public @ResponseBody ResponseEntity<Message> modifyUser(@RequestBody User moduser) {
+		moduserService.modifyUser(moduser);
 		return new ResponseEntity<>(new Message("USER MODIFIED SUCCESSFULLY..."), HttpStatus.OK);
 	}
-}
+}*/

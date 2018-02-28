@@ -70,4 +70,9 @@ public class UserServiceImpl implements UserService {
 	public List<Post> getPosts(int userId){
 		return userRepository.findPostByUserId(userId);
 	}
+
+	@Override
+	public List<User> findUsersByFirstName(String first_name) {
+		return userRepository.findByFirstName(first_name);
+	}
 }

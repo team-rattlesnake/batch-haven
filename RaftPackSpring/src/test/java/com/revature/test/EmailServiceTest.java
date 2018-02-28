@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.revature.service.EmailService;
+//import com.revature.service.EmailService;
 
 //@ContextConfiguration("classpath:META-INF/spring/mydocuments-context.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("EmailService.class")
 public class EmailServiceTest {
 
@@ -33,6 +33,6 @@ public class EmailServiceTest {
 		long time = (end - start)/1000;
 		log.debug("Sending email done. Took: " + time + " seconds.");
 		}
-	}
+	}*/
 
 
