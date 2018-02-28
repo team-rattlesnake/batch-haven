@@ -24,15 +24,15 @@ export class ProfileService {
 
   public getProfile(userId: number): Observable<User> {
     const body: string = JSON.stringify(userId);
-    const headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
+
 
     return this.httpc
-        .post(`http://localhost:9005/RaftPackSpring/getUser.app`, body, httpOptions)
-        .catch(this.handleError);
+      .post(`http://localhost:8090/RaftPackSpring/getUser.app`, body, httpOptions)
+      .catch(this.handleError);
   }
 
   private handleError(error: Response) {
-      return Observable.throw(error.statusText);
+    return Observable.throw(error.statusText);
   }
 
 }

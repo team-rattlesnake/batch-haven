@@ -23,7 +23,11 @@ import { UploadFileService } from './services/upload.service';
 import { MessagesComponent } from './messages/messages.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { ModifyUserService } from './services/modify-user.service';
 import { PostService } from './services/post.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FeedComponent } from './feed/feed.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,16 +38,18 @@ import { PostService } from './services/post.service';
     MessagesComponent,
     PostComponent,
     PostDetailsComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    FeedComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, PostService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

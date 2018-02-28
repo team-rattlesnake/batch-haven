@@ -29,11 +29,13 @@ export class RegisterComponent implements OnInit {
 
   registerUser(): void {
     this.registerService.registerUser(this.user).subscribe(
-      message => this.message = message,
+      message => {
+        this.message = message;
+        if (this.message.text.length > 0) {
+          this.router.navigate(['./']);
+        }
+      },
       error => console.log(`Error: ${error}`));
-    if (this.message.text.length > 0) {
-      this.router.navigate(['./login']);
-    }
   }
 
   ngOnInit(): void {

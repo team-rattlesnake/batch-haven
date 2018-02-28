@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -35,10 +38,12 @@ public class Post {
 	private int numOfLikes;
 	
 	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Image> images;
 
 	@OneToMany(mappedBy="post")
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Comment> comments;
 	
@@ -47,6 +52,7 @@ public class Post {
 	private User user;
 
 	@ManyToMany(mappedBy="likedPosts")
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> likers;
 	

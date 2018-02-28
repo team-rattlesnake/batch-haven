@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserForm } from '../models/user-form';
+import { ModifyUserService } from '../services/modify-user.service';
+import { UploadFileService } from '../services/upload.service';
 import { User } from '../models/user.model';
+import { Message } from '../models/message.model';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-modify-user-info',
@@ -9,30 +13,24 @@ import { User } from '../models/user.model';
 
 })
 export class ModifyUserInfoComponent implements OnInit {
-  userform: UserForm;
   user: User;
+  edit = false;
+  message: Message;
+  profileImageSession: any;
 
-  constructor() {
-
-  }
+  constructor(private profileService: ProfileService,
+    private modifyuserinfoService: ModifyUserService, private uploadfileservice: UploadFileService) { }
 
   ngOnInit() {
-
+    this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(user => this.user = user);
   }
+  getUserFormData() {
+    if (this.edit === false) { this.edit = true; }
+    if (this.edit === true) { this.edit = false; }
 
-  getUserFormData(firstname, lastname, company, pack, email, username, password, confirmation) {
-    this.userform = {
-      firstname: firstname, lastname: lastname, company: company,
-      pack: pack, email: email, username: username, password: password, pass_confirm: confirmation
-    };
-    /* need to combine these somehow... */
-    this.user = new User(0, '', '', '', '', '', '', '', '');
-
-    console.log(this.userform.firstname, this.userform.lastname, this.userform.company,
-      this.userform.pack, this.userform.email, this.userform.username, this.userform.password,
-      this.userform.pass_confirm);
+    this.user.userId = parseInt(document.cookie, 10);
+    this.modifyuserinfoService.update(this.user).subscribe(
+      message => this.message = message);
   }
 
 }
-
-

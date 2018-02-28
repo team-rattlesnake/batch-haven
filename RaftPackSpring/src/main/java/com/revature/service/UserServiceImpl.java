@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Post;
 import com.revature.model.User;
+import com.revature.repository.PostRepository;
+import com.revature.repository.PostRepositoryImpl;
 import com.revature.repository.UserRepository;
 
 @Service("userService")
@@ -47,26 +49,36 @@ public class UserServiceImpl implements UserService {
 		return u;
 	}
 
-	@Override
-	public User validateUser(User user) {
-		// TODO Auto-generated method stub
-		System.out.println("User: " + user);
-		User temp = userRepository.findByUserEmail(user.getuser_email());
-		//System.out.println("Temp: " + temp);
-		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
-			return temp;
-		}
-		return user;
-	}
-
 	private String securePassword(String password) {
 		String hash = password;
 		// TODO: do some algorithm to hash password
 		return hash;
 	}
+
+	@Override
+	public User validateUser(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("User: " + user);
+		User temp = userRepository.findByUserEmail(user.getuser_email());
+		System.out.println("Temp: " + temp);
+		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
+			System.out.println("Temp password: " + temp.getuser_password());
+			return temp;
+		}
+		return user;
+	}
+	
+	
 	
 	@Override
 	public List<Post> getPosts(int userId){
 		return userRepository.findPostByUserId(userId);
 	}
+
+	@Override
+	public void updateUser(User user) {
+		userRepository.update(user);
+		
+	}
+
 }
