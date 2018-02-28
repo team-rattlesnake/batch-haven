@@ -27,6 +27,7 @@ import { ModifyUserService } from './services/modify-user.service';
 import { PostService } from './services/post.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeedComponent } from './feed/feed.component';
+
 @NgModule({
   declarations: [
     AppComponent,
