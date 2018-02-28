@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../services/search.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../models/user.model';
-import { Subject } from 'rxjs/Subject';
-import { SearchService } from '../services/search.service';
+import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operator/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operator/distinctUntilChanged';
 import { switchMap } from 'rxjs/operator/switchMap';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
   users$: Observable<User[]>;
   private searchTerms = new Subject<string>();
@@ -33,7 +33,8 @@ export class NavbarComponent implements OnInit {
       distinctUntilChanged().
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.searchService.searchUsers(term));
+      switchMap((term: string) => this.searchService.searchUsers(term)
+    );
   }
 
 }
