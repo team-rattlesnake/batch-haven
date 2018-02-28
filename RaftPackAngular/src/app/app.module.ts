@@ -49,7 +49,7 @@ import { FeedComponent } from './feed/feed.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService,ModifyUserService,PostService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
