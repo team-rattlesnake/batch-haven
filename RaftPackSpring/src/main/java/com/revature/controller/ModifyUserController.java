@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.revature.pojo.ModifyUser;
 import com.revature.pojo.Message;
-import com.revature.service.ModifyuserService;
+//import com.revature.service.ModifyuserService;
 import com.revature.model.User;
 
 /*@Controller("modifyUserController")

@@ -1,79 +1,43 @@
-
-  <div class="container">      
-    <h1><span><img src="../assets/images/RaftPackGo.png" id="raftpacklogo"> </span>Edit Profile</h1>
-    <hr>
-  <div class="row">
       <!-- left column -->
-      <div class="col-md-3">
-        <div class="text-center">
-          
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-  
-          <input #profilepic type="file" class="form-control" id="pic">
+
+      <div class="panel-body" *ngIf="user">
+       <h1><span><img src="../assets/images/RaftPackGo.png" id="raftpacklogo"> </span>Edit Profile</h1>
+
+       <div class="list-group">
+
+
+                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                <h6>Upload a different photo...</h6>
+
+                <input #profilepic type="file" class="form-control" id="pic">
+
+            <div class="list-group-item list-group-item-demo">
+                <div class="form-group">
+                  <input [(ngModel)]="user.first_name" placeholder="FirstName" class="form-control" />
+                  <!-- <input [value]="user.first_name" (input)="user.first_name = $event.target.value" placeholder="FirstName" class="form-control"> -->
+
+                  <input [(ngModel)]="user.last_name" placeholder="LastName" class="form-control" />
+
+                  <input [(ngModel)]="user.user_email" type="email" placeholder="Email" class="form-control" (blur)="emailTyped= true" />
+
+                  <div *ngIf="emailTyped">
+                      <input [(ngModel)]="user.user_email" type="email" placeholder="Confirm Email" class="form-control" />
+                  </div>
+                  <input [(ngModel)]="user.user_password" type="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true" />
+
+                  <div *ngIf="passwordTyped">
+                      <input [(ngModel)]="user.user_password" type="password" placeholder="Confirm Password" class="form-control" />
+                  </div>
+
+                  <input [(ngModel)]="user.gender" type="gender" placeholder="Gender" class="form-control" />
+
+                  <p style="text-align: left">Enter your Date of Birth</p>
+                  <input [(ngModel)]="user.date_of_birth" type="date" placeholder="Date Of Birth" class="form-control" />
+                  <input [(ngModel)]="user.biography" placeholder="Biography" class="form-control" />
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-center" (click)="getUserFormData()">Update</button>
+                </div>
+              </div>
         </div>
-      </div>
-  
-  
-      <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a>
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div>
-        <h3>Personal info</h3>
-  
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" #firstname type="text" id="fname">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" #lastname type="text" id="lname">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">User Email:</label>
-            <div class="col-lg-8">
-              <input class="form-control" #useremail type="text" id="ename">
-            </div>
-          </div>
-  
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Pack:</label>
-            <div class="col-lg-8">
-              <input class="form-control" #pack type="text" id="pnum">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Gender:</label>
-            <div class="col-lg-8">
-              <input class="form-control" #gender type="text" id="pnum">
-            </div>
-          </div>
-  
-          <div class="form-group">
-            <label class="col-md-3 control-label">Biography:</label>
-            <div class="col-md-8">
-              <input class="form-control" #biography type="textarea" id="bio">
-              <!-- <textarea name="Text1" cols="40" rows="5"></textarea> -->
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input (click)="getUserFormData(profilepic.value,firstname.value,lastname.value,
-              pack.value,useremail.value,pack.value,biography.value)" type="button"
-              class="btn btn-primary" value="Save Changes">
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
-            </div>
-          </div>
-        </form>
-      </div>
-  </div>
-  </div>
+</div>

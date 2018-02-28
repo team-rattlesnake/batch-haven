@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.revature.model.Post;
 import com.revature.model.User;
 import com.revature.pojo.Message;
+import com.revature.service.PostService;
+import com.revature.service.PostServiceImpl;
 import com.revature.service.UserService;
 
 @Controller("userController")
@@ -28,7 +30,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private PostService ps;
 	//@RequestMapping(value="/registerHero.app", method=RequestMethod.POST)
 	@PostMapping("/registerUser.app")
 	public @ResponseBody ResponseEntity<Message> registerUser(@RequestBody User user) {
@@ -67,8 +70,26 @@ public class UserController {
 		return new ResponseEntity<>(userService.getPosts(userId), HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAllPosts.app")
+	public @ResponseBody ResponseEntity<List<Post>> getAllPosts() {
+		return new ResponseEntity<>(ps.getAllPosts(), HttpStatus.OK);
+	}
+	
+	@PostMapping("/createPost.app")
+	public @ResponseBody ResponseEntity<Message> createPost(@RequestBody Post post) {
+		ps.createPost(post);
+		return new ResponseEntity<>(new Message("Ok"), HttpStatus.OK);
+	}
+	
 	@PostMapping("/login.app")
 	public @ResponseBody ResponseEntity<User> login(@RequestBody User user) {
 		return new ResponseEntity<>(userService.validateUser(user), HttpStatus.OK);
 	}
+	
+	@PostMapping("/update.app")
+	public @ResponseBody ResponseEntity<Message> update(@RequestBody User user) {
+		userService.updateUser(user);
+		return new ResponseEntity<>(new Message("Updated"), HttpStatus.OK);
+	}
+	
 }

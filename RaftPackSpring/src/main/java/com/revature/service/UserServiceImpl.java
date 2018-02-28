@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Post;
 import com.revature.model.User;
+import com.revature.repository.PostRepository;
+import com.revature.repository.PostRepositoryImpl;
 import com.revature.repository.UserRepository;
 
 @Service("userService")
@@ -74,5 +76,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findUsersByFirstName(String first_name) {
 		return userRepository.findByFirstName(first_name);
+	}
+	
+	@Override
+	public void updateUser(User user) {
+		userRepository.update(user);
+		
 	}
 }

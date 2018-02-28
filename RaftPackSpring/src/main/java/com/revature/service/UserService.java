@@ -13,4 +13,5 @@ public interface UserService {
 	User findUser(String email);
 	List<Post> getPosts(int userId);
 	List<User> findUsersByFirstName(String firstName);
+	void updateUser(User user);
 }
