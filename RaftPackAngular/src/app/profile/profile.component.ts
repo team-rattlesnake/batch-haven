@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
   selectedFiles: FileList;
   user = new User(
-    123, 'Mary', 'Nguyen', 'mnguyen5081@gmail.com', 'password', '07/21/1993', 'female'
+    123, 'Demarques', 'Glass', 'cortez.glass@yahoo.com', '123456', '10/19/1994', 'male'
   );
   loginComponent: LoginComponent;
   constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
