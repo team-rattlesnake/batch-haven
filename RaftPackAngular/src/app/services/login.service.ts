@@ -21,6 +21,7 @@ export class LoginService {
         return this.http
             .post(`http://localhost:9005/RaftPackSpring/login.app`, body, options)
             .map((response: Response) => {
+                console.log(body);
                 return <User>response.json();
             })
             .catch(this.handleError);

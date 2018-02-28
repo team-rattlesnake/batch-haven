@@ -20,7 +20,7 @@ export const routes: Routes = [
     { path: 'profile', component : ProfileComponent},
     { path: 'post', component : PostComponent},
     { path: 'dashboard', component : DashboardComponent},
-    { path: 'profile/friend-profile', component : FriendProfileComponent},
+    { path: 'friend-profile', component : FriendProfileComponent},
     { path: 'register', component : RegisterComponent},
 
 ];

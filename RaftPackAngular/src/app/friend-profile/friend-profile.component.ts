@@ -19,7 +19,7 @@ export class FriendProfileComponent implements OnInit {
   public message: Message = new Message('No profile to display.');
 
   getProfile() {
-    this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
+    this.profileService.getProfile(2).subscribe(
       user => {
         this.user = user;
         console.log(this.user);

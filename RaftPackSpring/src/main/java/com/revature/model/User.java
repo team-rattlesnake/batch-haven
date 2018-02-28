@@ -254,10 +254,13 @@ public class User {
 		
 	@Override
 	public String toString() {
-		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", dateOfBirth=" + date_of_birth + ", gender=" + gender
-				+ ", profile="+"]";
+		return "User [userId=" + userId + ", first_name=" + first_name + ", last_name=" + last_name + ", user_email="
+				+ user_email + ", user_password=" + user_password + ", gender=" + gender + ", date_of_birth="
+				+ date_of_birth + ", biography=" + biography + ", profile_image=" + profile_image + ", friends="
+				+ friends + "]";
 	}
+	
+	
 
 	public String toStringTwo() {
 		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
