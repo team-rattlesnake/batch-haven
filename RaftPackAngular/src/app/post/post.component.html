@@ -1,1 +1,3 @@
-<div><li *ngFor="let post of posts"> <span>{{post.message}}</span></li></div>
+<input #postText />
+<button (click)="createPost(postText.value); postText.value=''">Submit</button>
+<div><h6>Your Posts:</h6><li *ngFor="let post of posts"> <span>{{post.message}}</span></li></div>

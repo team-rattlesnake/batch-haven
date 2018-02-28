@@ -14,9 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -54,7 +56,8 @@ public class User {
 	@Column(name="PROFILE_IMAGE")
 	private String profile_image;
 	
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Post> myPosts;
 
@@ -75,10 +78,12 @@ public class User {
 	}
 
 	@OneToMany(mappedBy="user")
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Comment> myComments;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="USERS_FRIENDS",
 		joinColumns={@JoinColumn(name="USER_ID")},
@@ -87,10 +92,12 @@ public class User {
 	
 	/* needed for self-join many to many */
 	@ManyToMany(mappedBy="friends")
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> others;
 
 	@ManyToMany(cascade=CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="LIKED_POSTS",
 		joinColumns={@JoinColumn(name="USER_ID")},

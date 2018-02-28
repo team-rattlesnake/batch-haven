@@ -5,21 +5,14 @@
 
 <div>
     <b>Name</b>: {{user.first_name}} {{user.last_name}}
-    <br>
+    <br><br>
     <b>Gender</b>: {{user.gender}}
-    <br>
-    <b>Bio</b>: {{user.biography}}</div>
-
-    <a routerLink="friend-profile">Friend Profile</a>
-    <br>
-    <br>
-
-<button *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
-<button class="button btn-info" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
+    <br><br>
+    <b>Birthday</b>: {{user.date_of_birth}}<br><br>
+    <b>Email</b>: {{user.user_email}}<br><br>
+    <b>Bio</b>: {{user.biography}}</div><br>
+<button class="btn-primary btn-xs" *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
+<button class="btn btn-xs" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
 <div [hidden]="!show">
-    <label class="btn btn-default">
-        <input type="file" (change)="selectFile($event)">
-    </label>
-    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button><br>
     <app-modify-user-info></app-modify-user-info>
 </div>
