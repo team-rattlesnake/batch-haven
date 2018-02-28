@@ -9,6 +9,11 @@
     <b>Gender</b>: {{user.gender}}
     <br>
     <b>Bio</b>: {{user.biography}}</div>
+
+    <a routerLink="friend-profile">Friend Profile</a>
+    <br>
+    <br>
+
 <button *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
 <button class="button btn-info" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
 <div [hidden]="!show">

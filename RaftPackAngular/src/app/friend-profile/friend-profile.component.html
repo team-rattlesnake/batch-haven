@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<div *ngIf="profile">
+    <img src={{user.profile_image}}/>
+</div>
+
+<div>
+    <b>Name</b>: {{user.first_name}} {{user.last_name}}
+    <br>
+    <b>Gender</b>: {{user.gender}}
+    <br>
+    <b>Bio</b>: {{user.biography}}</div>
+

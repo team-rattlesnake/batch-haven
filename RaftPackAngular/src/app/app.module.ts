@@ -27,6 +27,7 @@ import { ModifyUserService } from './services/modify-user.service';
 import { PostService } from './services/post.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeedComponent } from './feed/feed.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FeedComponent } from './feed/feed.component';
     PostDetailsComponent,
     NavbarComponent,
     DashboardComponent,
-    FeedComponent
+    FeedComponent,
+    FriendProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { FeedComponent } from './feed/feed.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService,ModifyUserService,PostService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
