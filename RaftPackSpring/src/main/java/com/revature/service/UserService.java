@@ -12,5 +12,5 @@ public interface UserService {
 	User findUser(int userId);
 	User findUser(String email);
 	List<Post> getPosts(int userId);
-	void updateUser(User user);
+	User updateUser(User user);
 }
