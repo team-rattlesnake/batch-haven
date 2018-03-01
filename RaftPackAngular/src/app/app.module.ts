@@ -28,6 +28,8 @@ import { PostService } from './services/post.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeedComponent } from './feed/feed.component';
 import { FriendProfileComponent } from './friend-profile/friend-profile.component';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { FriendProfileComponent } from './friend-profile/friend-profile.componen
     NavbarComponent,
     DashboardComponent,
     FeedComponent,
-    FriendProfileComponent
+    FriendProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { FriendProfileComponent } from './friend-profile/friend-profile.componen
     HttpModule,
     HttpClientModule
   ],
-  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService],
+  providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService,
+    SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -74,9 +74,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<User> findUsersByFirstName(String first_name) {
+		return userRepository.findByFirstName(first_name);
+	}
+	
+	@Override
 	public void updateUser(User user) {
 		userRepository.update(user);
 		
 	}
-
 }
