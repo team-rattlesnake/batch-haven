@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { LoginComponent } from '../login/login.component';
 import { Message } from '../models/message.model';
 import { UploadFileService } from '../services/upload.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,19 +15,29 @@ export class ProfileComponent implements OnInit {
   selectedFiles: FileList;
   user = new User(0, '', '', '', '', '', '', '', '');
   // loginComponent: LoginComponent;
-  constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
+  constructor(private profileService: ProfileService,
+    private uploadService: UploadFileService,
+    private route: ActivatedRoute) {
   }
 
   public message: Message = new Message('No profile to display.');
 
   getProfile() {
-    this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
-      user => {
-        this.user = user;
-        console.log(this.user);
-        console.log(document.cookie = this.user.userId.valueOf().toString());
-      },
-      error => this.message.text = `Couldn't find Profile.`);
+    const id = +this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.profileService.getProfile(id).subscribe(
+        user => this.user = user,
+        error => this.message.text = `Couldn't find Profile.`
+      );
+    } else {
+      this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
+        user => {
+          this.user = user;
+          console.log(this.user);
+          console.log(document.cookie = this.user.userId.valueOf().toString());
+        },
+        error => this.message.text = `Couldn't find Profile.`);
+    }
   }
 
   ngOnInit(): void {
