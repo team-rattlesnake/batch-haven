@@ -1,5 +1,6 @@
 export class FileUpload {
     name: string;
+    writable: true;
     url: string;
 
     constructor(name: string, url: string) {
