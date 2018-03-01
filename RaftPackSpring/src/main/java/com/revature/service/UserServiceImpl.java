@@ -68,8 +68,6 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	
-	
 	@Override
 	public List<Post> getPosts(int userId){
 		return userRepository.findPostByUserId(userId);
@@ -81,5 +79,4 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUserId(user.getUserId());
 		
 	}
-
 }
