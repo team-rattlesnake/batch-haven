@@ -47,16 +47,16 @@ public class Post {
 	@JsonIgnore
 	private List<Image> images;
 
-	@OneToMany(mappedBy="post")
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Comment> comments;
+	//@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@JsonIgnore
+	//private List<Comment> comments;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
 	private User user;
 
-	@ManyToMany(mappedBy="likedPosts")
+	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> likers;

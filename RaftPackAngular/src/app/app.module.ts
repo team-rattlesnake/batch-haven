@@ -27,6 +27,7 @@ import { ModifyUserService } from './services/modify-user.service';
 import { PostService } from './services/post.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeedComponent } from './feed/feed.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './services/search.service';
 
@@ -43,6 +44,7 @@ import { SearchService } from './services/search.service';
     NavbarComponent,
     DashboardComponent,
     FeedComponent,
+    FriendProfileComponent,
     SearchComponent
   ],
   imports: [

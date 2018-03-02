@@ -14,7 +14,7 @@ import com.revature.repository.PostRepositoryImpl;
 public class PostServiceImpl implements PostService {
 
 	@Autowired
-	PostRepository pr = new PostRepositoryImpl();
+	PostRepository pr;
 
 	public void createPost(Post post) {
 		java.util.Date utilDate = new java.util.Date();
