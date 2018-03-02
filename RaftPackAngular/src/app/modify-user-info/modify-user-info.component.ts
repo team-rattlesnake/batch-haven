@@ -5,7 +5,7 @@ import { UploadFileService } from '../services/upload.service';
 import { User } from '../models/user.model';
 import { Message } from '../models/message.model';
 import { ProfileService } from '../services/profile.service';
-
+import {ProfileComponent} from '../profile/profile.component';
 @Component({
   selector: 'app-modify-user-info',
   templateUrl: './modify-user-info.component.html',
@@ -30,7 +30,7 @@ export class ModifyUserInfoComponent implements OnInit {
 
     this.user.userId = parseInt(document.cookie, 10);
     this.modifyuserinfoService.update(this.user).subscribe(
-      message => this.message = message);
+      user => this.user = user);
   }
 
 }

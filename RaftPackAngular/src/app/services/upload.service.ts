@@ -4,10 +4,9 @@ import * as S3 from 'aws-sdk/clients/s3';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { FileUpload } from '../models/file-upload';
-
+import { v4 as uuid } from 'uuid';
 @Injectable()
 export class UploadFileService {
-
   FOLDER = 'jsa-s3/';
   BUCKET = 'jsa-angular-bucket';
 
@@ -25,10 +24,11 @@ export class UploadFileService {
     return bucket;
   }
 
-  uploadfile(file) {
+  uploadfile(file): string {
+    const uid = uuid();
     const params = {
       Bucket: this.BUCKET,
-      Key: this.FOLDER + file.name,
+      Key: this.FOLDER + file.name.replace(file.name, uid + '.png'),
       Body: file,
       ACL: 'public-read'
     };
@@ -42,6 +42,7 @@ export class UploadFileService {
       console.log('Successfully uploaded file.', data);
       return true;
     });
+    return uid;
   }
 
   getFiles(): Observable<Array<FileUpload>> {
@@ -63,6 +64,7 @@ export class UploadFileService {
       const fileDatas = data.Contents;
 
       fileDatas.forEach(function (file) {
+        file.
         fileUploads.push(new FileUpload(file.Key, 'https://s3.amazonaws.com/' + params.Bucket + '/' + file.Key));
       });
     });
