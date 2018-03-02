@@ -77,12 +77,12 @@ public class User {
 		this.profile_image = profile_image;
 	}
 
-	@OneToMany(mappedBy="user")
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Comment> myComments;
+	//@OneToMany(mappedBy="user")
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@JsonIgnore
+	//private List<Comment> myComments;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="USERS_FRIENDS",
@@ -96,7 +96,7 @@ public class User {
 	@JsonIgnore
 	private List<User> others;
 
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="LIKED_POSTS",

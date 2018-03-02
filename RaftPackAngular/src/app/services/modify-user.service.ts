@@ -14,7 +14,7 @@ export class ModifyUserService {
 
     constructor(private httpc: HttpClient) { }
 
-    update(user: User): Observable<Message> {
+    update(user: User): Observable<User> {
         const body = JSON.stringify(user);
         const headers = new Headers({ 'Content-Type': 'application/json' });
 

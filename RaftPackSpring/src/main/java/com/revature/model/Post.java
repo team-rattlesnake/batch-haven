@@ -1,5 +1,6 @@
 package com.revature.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,26 +39,37 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
+	@Column(name="DATE_SUBMITTED")
+	private Date date;
+	
 	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Image> images;
 
-	@OneToMany(mappedBy="post")
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Comment> comments;
+	//@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@JsonIgnore
+	//private List<Comment> comments;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
 	private User user;
 
-	@ManyToMany(mappedBy="likedPosts")
+	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> likers;
 	
 	public Post() {}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public Post(int postId, String message, List<Image> images, int numOfLikes, User user) {
 		super();

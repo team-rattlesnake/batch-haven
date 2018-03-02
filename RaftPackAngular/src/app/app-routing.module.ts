@@ -18,6 +18,7 @@ export const routes: Routes = [
     { path: 'login/register', component : RegisterComponent},
     { path: 'modify-user-info', component : ModifyUserInfoComponent},
     { path: 'profile', component : ProfileComponent},
+    { path: 'profile/:id', component : ProfileComponent},
     { path: 'post', component : PostComponent},
     { path: 'dashboard', component : DashboardComponent},
     { path: 'friend-profile', component : FriendProfileComponent},
