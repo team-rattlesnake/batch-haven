@@ -21,6 +21,11 @@ public class UserRepositoryImpl implements UserRepository{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
+	public UserRepositoryImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void create(User user) {
 		sessionFactory.getCurrentSession().save(user);
