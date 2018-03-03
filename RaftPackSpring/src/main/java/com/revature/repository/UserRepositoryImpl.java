@@ -21,6 +21,11 @@ public class UserRepositoryImpl implements UserRepository{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
+	public UserRepositoryImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void create(User user) {
 		sessionFactory.getCurrentSession().save(user);
@@ -35,6 +40,7 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User findByUserId(int userId) {
+		System.out.println(userId);
 		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
 		System.out.println(u);
 		return u;
@@ -43,7 +49,10 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public List<Post> findPostByUserId(int userId){
 		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
-		return u.getMyPosts();
+		if (u != null)
+			return u.getMyPosts();
+		else
+			return null;
 	}
 
 	@Override

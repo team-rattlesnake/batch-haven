@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { FormdataUploadComponent } from './form-data-upload/form-data-upload.component';
+import {ReactiveFormsModule} from '@angular/forms';
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,6 +28,7 @@ import { ModifyUserService } from './services/modify-user.service';
 import { PostService } from './services/post.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeedComponent } from './feed/feed.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './services/search.service';
 
@@ -43,17 +45,20 @@ import { SearchService } from './services/search.service';
     NavbarComponent,
     DashboardComponent,
     FeedComponent,
-    SearchComponent
+    FriendProfileComponent,
+    SearchComponent,
+    FormdataUploadComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService,
-    SearchService],
+    SearchService, PostComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

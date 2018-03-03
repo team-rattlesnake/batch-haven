@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class PostServiceImpl implements PostService {
 	private UserRepository ur;
 
 	public void createPost(Post post) {
+		java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		post.setDate(sqlDate);
 		pr.create(post);
 	}
 
@@ -91,6 +95,15 @@ public class PostServiceImpl implements PostService {
 		ur.update(liker);
 		pr.update(post);
 		
+	public Post updatePost(Post post) {
+		pr.update(post);
+		return pr.findByPostId(post.getPostId());
+	}
+
+	@Override
+	public String getImage(int postId) {
+		Post post = pr.findByPostId(postId);
+		return post.getImage();
 	}
 
 }
