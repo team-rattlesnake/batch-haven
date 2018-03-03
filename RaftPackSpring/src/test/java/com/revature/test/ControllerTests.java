@@ -33,7 +33,7 @@ public class ControllerTests {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		userService = ac.getBean(UserService.class);
 		User me  = new User("Demarques", "Glass", "cortez.glass@yahoo.com" , "123", "male", "1994-10-19");
-		User user = new User("Demarques", "Grass", "dg@example.com" , "123", "male", "1994-10-19");
+		User user = new User("Cortez", "Grass", "dg@example.com" , "123", "male", "1994-10-19");
 		User r = new User("Alex", "Jackson", "aj@example.com" , "123", "female", "1993-03-02");
 
 		
