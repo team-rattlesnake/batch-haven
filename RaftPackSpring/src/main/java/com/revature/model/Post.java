@@ -1,5 +1,6 @@
 package com.revature.model;
 
+import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
@@ -66,10 +67,10 @@ public class Post {
 	@JoinColumn(name="USER_ID")
 	private User user;
 
-	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
+	@ManyToMany(mappedBy="likedPosts")
+	//@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
-	private List<User> likers;
+	private List<User> likers = new ArrayList<>();
 	
 	public Post() {}
 
@@ -123,21 +124,48 @@ public class Post {
 		this.user = user;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<User> getLikers() {
+		return likers;
+	}
+
+	public void setLikers(List<User> likers) {
+		this.likers = likers;
+	}
+
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", message=" + message + ", image=" + image + ", numOfLikes=" + numOfLikes
-				+ ", user=" + user + "]";
+		return "Post [postId=" + postId + ", message=" + message + ", images=" + images + ", numOfLikes=" + numOfLikes
+				+ ", user=" + user.toStringTwo() + ", likers=" + printLikers(likers) + "]";
 	}
 	
 	public String toStringTwo() {
-		return "Post [postId=" + postId + ", message=" + message + ", image=" + image + ", numOfLikes=" + numOfLikes
-				+ ", user=" + user.toStringTwo() + "]";
+		return "Post [postId=" + postId + ", message=" + message + ", image=" + images + ", numOfLikes=" + numOfLikes
+				+ "]";
+	}
+	
+	public List<String> printLikers(List<User> users) {
+		List<String> strings = new ArrayList<>();
+		for(User u: users) {
+			strings.add((u.toStringTwo()));
+		}
+		return strings;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		//result = prime * result + ((images == null) ? 0 : images.hashCode());
+		result = prime * result + ((likers == null) ? 0 : likers.hashCode());
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + numOfLikes;
@@ -155,10 +183,22 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		// if (images == null) {
+		// 	if (other.images != null)
 		if (image == null) {
 			if (other.image != null)
 				return false;
 		} else if (!image.equals(other.image))
+			return false;
+		if (likers == null) {
+			if (other.likers != null)
+				return false;
+		} else if (!likers.equals(other.likers))
 			return false;
 		if (message == null) {
 			if (other.message != null)

@@ -2,6 +2,7 @@ package com.revature.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -86,6 +87,13 @@ public class UserController {
 	public @ResponseBody ResponseEntity<User> update(@RequestBody User user) {
 
 		return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+	}
+	
+	@PostMapping("/likePost")
+	public @ResponseBody ResponseEntity<Message> likePost(@RequestBody Map<String, Integer> req) {
+		System.out.println(req.get("postId") + " " + req.get("userId"));
+		ps.likePost(req.get("postId"), req.get("userId"));
+		return new ResponseEntity<>(new Message("Liked"), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getImage.app")

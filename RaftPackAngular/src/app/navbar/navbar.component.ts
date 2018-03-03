@@ -16,11 +16,13 @@ export class NavbarComponent implements OnInit {
 
   users$: Observable<User[]>;
   private searchTerms = new Subject<string>();
+  isClear: boolean;
 
   constructor(private searchService: SearchService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
+    this.isClear = false;
     this.searchTerms.next(term);
   }
 
@@ -34,6 +36,11 @@ export class NavbarComponent implements OnInit {
 
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.searchService.searchUsers(term));
+      console.log(this.users$);
+  }
+
+  clearResults(): void {
+    this.isClear = true;
   }
 
 }

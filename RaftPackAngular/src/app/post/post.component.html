@@ -1,5 +1,5 @@
-<!-- <input #postText /> -->
-<!-- <button (click)="createPost(postText.value); postText.value=''">Submit</button> -->
-<div><h6>Your Posts:</h6><li *ngFor="let post of posts"> <span>{{post.message}}</span>
-{{post.date}} <img src={{post.image}}/></li>
+<div class="container">
+    <input class="form-control" style="height: 150px" #postText />
+    <input #profilepic type="file" class="form-control" id="pic">
+    <button class="btn btn-lg btn-primary btn-block" (click)="createPost(postText.value); postText.value=''">Submit</button>
 </div>
