@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../models/user.model';
 import { Subject } from 'rxjs/Subject';
@@ -14,6 +14,7 @@ import { switchMap } from 'rxjs/operator/switchMap';
 })
 export class NavbarComponent implements OnInit {
 
+  exists: boolean;
   users$: Observable<User[]>;
   private searchTerms = new Subject<string>();
 
@@ -25,6 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.exists = true;
     this.users$ = this.searchTerms.
       // wait 300ms after each keystroke before considering the term
       debounceTime(300).

@@ -1,38 +1,41 @@
-      <!-- left column -->
+<!-- left column -->
+<app-navbar *ngIf="!exists"></app-navbar>
+<div class="panel-body" *ngIf="user">
+    <h1>
+        <span>
+            <img src="../assets/images/RaftPackGo.png" id="raftpacklogo"> </span>Edit Profile</h1>
 
-      <div class="panel-body" *ngIf="user">
-       <h1><span><img src="../assets/images/RaftPackGo.png" id="raftpacklogo"> </span>Edit Profile</h1>
+    <div class="list-group">
 
-       <div class="list-group">
+        <h6>Upload a different photo...</h6>
 
-                <h6>Upload a different photo...</h6>
+        <div class="list-group-item list-group-item-demo">
+            <div class="form-group">
+                <input [(ngModel)]="user.first_name" placeholder="FirstName" class="form-control" />
 
-            <div class="list-group-item list-group-item-demo">
-                <div class="form-group">
-                  <input [(ngModel)]="user.first_name" placeholder="FirstName" class="form-control" />
+                <input [(ngModel)]="user.last_name" placeholder="LastName" class="form-control" />
 
-                  <input [(ngModel)]="user.last_name" placeholder="LastName" class="form-control" />
+                <input [(ngModel)]="user.user_email" type="email" placeholder="Email" class="form-control" (blur)="emailTyped= true" />
 
-                  <input [(ngModel)]="user.user_email" type="email" placeholder="Email" class="form-control" (blur)="emailTyped= true" />
-
-                  <div *ngIf="emailTyped">
-                      <input [(ngModel)]="user.user_email" type="email" placeholder="Confirm Email" class="form-control" />
-                  </div>
-                  <input [(ngModel)]="user.user_password" type="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true" />
-
-                  <div *ngIf="passwordTyped">
-                      <input [(ngModel)]="user.user_password" type="password" placeholder="Confirm Password" class="form-control" />
-                  </div>
-
-                  <input [(ngModel)]="user.gender" type="gender" placeholder="Gender" class="form-control" />
-
-                  <p style="text-align: left">Enter your Date of Birth</p>
-                  <input [(ngModel)]="user.date_of_birth" type="date" placeholder="Date Of Birth" class="form-control" />
-                  <input [(ngModel)]="user.biography" placeholder="Biography" class="form-control" />
+                <div *ngIf="emailTyped">
+                    <input [(ngModel)]="user.user_email" type="email" placeholder="Confirm Email" class="form-control" />
                 </div>
-                <div>
-                    <button class="btn btn-primary btn-center" (click)="getUserFormData()">Update</button>
+                <input [(ngModel)]="user.user_password" type="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true"
+                />
+
+                <div *ngIf="passwordTyped">
+                    <input [(ngModel)]="user.user_password" type="password" placeholder="Confirm Password" class="form-control" />
                 </div>
-              </div>
+
+                <input [(ngModel)]="user.gender" type="gender" placeholder="Gender" class="form-control" />
+
+                <p style="text-align: left">Enter your Date of Birth</p>
+                <input [(ngModel)]="user.date_of_birth" type="date" placeholder="Date Of Birth" class="form-control" />
+                <input [(ngModel)]="user.biography" placeholder="Biography" class="form-control" />
+            </div>
+            <div>
+                <button class="btn btn-primary btn-center" (click)="getUserFormData()">Update</button>
+            </div>
         </div>
+    </div>
 </div>
