@@ -77,12 +77,12 @@ public class User {
 		this.profile_image = profile_image;
 	}
 
-	@OneToMany(mappedBy="user")
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Comment> myComments;
+	//@OneToMany(mappedBy="user")
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@JsonIgnore
+	//private List<Comment> myComments;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="USERS_FRIENDS",
@@ -96,7 +96,7 @@ public class User {
 	@JsonIgnore
 	private List<User> others;
 
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="LIKED_POSTS",
@@ -111,6 +111,15 @@ public class User {
 		this.user_email = user_email;
 		this.user_password = user_password;
 	}
+	
+	
+
+	public User(int userId, String first_name, String last_name) {
+		super();
+		this.userId = userId;
+		this.first_name = first_name;
+		this.last_name = last_name;
+	}
 
 	public User(String first_name, String last_name, String user_email, String user_password, String gender,
 			String date_of_birth) {
@@ -122,8 +131,23 @@ public class User {
 		this.date_of_birth = date_of_birth;
 		this.gender = gender;
 	}
+	
+	
 
 	
+
+	public User(String first_name, String last_name, String user_email, String user_password, String gender,
+			String date_of_birth, String biography, String profile_image) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.user_email = user_email;
+		this.user_password = user_password;
+		this.gender = gender;
+		this.date_of_birth = date_of_birth;
+		this.biography = biography;
+		this.profile_image = profile_image;
+	}
 
 	public User(int userId, String first_name, String last_name, String user_email, String user_password, String gender,
 			String date_of_birth, List<Post> myPosts, List<User> friends, List<Post> likedPosts) {
@@ -230,10 +254,13 @@ public class User {
 		
 	@Override
 	public String toString() {
-		return "User [userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", dateOfBirth=" + date_of_birth + ", gender=" + gender
-				+ ", profile="+"]";
+		return "User [userId=" + userId + ", first_name=" + first_name + ", last_name=" + last_name + ", user_email="
+				+ user_email + ", user_password=" + user_password + ", gender=" + gender + ", date_of_birth="
+				+ date_of_birth + ", biography=" + biography + ", profile_image=" + profile_image + ", friends="
+				+ friends + "]";
 	}
+	
+	
 
 	public String toStringTwo() {
 		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="

@@ -8,4 +8,5 @@ public interface PostService {
 public void createPost(Post post);
 public List<Post> getAllPosts();
 public Post updatePost(Post post);
+public String getImage(int postId);
 }

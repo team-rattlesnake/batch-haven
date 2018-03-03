@@ -35,6 +35,7 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User findByUserId(int userId) {
+		System.out.println(userId);
 		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
 		System.out.println(u);
 		return u;
@@ -43,7 +44,10 @@ public class UserRepositoryImpl implements UserRepository{
 	@Override
 	public List<Post> findPostByUserId(int userId){
 		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
-		return u.getMyPosts();
+		if (u != null)
+			return u.getMyPosts();
+		else
+			return null;
 	}
 
 	@Override
@@ -67,7 +71,7 @@ public class UserRepositoryImpl implements UserRepository{
 	public List<User> findByFirstName(String first_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
-					.add(Restrictions.like("first_name", first_name))
+					.add(Restrictions.like("first_name", "%" + first_name + "%"))
 					.list();
 		} catch (IndexOutOfBoundsException e) {
 			return null;

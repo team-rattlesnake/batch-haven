@@ -17,6 +17,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	public UserServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public UserServiceImpl(UserRepository userRepository) {
 		System.out.println("Constructor Injection.");
 		this.userRepository = userRepository;
@@ -68,8 +72,6 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	
-	
 	@Override
 	public List<Post> getPosts(int userId){
 		return userRepository.findPostByUserId(userId);
@@ -81,5 +83,4 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUserId(user.getUserId());
 		
 	}
-
 }

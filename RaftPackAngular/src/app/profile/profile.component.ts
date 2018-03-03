@@ -7,6 +7,7 @@ import { UploadFileService } from '../services/upload.service';
 import { FileUpload } from '../models/file-upload';
 import { Observable } from 'rxjs/Observable';
 import { ModifyUserService } from '../services/modify-user.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -19,21 +20,31 @@ export class ProfileComponent implements OnInit {
   fileUploads: Observable<Array<FileUpload>>;
   user = new User(0, '', '', '', '', '', '', '', document.cookie);
   imageString: string;
-  // loginComponent: LoginComponent;
-  constructor(private profileService: ProfileService, private uploadService: UploadFileService,
-    private modifyUserService: ModifyUserService) {
-  }
+
+  constructor(
+    private profileService: ProfileService,
+    private uploadService: UploadFileService,
+    private route: ActivatedRoute,
+    private modifyUserService: ModifyUserService) { }
 
   public message: Message = new Message('No profile to display.');
 
   getProfile() {
-    this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
-      user => {
-        this.user = user;
-        console.log(this.user);
-        console.log(document.cookie = this.user.userId.valueOf().toString());
-      },
-      error => this.message.text = `Couldn't find Profile.`);
+    const id = +this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.profileService.getProfile(id).subscribe(
+        user => this.user = user,
+        error => this.message.text = `Couldn't find Profile.`
+      );
+    } else {
+      this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(
+        user => {
+          this.user = user;
+          console.log(this.user);
+          console.log(document.cookie = this.user.userId.valueOf().toString());
+        },
+        error => this.message.text = `Couldn't find Profile.`);
+    }
   }
 
   ngOnInit(): void {
@@ -42,13 +53,12 @@ export class ProfileComponent implements OnInit {
 
   upload() {
     const file = this.selectedFiles.item(0);
-    this.user.profile_image = this.uploadService.uploadfile(file);
+    this.uploadService.uploadfile(file).subscribe(profile_image => this.user.profile_image = profile_image);
     console.log(this.user);
     this.imageString = 'https://s3.amazonaws.com/jsa-angular-bucket/jsa-s3/' + this.user.profile_image + '.png';
     this.user.profile_image = this.imageString;
     this.modifyUserService.update(this.user).subscribe(user => this.user = user);
   }
-
 
   selectFile(event) {
     this.selectedFiles = event.target.files;

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,21 +42,31 @@ public class Post {
 	@Column(name="DATE_SUBMITTED")
 	private Date date;
 	
-	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Image> images;
+	@Column(name="IMAGE")
+	private String image;
+//	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)
+//	@JsonIgnore
+//	private List<Image> images;
 
-	@OneToMany(mappedBy="post")
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Comment> comments;
+	//@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	//@Fetch(value = FetchMode.SUBSELECT)
+	//@JsonIgnore
+	//private List<Comment> comments;
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
 	private User user;
 
-	@ManyToMany(mappedBy="likedPosts")
+	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> likers;
@@ -70,11 +81,11 @@ public class Post {
 		this.date = date;
 	}
 
-	public Post(int postId, String message, List<Image> images, int numOfLikes, User user) {
+	public Post(int postId, String message, String image, int numOfLikes, User user) {
 		super();
 		this.postId = postId;
 		this.message = message;
-		this.images = images;
+		this.image = image;
 		this.numOfLikes = numOfLikes;
 		this.user = user;
 	}
@@ -95,13 +106,6 @@ public class Post {
 		this.message = message;
 	}
 
-	public List<Image> getImages() {
-		return images;
-	}
-
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
 
 	public int getNumOfLikes() {
 		return numOfLikes;
@@ -121,12 +125,12 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", message=" + message + ", images=" + images + ", numOfLikes=" + numOfLikes
+		return "Post [postId=" + postId + ", message=" + message + ", image=" + image + ", numOfLikes=" + numOfLikes
 				+ ", user=" + user + "]";
 	}
 	
 	public String toStringTwo() {
-		return "Post [postId=" + postId + ", message=" + message + ", image=" + images + ", numOfLikes=" + numOfLikes
+		return "Post [postId=" + postId + ", message=" + message + ", image=" + image + ", numOfLikes=" + numOfLikes
 				+ ", user=" + user.toStringTwo() + "]";
 	}
 
@@ -134,7 +138,7 @@ public class Post {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((images == null) ? 0 : images.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + numOfLikes;
 		result = prime * result + postId;
@@ -151,10 +155,10 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		if (images == null) {
-			if (other.images != null)
+		if (image == null) {
+			if (other.image != null)
 				return false;
-		} else if (!images.equals(other.images))
+		} else if (!image.equals(other.image))
 			return false;
 		if (message == null) {
 			if (other.message != null)

@@ -9,6 +9,13 @@
     <b>Birthday</b>: {{user.date_of_birth}}<br><br>
     <b>Email</b>: {{user.user_email}}<br><br>
     <b>Bio</b>: {{user.biography}}</div><br>
+
+    <br>
+    <br>
+
+    <a routerLink="/friend-profile">Friend Page</a>
+    <br><br>
+
 <button class="btn-primary btn-xs" *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
 <button class="btn btn-xs" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
 <div [hidden]="!show">

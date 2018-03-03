@@ -14,7 +14,7 @@ import com.revature.repository.PostRepositoryImpl;
 public class PostServiceImpl implements PostService {
 
 	@Autowired
-	PostRepository pr = new PostRepositoryImpl();
+	PostRepository pr;
 
 	public void createPost(Post post) {
 		java.util.Date utilDate = new java.util.Date();
@@ -33,6 +33,12 @@ public class PostServiceImpl implements PostService {
 	public Post updatePost(Post post) {
 		pr.update(post);
 		return pr.findByPostId(post.getPostId());
+	}
+
+	@Override
+	public String getImage(int postId) {
+		Post post = pr.findByPostId(postId);
+		return post.getImage();
 	}
 
 }
