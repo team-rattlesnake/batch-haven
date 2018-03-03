@@ -1,3 +1,5 @@
-<p>
-  post-details works!
-</p>
+<div class="container">
+  {{postId + ' ' + userId}}
+  <button class="btn btn-lg btn-primary btn-block glyphicon glyphicon-thumbs-up" (click)="likePost()"> Like</button>
+  <input class="form-control" #comment />
+</div>

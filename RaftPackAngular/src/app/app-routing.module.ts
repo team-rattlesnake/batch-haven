@@ -7,6 +7,7 @@ import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.com
 import { ProfileComponent } from './profile/profile.component';
 import { PostComponent } from './post/post.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -15,7 +16,8 @@ export const routes: Routes = [
     { path: 'modify-user-info', component : ModifyUserInfoComponent},
     { path: 'profile', component : ProfileComponent},
     { path: 'profile/:id', component : ProfileComponent},
-    { path: 'post', component : PostComponent},
+    { path: 'createPost', component : PostComponent},
+    { path: 'post', component: PostDetailsComponent },
     { path: 'dashboard', component : DashboardComponent}
 ];
 
