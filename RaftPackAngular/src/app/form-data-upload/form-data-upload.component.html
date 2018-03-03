@@ -1,0 +1,11 @@
+<span><form [formGroup]="form">
+  <span>
+    <input type="text" id="message" placeholder="post" formControlName="message">
+    <input type="file" id="image" (change)="onFileChange($event)" #fileInput>
+    <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+  </span>
+
+  <button type="submit" (click)="onSubmit()" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+</form>
+</span>
+<!-- (ngSubmit)="onSubmit()" -->

@@ -35,4 +35,10 @@ public class PostServiceImpl implements PostService {
 		return pr.findByPostId(post.getPostId());
 	}
 
+	@Override
+	public String getImage(int postId) {
+		Post post = pr.findByPostId(postId);
+		return post.getImage();
+	}
+
 }

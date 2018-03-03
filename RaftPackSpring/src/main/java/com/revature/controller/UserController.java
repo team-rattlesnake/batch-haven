@@ -1,11 +1,11 @@
 package com.revature.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.model.Image;
 import com.revature.model.Post;
 import com.revature.model.User;
 import com.revature.pojo.Message;
 import com.revature.service.PostService;
-import com.revature.service.PostServiceImpl;
 import com.revature.service.UserService;
 
 @RestController("userController")
@@ -64,7 +64,11 @@ public class UserController {
 
 	@GetMapping("/getAllPosts.app")
 	public @ResponseBody ResponseEntity<List<Post>> getAllPosts() {
-		return new ResponseEntity<>(ps.getAllPosts(), HttpStatus.OK);
+		List<Post> post = ps.getAllPosts();
+		for(Post string: post ) {
+			System.out.println(string);
+		}
+		return new ResponseEntity<>(post, HttpStatus.OK);
 	}
 
 	@PostMapping("/createPost.app")
@@ -82,6 +86,11 @@ public class UserController {
 	public @ResponseBody ResponseEntity<User> update(@RequestBody User user) {
 
 		return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getImage.app")
+	public @ResponseBody ResponseEntity<String> getImage(@RequestBody Post post){
+		return new ResponseEntity<>(ps.getImage(post.getPostId()), HttpStatus.OK);
 	}
 
 }

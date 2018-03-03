@@ -32,9 +32,8 @@ public class Image {
 		super();
 	}
 
-	public Image(int imageId, String image) {
+	public Image(String image) {
 		super();
-		this.imageId = imageId;
 		this.image = image;
 	}
 
