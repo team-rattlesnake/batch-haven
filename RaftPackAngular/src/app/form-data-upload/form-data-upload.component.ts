@@ -6,6 +6,7 @@ import { Post } from '../models/post.model';
 import { ProfileService } from './../services/profile.service';
 import { User } from '../models/user.model';
 import { PostComponent } from './../post/post.component';
+import { Socket } from 'ng-socket-io';
 
 @Component({
   selector: 'app-form-data-upload',
@@ -21,7 +22,7 @@ export class FormdataUploadComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private fb: FormBuilder, private uploadFileService: UploadFileService, private postService: PostService,
-    private profileService: ProfileService, private postComponent: PostComponent) {
+    private profileService: ProfileService, private postComponent: PostComponent, private socket: Socket) {
     this.createForm();
   }
 
@@ -42,28 +43,52 @@ export class FormdataUploadComponent {
   private prepareSave(): any {
     const input = new FormData();
     input.append('message', this.form.get('message').value);
-    input.append('image', this.form.get('image').value);
+    if (this.form.get('image') != null) {
+      input.append('image', this.form.get('image').value);
+    } else { input.append('image', null); }
+
     return input;
   }
 
   onSubmit() {
     const formModel = this.prepareSave();
     this.loading = true;
-    this.uploadFileService.uploadfile(this.file).subscribe(image => {this.post.image = image;
+    if (this.form.get('image').value != null) {
+      this.uploadFileService.uploadfile(this.file).subscribe(image => {
+        this.post.image = image;
+        this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(user => {
+          this.post.user = user;
+          console.log(this.post);
+          this.post.message = this.form.get('message').value;
+          console.log(this.post);
+          this.postComponent.createPost(this.post.message, this.post.image);
+          console.log(this.post);
+          setTimeout(() => {
+            alert('done!');
+            this.loading = false;
+          }, 1000);
+          this.sendNotification(user, this.post.message);
+        });
+      });
+    } else {
       this.profileService.getProfile(parseInt(document.cookie, 10)).subscribe(user => {
         this.post.user = user;
         console.log(this.post);
         this.post.message = this.form.get('message').value;
         console.log(this.post);
-        this.postComponent.createPost(this.post.message, this.post.image);
+        this.postComponent.createPost(this.post.message, null);
         console.log(this.post);
+        setTimeout(() => {
+          alert('done!');
+          this.loading = false;
+        }, 1000);
+        this.sendNotification(user, this.post.message);
       });
-    });
+    }
 
-    setTimeout(() => {
-      alert('done!');
-      this.loading = false;
-    }, 1000);
+  }
+  sendNotification(user: User, message: string) {
+    this.socket.emit('create notification', user.first_name + user.last_name + ': ' + message );
   }
 
   clearFile() {

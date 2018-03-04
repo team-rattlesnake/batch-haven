@@ -8,6 +8,7 @@ import { PostService } from '../services/post.service';
 import { Message } from '../models/message.model';
 import { UploadFileService } from '../services/upload.service';
 import { FormdataUploadComponent } from './../form-data-upload/form-data-upload.component';
+import { Socket } from 'ng-socket-io';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -23,9 +24,13 @@ export class PostComponent implements OnInit {
   postImage: string;
   message: Message;
   user = new User(0, '', '', '', '', '', '', '', '');
-  constructor(private route: ActivatedRoute, private router: Router,
-    private userService: ProfileService, private postService: PostService, private uploadService: UploadFileService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: ProfileService,
+    private postService: PostService,
+    private uploadService: UploadFileService,
+    ) { }
 
   ngOnInit() {
     this.getAllPosts(parseInt(document.cookie, 10));
@@ -33,11 +38,17 @@ export class PostComponent implements OnInit {
   }
 
   createPost(postText: string, postImage: string) {
-    this.url = 'https://s3.amazonaws.com/jsa-angular-bucket/jsa-s3/' + postImage + '.png';
-    this.post = { postId: 0, message: postText, image: this.url, numOfLikes: 0, user: this.user, date: null };
+    if (postImage != null) {
+      this.url = 'https://s3.amazonaws.com/jsa-angular-bucket/jsa-s3/' + postImage + '.png';
+      this.post = { postId: 0, message: postText, image: this.url, numOfLikes: 0, user: this.user, date: null };
+      this.postService.createPost(this.post).subscribe(message => {
+        this.message = message; console.log(message);
+      });
+    } else { this.post = { postId: 0, message: postText, image: null, numOfLikes: 0, user: this.user, date: null };
     this.postService.createPost(this.post).subscribe(message => {
       this.message = message; console.log(message);
     });
+   }
   }
 
   getAllPosts(userId: number): void {
