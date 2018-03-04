@@ -1,12 +1,16 @@
-<div style="width: 100%; overflow: hidden;">
-    <div class="col-xs-1" style="float: left;">
-        <app-profile></app-profile>
-    </div>
-    <div style="float: right;">
-        <h6>Feed:</h6>
-        <br>
-        <app-feed></app-feed>
-        <br>
-        <br> Bottom Dashboard
-    </div>
+
+<app-navbar></app-navbar>
+<div class="col-xs-1">
+  <app-profile [exists] = "true"></app-profile>
+</div>
+<div>
+    <b>Post:</b>
+    <app-post [exists] = "true"></app-post>
+    <br>
+    <br>
+    <h6>Feed:</h6>
+    <br>
+    <app-feed></app-feed>
+    <br>
+    <br> Bottom Dashboard
 </div>

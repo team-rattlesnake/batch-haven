@@ -13,6 +13,7 @@ import {ProfileComponent} from '../profile/profile.component';
 
 })
 export class ModifyUserInfoComponent implements OnInit {
+  @Input() exists: boolean;
   user: User;
   edit = false;
   message: Message;
