@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { FormdataUploadComponent } from './form-data-upload/form-data-upload.component';
+import {ReactiveFormsModule} from '@angular/forms';
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -45,17 +46,19 @@ import { SearchService } from './services/search.service';
     DashboardComponent,
     FeedComponent,
     FriendProfileComponent,
-    SearchComponent
+    SearchComponent,
+    FormdataUploadComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService,
-    SearchService],
+    SearchService, PostComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

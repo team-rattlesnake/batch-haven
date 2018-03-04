@@ -22,7 +22,7 @@
                 </div>
                 <input [(ngModel)]="user.user_password" type="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true"
                 />
-
+              
                 <div *ngIf="passwordTyped">
                     <input [(ngModel)]="user.user_password" type="password" placeholder="Confirm Password" class="form-control" />
                 </div>

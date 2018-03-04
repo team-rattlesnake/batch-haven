@@ -96,13 +96,13 @@ public class User {
 	@JsonIgnore
 	private List<User> others;
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="LIKED_POSTS",
 		joinColumns={@JoinColumn(name="USER_ID")},
 		inverseJoinColumns={@JoinColumn(name="POST_ID")})
-	private List<Post> likedPosts;
+	private List<Post> likedPosts = new ArrayList<>();
 	
 	public User() {}
 	
@@ -256,15 +256,15 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", first_name=" + first_name + ", last_name=" + last_name + ", user_email="
 				+ user_email + ", user_password=" + user_password + ", gender=" + gender + ", date_of_birth="
-				+ date_of_birth + ", biography=" + biography + ", profile_image=" + profile_image + ", friends="
-				+ friends + "]";
+				+ date_of_birth + ", biography=" + biography + ", profile_image=" + profile_image + ", myPosts="
+				+ myPosts + ", likedPosts=" + likedPosts + "]";
 	}
 	
 	
 
 	public String toStringTwo() {
 		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", gender=" + gender + ", profile="  + "]";
+				+ first_name + ", last_name=" + last_name + ", gender=" + gender + "]";
 	}
 
 	@Override

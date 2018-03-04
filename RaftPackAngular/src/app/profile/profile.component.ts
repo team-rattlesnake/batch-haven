@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
 
   upload() {
     const file = this.selectedFiles.item(0);
-    this.user.profile_image = this.uploadService.uploadfile(file);
+    this.uploadService.uploadfile(file).subscribe(profile_image => this.user.profile_image = profile_image);
     console.log(this.user);
     this.imageString = 'https://s3.amazonaws.com/jsa-angular-bucket/jsa-s3/' + this.user.profile_image + '.png';
     this.user.profile_image = this.imageString;

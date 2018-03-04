@@ -38,9 +38,25 @@ export class PostService {
       .catch(this.handleError);
   }
 
+  public getImage(post: Post): Observable<string> {
+    const headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+    const options: RequestOptions = new RequestOptions({ headers: headers });
+
+    return this.httpc
+      .get(`http://localhost:8090/RaftPackSpring/getImage.app`, httpOptions)
+      .catch(this.handleError);
+  }
+
   public createPost(post: Post): Observable<Message> {
     const body: string = JSON.stringify(post);
+    console.log(body);
     return this.httpc.post(`http://localhost:8090/RaftPackSpring/createPost.app`, body, httpOptions)
+    .catch(this.handleError);
+  }
+
+  public likePost(postId: number, userId: number) {
+    const body: string = JSON.stringify({postId: postId, userId: userId});
+    return this.httpc.post(`http://localhost:8090/RaftPackSpring/likePost.app`, body, httpOptions)
     .catch(this.handleError);
   }
 
