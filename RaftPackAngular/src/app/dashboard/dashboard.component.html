@@ -1,12 +1,18 @@
+<app-navbar></app-navbar>
+<div class="col-xs-1">
+  
+  <simple-notifications [options]="notifyOptions"></simple-notifications>
+  <app-profile [exists] = "true"></app-profile>
 
-<div class ="col-xs-1">
-<simple-notifications [options]="notifyOptions"></simple-notifications>
-<app-profile></app-profile></div>
+</div>
 <div>
-<app-form-data-upload></app-form-data-upload>
-<app-post></app-post><br><br>
-<h6>Feed:</h6><br>
-<app-feed></app-feed>
-<br><br>
-Bottom Dashboard
+    <b>Post:</b>
+    <app-post [exists] = "true"></app-post>
+    <br>
+    <br>
+    <h6>Feed:</h6>
+    <br>
+    <app-feed></app-feed>
+    <br>
+    <br> Bottom Dashboard
 </div>

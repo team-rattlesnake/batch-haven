@@ -2,6 +2,7 @@ package com.revature.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -84,6 +87,13 @@ public class UserController {
 	public @ResponseBody ResponseEntity<User> update(@RequestBody User user) {
 
 		return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+	}
+	
+	@PostMapping("/likePost")
+	public @ResponseBody ResponseEntity<Message> likePost(@RequestBody Map<String, Integer> req) {
+		System.out.println(req.get("postId") + " " + req.get("userId"));
+		ps.likePost(req.get("postId"), req.get("userId"));
+		return new ResponseEntity<>(new Message("Liked"), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getImage.app")

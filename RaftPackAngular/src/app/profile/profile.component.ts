@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @Input() exists: boolean;
   show = false;
   selectedFiles: FileList;
   @Input() fileUpload: FileUpload;

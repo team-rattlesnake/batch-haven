@@ -54,6 +54,12 @@ export class PostService {
     .catch(this.handleError);
   }
 
+  public likePost(postId: number, userId: number) {
+    const body: string = JSON.stringify({postId: postId, userId: userId});
+    return this.httpc.post(`http://localhost:8090/RaftPackSpring/likePost.app`, body, httpOptions)
+    .catch(this.handleError);
+  }
+
   private handleError(error: Response) {
   return Observable.throw(error.statusText);
 }
