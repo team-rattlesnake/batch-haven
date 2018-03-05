@@ -1,16 +1,4 @@
 <app-navbar *ngIf="!exists"></app-navbar>
-<div class="col-md-8">
-<app-form-data-upload></app-form-data-upload>
-  <h6>Your Posts:</h6>
-  <ul *ngFor="let post of posts">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{post.date}} {{post.user.first_name}} {{post.user.last_name}}</h3>
-      </div>
-      <div class="panel-body">
-        <img src={{post.image}}/> {{post.message}} 
-        <br>{{post.numOfLikes}}
-      </div>
-    </div>
-  </ul>
+<div class=" jumbotron col-md-8" style="background: rgba(176, 177, 177, 0.4);">
+  <app-form-data-upload></app-form-data-upload>
 </div>

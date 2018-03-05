@@ -1,16 +1,16 @@
+<div class="content">
 <app-navbar></app-navbar>
-<div class="col-xs-1">
-  
-<simple-notifications [options]="notifyOptions"></simple-notifications>
+<div class="panel panel-default col-xs-4" style="background: rgba(1, 2, 2, 0.4);">
 <app-profile [exists] = "true"></app-profile>
-
 </div>
-<div>
+<simple-notifications [options]="notifyOptions"></simple-notifications>
+<div class="container-fluid" >
     <app-post [exists] = "true"></app-post>
     <br>
-    <br>
-    <br>
+
     <app-feed></app-feed>
-    <br>
-    <br> Bottom Dashboard
+</div>
+
+
+
 </div>

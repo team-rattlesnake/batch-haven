@@ -1,19 +1,20 @@
 
 <app-navbar *ngIf="!exists"></app-navbar>
 <div>
-    <img src="{{user.profile_image}}"/>
-    <b>Name</b>: {{user.first_name}} {{user.last_name}}
+    <img src="{{user.profile_image}}"/><br>
+    <b><font color="white">Name</font></b>: {{user.first_name}} {{user.last_name}}
     <br><br>
     <b>Gender</b>: {{user.gender}}
     <br><br>
     <b>Birthday</b>: {{user.date_of_birth}}<br><br>
     <b>Email</b>: {{user.user_email}}<br><br>
-    <b>Bio</b>: {{user.biography}}</div><br>
+    <b>Bio</b>: {{user.biography}}
+</div>
+    <br>
 
     <br>
     <br>
     <br><br>
-
 <button class="btn-primary btn-xs" *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
 <button class="btn btn-xs" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
 <div [hidden]="!show">

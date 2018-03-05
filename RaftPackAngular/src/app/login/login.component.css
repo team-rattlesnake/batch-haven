@@ -1,14 +1,33 @@
 
+  
   #filterLabel {
       text-align: center;
   }
-  
+  .jumbotron {
+    position: relative;
+    top: 25px;
+    background: rgba(218, 228, 223, 0.3)
+ }
   .form-signin {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
   }
-  
+  a:link, a:visited {
+    color: white;
+    border-style: solid;
+    border-color: black;
+    width: auto;
+    padding: 14px 25px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color:black;
+}
+
   .form-signin-heading {
       text-align: center;
   }
@@ -42,3 +61,35 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  
+  display: block;
+  background-image: url('https://pre00.deviantart.net/1db7/th/pre/f/2014/124/f/e/minecraft_day_background__hd_3200x1800__by_567legodude-d7h5yia.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height:100%;
+  
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+  
