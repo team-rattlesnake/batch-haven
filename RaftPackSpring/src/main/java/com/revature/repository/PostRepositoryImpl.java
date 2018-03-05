@@ -43,8 +43,9 @@ public class PostRepositoryImpl implements PostRepository{
 
 	@Override
 	public Post findByPostId(int postId) {
-		// TODO Auto-generated method stub
-		return null;
+		Post p = (Post)sessionFactory.getCurrentSession().get(Post.class, postId);
+		System.out.println(p);
+		return p;
 	}
 
 }

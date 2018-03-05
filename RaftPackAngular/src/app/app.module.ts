@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { HttpModule } from '@angular/http';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { FormdataUploadComponent } from './form-data-upload/form-data-upload.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ModifyUserInfoComponent } from './modify-user-info/modify-user-info.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,6 +31,12 @@ import { FeedComponent } from './feed/feed.component';
 import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './services/search.service';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+const config: SocketIoConfig = {
+  url: 'http://localhost:8000', options: {}};
+
 
 @NgModule({
   declarations: [
@@ -45,17 +52,22 @@ import { SearchService } from './services/search.service';
     DashboardComponent,
     FeedComponent,
     FriendProfileComponent,
-    SearchComponent
+    SearchComponent,
+    FormdataUploadComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    SocketIoModule.forRoot(config),
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [ProfileService, MessageService, LoginService, RegisterService, UploadFileService, ModifyUserService, PostService,
-    SearchService],
+    SearchService, PostComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

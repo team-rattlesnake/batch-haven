@@ -24,7 +24,7 @@ export class UploadFileService {
     return bucket;
   }
 
-  uploadfile(file): string {
+  uploadfile(file): Observable<string> {
     const uid = uuid();
     const params = {
       Bucket: this.BUCKET,
@@ -42,7 +42,7 @@ export class UploadFileService {
       console.log('Successfully uploaded file.', data);
       return true;
     });
-    return uid;
+    return Observable.of(uid);
   }
 
   getFiles(): Observable<Array<FileUpload>> {

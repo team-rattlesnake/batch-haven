@@ -10,6 +10,7 @@ import { Post } from '../models/post.model';
 })
 export class FeedComponent implements OnInit {
   public posts: Post[] = [];
+  public uId = parseInt(document.cookie, 10);
   constructor(private postService: PostService) { }
   viewFeed(): void {
     this.postService.getAllPosts().subscribe(posts => this.posts = posts);
