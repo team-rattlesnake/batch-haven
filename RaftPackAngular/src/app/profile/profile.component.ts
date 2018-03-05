@@ -14,12 +14,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  user: User;
   @Input() exists: boolean;
   show = false;
   selectedFiles: FileList;
   @Input() fileUpload: FileUpload;
   fileUploads: Observable<Array<FileUpload>>;
-  user = new User(0, '', '', '', '', '', '', '', document.cookie);
   imageString: string;
 
   constructor(

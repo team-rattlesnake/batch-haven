@@ -22,7 +22,7 @@
           <input #searchBox id="search-box" (keyup)="search(searchBox.value)" type="text" class="form-control" placeholder="Search">
           <ul *ngIf="!isClear" class="search-result">
             <li *ngFor="let u of users$ | async" (click) = "clearResults()">
-              <a href="/profile/{{u.userId}}">
+              <a href="/profilePosts/{{u.userId}}">
                 {{u.first_name + ' ' + u.last_name}}
               </a>
             </li>

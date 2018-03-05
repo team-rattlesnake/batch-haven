@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       error => console.log(`Error: ${error}`));
+      window.location.href = '/login';
   }
 
   ngOnInit(): void {

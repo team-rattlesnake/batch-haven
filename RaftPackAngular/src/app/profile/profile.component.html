@@ -16,12 +16,4 @@
     <br>
     <br><br>
 <button class="btn-primary btn-xs" *ngIf='!show' (click)='showFiles(true)'>Edit Profile</button><br><br>
-<button class="btn btn-xs" *ngIf='show' (click)='showFiles(false)'>Hide Files</button><br><br>
-<div [hidden]="!show">
-        <label class="btn btn-default">
-                <input type="file" (change)="selectFile($event)">
-              </label>
-               
-              <button class="btn btn-success" type="submit" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-    <app-modify-user-info></app-modify-user-info>
-</div>
+

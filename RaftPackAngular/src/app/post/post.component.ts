@@ -43,10 +43,12 @@ export class PostComponent implements OnInit {
       this.post = { postId: 0, message: postText, image: this.url, numOfLikes: 0, user: this.user, date: null };
       this.postService.createPost(this.post).subscribe(message => {
         this.message.text = message; console.log(message);
+        window.location.href = '/dashboard';
       });
     } else { this.post = { postId: 0, message: postText, image: null, numOfLikes: 0, user: this.user, date: null };
     this.postService.createPost(this.post).subscribe(message => {
       this.message.text = message; console.log(message);
+      window.location.href = '/dashboard';
     });
    }
   }

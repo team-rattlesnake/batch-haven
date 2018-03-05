@@ -20,6 +20,7 @@ export const routes: Routes = [
     { path: 'login/register', component : RegisterComponent},
     { path: 'modify-user-info', component : ModifyUserInfoComponent},
     {path:  'profilePosts', component: ProfilePostsComponent},
+    {path:  'profilePosts/:id', component: ProfilePostsComponent},
     { path: 'profile', component : ProfileComponent},
     { path: 'profile/:id', component : ProfileComponent},
     { path: 'createPost', component : PostComponent},
