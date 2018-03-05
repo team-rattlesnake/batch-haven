@@ -14,18 +14,28 @@ import com.revature.repository.PostRepository;
 import com.revature.repository.PostRepositoryImpl;
 import com.revature.repository.UserRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostServiceImpl.
+ */
 @Service("postService")
 public class PostServiceImpl implements PostService {
 	
+	/** The Constant logger. */
 	final static Logger logger = Logger.getLogger(PostServiceImpl.class);
 
 
+	/** The pr. */
 	@Autowired
 	private PostRepository pr;
 	
+	/** The ur. */
 	@Autowired
 	private UserRepository ur;
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.PostService#createPost(com.revature.model.Post)
+	 */
 	public void createPost(Post post) {
 		
 		logger.info("Creating new post");
@@ -38,6 +48,9 @@ public class PostServiceImpl implements PostService {
 		logger.info("Post Created");
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.PostService#getAllPosts()
+	 */
 	@Override
 	public List<Post> getAllPosts() {
 		
@@ -47,6 +60,9 @@ public class PostServiceImpl implements PostService {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.PostService#likePost(int, int)
+	 */
 	@Override
 	public void likePost(int postId, int userId) {
 		Post post = pr.findByPostId(postId);
@@ -108,6 +124,9 @@ public class PostServiceImpl implements PostService {
 		pr.update(post);
 	}
 		
+	/* (non-Javadoc)
+	 * @see com.revature.service.PostService#updatePost(com.revature.model.Post)
+	 */
 	public Post updatePost(Post post) {
 		
 		logger.info("Updating post");
@@ -118,6 +137,9 @@ public class PostServiceImpl implements PostService {
 		return pr.findByPostId(post.getPostId());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.PostService#getImage(int)
+	 */
 	@Override
 	public String getImage(int postId) {
 		Post post = pr.findByPostId(postId);

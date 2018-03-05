@@ -14,20 +14,33 @@ import com.revature.repository.PostRepositoryImpl;
 import com.revature.repository.UserRepository;
 import com.revature.test.ControllerTests;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserServiceImpl.
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	
+	/** The Constant logger. */
 	final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 	
 
-
+	/** The user repository. */
 	@Autowired
 	private UserRepository userRepository;
 	
+	/**
+	 * Instantiates a new user service impl.
+	 */
 	public UserServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Instantiates a new user service impl.
+	 *
+	 * @param userRepository the user repository
+	 */
 	public UserServiceImpl(UserRepository userRepository) {
 		
 	logger.info("UserServiceImpl constructor is being injected with userRepository dependency");
@@ -35,6 +48,9 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#getAllUsers()
+	 */
 	@Override
 	public List<User> getAllUsers() {
 		
@@ -43,6 +59,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#registerUser(com.revature.model.User)
+	 */
 	@Override
 	public void registerUser(User user) {
 
@@ -55,6 +74,9 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#findUser(java.lang.String)
+	 */
 	@Override
 	public User findUser(String email) {
 		
@@ -62,6 +84,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUserEmail(email);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#findUser(int)
+	 */
 	@Override
 	public User findUser(int userId) {
 
@@ -73,6 +98,12 @@ public class UserServiceImpl implements UserService {
 		return u;
 	}
 
+	/**
+	 * Secure password.
+	 *
+	 * @param password the password
+	 * @return the string
+	 */
 	private String securePassword(String password) {
 		
 		logger.info("Hashing password");
@@ -82,6 +113,9 @@ public class UserServiceImpl implements UserService {
 		return hash;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#validateUser(com.revature.model.User)
+	 */
 	@Override
 	public User validateUser(User user) {
 		// TODO Auto-generated method stub
@@ -96,6 +130,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#getPosts(int)
+	 */
 	@Override
 	public List<Post> getPosts(int userId){
 		
@@ -104,6 +141,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findPostByUserId(userId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#updateUser(com.revature.model.User)
+	 */
 	@Override
 	public User updateUser(User user) {
 		
@@ -115,8 +155,12 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.revature.service.UserService#findUsersByFirstName(java.lang.String)
+	 */
 	@Override
     public List<User> findUsersByFirstName(String first_name) {
         return userRepository.findByFirstName(first_name);
     }
+	
 }
