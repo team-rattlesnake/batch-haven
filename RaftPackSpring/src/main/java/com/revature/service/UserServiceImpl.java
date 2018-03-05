@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
 	final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 	
 
-
 	/** The user repository. */
 	@Autowired
 	private UserRepository userRepository;
