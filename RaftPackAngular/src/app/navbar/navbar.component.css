@@ -12,7 +12,7 @@
     background-color: white;
     cursor: pointer;
     list-style-type: none;
-    position: absolute;
+    position: relative;
   }
    
   .search-result li:hover {
@@ -39,4 +39,5 @@
   ul.search-result {
     margin-top: 0;
     padding-left: 0;
+    position: absolute;
   }

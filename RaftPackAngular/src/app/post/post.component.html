@@ -1,5 +1,4 @@
-<!-- <input #postText /> -->
-<!-- <button (click)="createPost(postText.value); postText.value=''">Submit</button> -->
-<div><h6>Your Posts:</h6><li *ngFor="let post of posts"> <span>{{post.message}}</span>
-{{post.date}} <img src={{post.image}}/></li>
+<app-navbar *ngIf="!exists"></app-navbar>
+<div class=" jumbotron col-md-8" style="background: rgba(176, 177, 177, 0.4);">
+  <app-form-data-upload></app-form-data-upload>
 </div>

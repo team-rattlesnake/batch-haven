@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Post } from '../models/post.model';
@@ -16,6 +16,7 @@ import { Socket } from 'ng-socket-io';
 })
 export class PostComponent implements OnInit {
   public posts: Post[] = [];
+  @Input() exists: boolean;
   post = new Post(0, '', null, 0, null, null);
   userId: number;
   url: string;

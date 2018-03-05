@@ -1,12 +1,3 @@
-
-.badge.badge-default{
-    background-color : saddlebrown;
-    padding-left: 30px;
-    padding-right: 30px;
-    
-}
-
-.headerColor{
-    background-color : rgb(24, 24, 136);
-    height : 55px;    
+jumbotron{
+    background: rgba(248, 248, 248, 0.438);
 }

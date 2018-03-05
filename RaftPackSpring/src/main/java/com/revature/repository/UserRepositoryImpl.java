@@ -21,6 +21,11 @@ public class UserRepositoryImpl implements UserRepository{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
+	public UserRepositoryImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void create(User user) {
 		sessionFactory.getCurrentSession().save(user);
@@ -116,7 +121,7 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public void update(User user) {
-		sessionFactory.getCurrentSession().update(user);
+		sessionFactory.getCurrentSession().merge(user);
 	}
 
 	@Override

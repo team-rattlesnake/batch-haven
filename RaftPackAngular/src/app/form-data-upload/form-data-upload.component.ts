@@ -7,6 +7,7 @@ import { ProfileService } from './../services/profile.service';
 import { User } from '../models/user.model';
 import { PostComponent } from './../post/post.component';
 import { Socket } from 'ng-socket-io';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-data-upload',
@@ -22,7 +23,7 @@ export class FormdataUploadComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private fb: FormBuilder, private uploadFileService: UploadFileService, private postService: PostService,
-    private profileService: ProfileService, private postComponent: PostComponent, private socket: Socket) {
+    private profileService: ProfileService, private postComponent: PostComponent, private socket: Socket, private router: Router) {
     this.createForm();
   }
 
@@ -68,6 +69,7 @@ export class FormdataUploadComponent {
             this.loading = false;
           }, 1000);
           this.sendNotification(user, this.post.message);
+          this.router.navigate(['/dashboard']);
         });
       });
     } else {
@@ -83,6 +85,7 @@ export class FormdataUploadComponent {
           this.loading = false;
         }, 1000);
         this.sendNotification(user, this.post.message);
+        this.router.navigate(['/dashboard']);
       });
     }
 

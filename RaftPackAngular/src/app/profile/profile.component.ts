@@ -7,13 +7,14 @@ import { UploadFileService } from '../services/upload.service';
 import { FileUpload } from '../models/file-upload';
 import { Observable } from 'rxjs/Observable';
 import { ModifyUserService } from '../services/modify-user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @Input() exists: boolean;
   show = false;
   selectedFiles: FileList;
   @Input() fileUpload: FileUpload;
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private uploadService: UploadFileService,
     private route: ActivatedRoute,
-    private modifyUserService: ModifyUserService) { }
+    private modifyUserService: ModifyUserService,
+    private router: Router) { }
 
   public message: Message = new Message('No profile to display.');
 
@@ -65,7 +67,8 @@ export class ProfileComponent implements OnInit {
   }
 
   showFiles(enable: boolean) {
-    this.show = enable;
+    // this.show = enable;
+    this.router.navigate(['/profilePosts']);
 
   }
 }

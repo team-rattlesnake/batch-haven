@@ -22,57 +22,91 @@ import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class User.
+ */
 @Entity
 @Table(name = "USERS")
 public class User {
 	
+	/** The user id. */
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSequence")
     @SequenceGenerator(name="userSequence", sequenceName="USER_SEQ", allocationSize=1)
 	@Column(name="USER_ID")
 	private int userId;
 	
+	/** The first name. */
 	@Column(name="FIRST_NAME")
 	private String first_name;
 	
+	/** The last name. */
 	@Column(name="LAST_NAME")
 	private String last_name;
 	
+	/** The user email. */
 	@Column(name="USER_EMAIL")
 	private String user_email;
 	
+	/** The user password. */
 	@Column(name="USER_PASSWORD")
 	private String user_password;
 	
+	/** The gender. */
 	@Column(name="GENDER")
 	private String gender;
 	
+	/** The date of birth. */
 	@Column(name="DATE_OF_BIRTH")
 	private String date_of_birth;
 	
+	/** The biography. */
 	@Column(name="BIOGRAPHY")
 	private String biography;
 	
+	/** The profile image. */
 	@Column(name="PROFILE_IMAGE")
 	private String profile_image;
 	
+	/** The my posts. */
 	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<Post> myPosts;
 
+	/**
+	 * Gets the biography.
+	 *
+	 * @return the biography
+	 */
 	public String getBiography() {
 		return biography;
 	}
 
+	/**
+	 * Sets the biography.
+	 *
+	 * @param biography the new biography
+	 */
 	public void setBiography(String biography) {
 		this.biography = biography;
 	}
 
+	/**
+	 * Gets the profile image.
+	 *
+	 * @return the profile image
+	 */
 	public String getProfile_image() {
 		return profile_image;
 	}
 
+	/**
+	 * Sets the profile image.
+	 *
+	 * @param profile_image the new profile image
+	 */
 	public void setProfile_image(String profile_image) {
 		this.profile_image = profile_image;
 	}
@@ -82,6 +116,7 @@ public class User {
 	//@JsonIgnore
 	//private List<Comment> myComments;
 	
+	/** The friends. */
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
@@ -90,22 +125,33 @@ public class User {
 		inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
 	private List<User> friends;
 	
+	/** The others. */
 	/* needed for self-join many to many */
 	@ManyToMany(mappedBy="friends")
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> others;
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
+	/** The liked posts. */
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	@JoinTable(name="LIKED_POSTS",
 		joinColumns={@JoinColumn(name="USER_ID")},
 		inverseJoinColumns={@JoinColumn(name="POST_ID")})
-	private List<Post> likedPosts;
+	private List<Post> likedPosts = new ArrayList<>();
 	
+	/**
+	 * Instantiates a new user.
+	 */
 	public User() {}
 	
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param user_email the user email
+	 * @param user_password the user password
+	 */
 	public User(String user_email, String user_password) {
 		super();
 		this.user_email = user_email;
@@ -114,6 +160,13 @@ public class User {
 	
 	
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param userId the user id
+	 * @param first_name the first name
+	 * @param last_name the last name
+	 */
 	public User(int userId, String first_name, String last_name) {
 		super();
 		this.userId = userId;
@@ -121,6 +174,16 @@ public class User {
 		this.last_name = last_name;
 	}
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param first_name the first name
+	 * @param last_name the last name
+	 * @param user_email the user email
+	 * @param user_password the user password
+	 * @param gender the gender
+	 * @param date_of_birth the date of birth
+	 */
 	public User(String first_name, String last_name, String user_email, String user_password, String gender,
 			String date_of_birth) {
 		super();
@@ -136,6 +199,18 @@ public class User {
 
 	
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param first_name the first name
+	 * @param last_name the last name
+	 * @param user_email the user email
+	 * @param user_password the user password
+	 * @param gender the gender
+	 * @param date_of_birth the date of birth
+	 * @param biography the biography
+	 * @param profile_image the profile image
+	 */
 	public User(String first_name, String last_name, String user_email, String user_password, String gender,
 			String date_of_birth, String biography, String profile_image) {
 		super();
@@ -149,6 +224,20 @@ public class User {
 		this.profile_image = profile_image;
 	}
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param userId the user id
+	 * @param first_name the first name
+	 * @param last_name the last name
+	 * @param user_email the user email
+	 * @param user_password the user password
+	 * @param gender the gender
+	 * @param date_of_birth the date of birth
+	 * @param myPosts the my posts
+	 * @param friends the friends
+	 * @param likedPosts the liked posts
+	 */
 	public User(int userId, String first_name, String last_name, String user_email, String user_password, String gender,
 			String date_of_birth, List<Post> myPosts, List<User> friends, List<Post> likedPosts) {
 		super();
@@ -164,86 +253,192 @@ public class User {
 		this.likedPosts = likedPosts;
 	}
 
+	/**
+	 * Gets the user id.
+	 *
+	 * @return the user id
+	 */
 	public int getUserId() {
 		return userId;
 	}
 
+	/**
+	 * Sets the user id.
+	 *
+	 * @param userId the new user id
+	 */
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
+	/**
+	 * Gets the user email.
+	 *
+	 * @return the user email
+	 */
 	public String getuser_email() {
 		return user_email;
 	}
 
+	/**
+	 * Sets the user email.
+	 *
+	 * @param user_email the new user email
+	 */
 	public void setuser_email(String user_email) {
 		this.user_email = user_email;
 	}
 
+	/**
+	 * Gets the user password.
+	 *
+	 * @return the user password
+	 */
 	public String getuser_password() {
 		return user_password;
 	}
 
+	/**
+	 * Sets the user password.
+	 *
+	 * @param user_password the new user password
+	 */
 	public void setuser_password(String user_password) {
 		this.user_password = user_password;
 	}
 
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
 	public String getfirst_name() {
 		return first_name;
 	}
 
+	/**
+	 * Sets the first name.
+	 *
+	 * @param first_name the new first name
+	 */
 	public void setfirst_name(String first_name) {
 		this.first_name = first_name;
 	}
 
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
 	public String getlast_name() {
 		return last_name;
 	}
 
+	/**
+	 * Sets the last name.
+	 *
+	 * @param last_name the new last name
+	 */
 	public void setlast_name(String last_name) {
 		this.last_name = last_name;
 	}
 
+	/**
+	 * Gets the date of birth.
+	 *
+	 * @return the date of birth
+	 */
 	public String getdate_of_birth() {
 		return date_of_birth;
 	}
 
+	/**
+	 * Sets the date of birth.
+	 *
+	 * @param date_of_birth the new date of birth
+	 */
 	public void setdate_of_birth(String date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 
+	/**
+	 * Gets the gender.
+	 *
+	 * @return the gender
+	 */
 	public String getGender() {
 		return gender;
 	}
 
+	/**
+	 * Sets the gender.
+	 *
+	 * @param gender the new gender
+	 */
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
+	/**
+	 * Gets the my posts.
+	 *
+	 * @return the my posts
+	 */
 	public List<Post> getMyPosts() {
 		return myPosts;
 	}
 
+	/**
+	 * Sets the my posts.
+	 *
+	 * @param myPosts the new my posts
+	 */
 	public void setMyPosts(List<Post> myPosts) {
 		this.myPosts = myPosts;
 	}
 
+	/**
+	 * Gets the friends.
+	 *
+	 * @return the friends
+	 */
 	public List<User> getFriends() {
 		return friends;
 	}
 
+	/**
+	 * Sets the friends.
+	 *
+	 * @param friends the new friends
+	 */
 	public void setFriends(List<User> friends) {
 		this.friends = friends;
 	}
 
+	/**
+	 * Gets the liked posts.
+	 *
+	 * @return the liked posts
+	 */
 	public List<Post> getLikedPosts() {
 		return likedPosts;
 	}
 
+	/**
+	 * Sets the liked posts.
+	 *
+	 * @param likedPosts the new liked posts
+	 */
 	public void setLikedPosts(List<Post> likedPosts) {
 		this.likedPosts = likedPosts;
 	}
 	
+	/**
+	 * Prints the friends.
+	 *
+	 * @param friends the friends
+	 * @return the list
+	 */
 	public List<String> printFriends(List<User> friends) {
 		List<String> myFriends = new ArrayList<>();
 		for (User user : friends) {
@@ -252,21 +447,32 @@ public class User {
 		return myFriends;
 	}
 		
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", first_name=" + first_name + ", last_name=" + last_name + ", user_email="
 				+ user_email + ", user_password=" + user_password + ", gender=" + gender + ", date_of_birth="
-				+ date_of_birth + ", biography=" + biography + ", profile_image=" + profile_image + ", friends="
-				+ friends + "]";
+				+ date_of_birth + ", biography=" + biography + ", profile_image=" + profile_image + ", myPosts="
+				+ myPosts + ", likedPosts=" + likedPosts + "]";
 	}
 	
 	
 
+	/**
+	 * To string two.
+	 *
+	 * @return the string
+	 */
 	public String toStringTwo() {
 		return "User [userId=" + userId + ", userEmail=" + user_email + ", user_password=" + user_password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", gender=" + gender + ", profile="  + "]";
+				+ first_name + ", last_name=" + last_name + ", gender=" + gender + "]";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -283,6 +489,9 @@ public class User {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

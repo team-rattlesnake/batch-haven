@@ -22,7 +22,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@rattlesnake-db.cu7knzi3krpf.us-east-2.rds.amazonaws.com:1521:orcl" />
-		<property name="username" value="test" />
+		<property name="username" value="demarques" />
 		<property name="password" value="p4ssw0rd" />
 	</bean>
 
@@ -34,7 +34,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>

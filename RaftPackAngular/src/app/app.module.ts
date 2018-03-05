@@ -34,6 +34,7 @@ import { SearchService } from './services/search.service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
 const config: SocketIoConfig = {
   url: 'http://localhost:8000', options: {}};
 
@@ -53,7 +54,8 @@ const config: SocketIoConfig = {
     FeedComponent,
     FriendProfileComponent,
     SearchComponent,
-    FormdataUploadComponent
+    FormdataUploadComponent,
+    ProfilePostsComponent
   ],
   imports: [
     BrowserModule,
