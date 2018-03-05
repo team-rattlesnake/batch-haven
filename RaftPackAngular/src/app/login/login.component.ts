@@ -41,6 +41,14 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  public resetPass() {
+    this.loginService.resetPass(this.user)
+      .subscribe(
+        message => console.log(message),
+        error => console.log(`Error: ${error}`)
+      );
+  }
+
   ngOnInit() {
     document.cookie = null;
   }

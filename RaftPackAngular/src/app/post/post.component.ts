@@ -42,11 +42,11 @@ export class PostComponent implements OnInit {
       this.url = 'https://s3.amazonaws.com/jsa-angular-bucket/jsa-s3/' + postImage + '.png';
       this.post = { postId: 0, message: postText, image: this.url, numOfLikes: 0, user: this.user, date: null };
       this.postService.createPost(this.post).subscribe(message => {
-        this.message = message; console.log(message);
+        this.message.text = message; console.log(message);
       });
     } else { this.post = { postId: 0, message: postText, image: null, numOfLikes: 0, user: this.user, date: null };
     this.postService.createPost(this.post).subscribe(message => {
-      this.message = message; console.log(message);
+      this.message.text = message; console.log(message);
     });
    }
   }

@@ -31,4 +31,18 @@ export class LoginService {
         return Observable.throw(error.statusText);
     }
 
+    public resetPass(user: User): Observable<string> {
+      const body  = JSON.stringify(user.user_email);
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      const options: RequestOptions = new RequestOptions({ headers: headers });
+
+      return this.http
+          .post(`http://localhost:8090/RaftPackSpring/forgot.app`, body, options)
+          .map((response: Response) => {
+              console.log(body);
+              return <string>response.json();
+          })
+          .catch(this.handleError);
+  }
+
 }

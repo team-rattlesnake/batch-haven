@@ -47,7 +47,7 @@ export class PostService {
       .catch(this.handleError);
   }
 
-  public createPost(post: Post): Observable<Message> {
+  public createPost(post: Post): Observable<string> {
     const body: string = JSON.stringify(post);
     console.log(body);
     return this.httpc.post(`http://localhost:8090/RaftPackSpring/createPost.app`, body, httpOptions)

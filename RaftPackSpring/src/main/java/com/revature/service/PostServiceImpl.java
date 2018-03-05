@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Post;
 import com.revature.model.User;
-import com.revature.repository.PostRepository;
 import com.revature.repository.PostRepositoryImpl;
-import com.revature.repository.UserRepository;
+import com.revature.repository.UserRepositoryImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -27,11 +26,11 @@ public class PostServiceImpl implements PostService {
 
 	/** The pr. */
 	@Autowired
-	private PostRepository pr;
+	private PostRepositoryImpl pr;
 	
 	/** The ur. */
 	@Autowired
-	private UserRepository ur;
+	private UserRepositoryImpl ur;
 
 	/* (non-Javadoc)
 	 * @see com.revature.service.PostService#createPost(com.revature.model.Post)

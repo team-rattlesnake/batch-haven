@@ -16,7 +16,7 @@ import com.revature.model.User;
 @Repository("userRepository")
 @Transactional
 @CrossOrigin(origins = "http://localhost:4200")
-public class UserRepositoryImpl implements UserRepository{
+public class UserRepositoryImpl /*implements UserRepository*/ {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -26,19 +26,16 @@ public class UserRepositoryImpl implements UserRepository{
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
 	public void create(User user) {
 		sessionFactory.getCurrentSession().save(user);
 		
 	}
 
 	@SuppressWarnings("unchecked")  /* why suppressed */
-	@Override
 	public List<User> findAll() {
 		return sessionFactory.getCurrentSession().createCriteria(User.class).list();
 	}
 
-	@Override
 	public User findByUserId(int userId) {
 		System.out.println(userId);
 		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
@@ -46,7 +43,6 @@ public class UserRepositoryImpl implements UserRepository{
 		return u;
 	}
 	
-	@Override
 	public List<Post> findPostByUserId(int userId){
 		User u = (User)sessionFactory.getCurrentSession().get(User.class, userId);
 		if (u != null)
@@ -55,7 +51,6 @@ public class UserRepositoryImpl implements UserRepository{
 			return null;
 	}
 
-	@Override
 	public User findByUserEmail(String user_email) {
 		try {
 			System.out.println("User email: " + user_email);
@@ -72,7 +67,6 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@SuppressWarnings("unchecked")  /* why suppressed */
-	@Override
 	public List<User> findByFirstName(String first_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
@@ -84,7 +78,6 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@SuppressWarnings("unchecked")  /* why suppressed */
-	@Override
 	public List<User> findByLastName(String last_name) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
@@ -96,7 +89,6 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@SuppressWarnings("unchecked")  /* why suppressed */
-	@Override
 	public List<User> findByDoB(String date_of_birth) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
@@ -108,7 +100,6 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@SuppressWarnings("unchecked")  /* why suppressed */
-	@Override
 	public List<User> findByGender(String gender) {
 		try {
 			return sessionFactory.getCurrentSession().createCriteria(User.class)
@@ -119,12 +110,10 @@ public class UserRepositoryImpl implements UserRepository{
 		}
 	}
 
-	@Override
 	public void update(User user) {
 		sessionFactory.getCurrentSession().merge(user);
 	}
 
-	@Override
 	public void delete(User user) {
 		sessionFactory.getCurrentSession().delete(user);
 	}

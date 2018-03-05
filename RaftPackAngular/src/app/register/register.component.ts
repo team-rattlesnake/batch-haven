@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
   registerUser(): void {
     this.registerService.registerUser(this.user).subscribe(
       message => {
-        this.message = message;
+        this.message.text = message;
         if (this.message.text.length > 0) {
           this.router.navigate(['./']);
         }

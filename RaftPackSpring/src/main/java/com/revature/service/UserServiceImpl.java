@@ -1,17 +1,21 @@
 package com.revature.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Post;
 import com.revature.model.User;
-import com.revature.repository.PostRepository;
 import com.revature.repository.PostRepositoryImpl;
-import com.revature.repository.UserRepository;
+import com.revature.repository.UserRepositoryImpl;
 import com.revature.test.ControllerTests;
 
 // TODO: Auto-generated Javadoc
@@ -27,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	/** The user repository. */
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepositoryImpl userRepository;
 	
 	/**
 	 * Instantiates a new user service impl.
@@ -41,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	 *
 	 * @param userRepository the user repository
 	 */
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepositoryImpl userRepository) {
 		
 	logger.info("UserServiceImpl constructor is being injected with userRepository dependency");
 	
@@ -108,9 +112,23 @@ public class UserServiceImpl implements UserService {
 		
 		logger.info("Hashing password");
 		
-		String hash = password;
-		// TODO: do some algorithm to hash password
-		return hash;
+		String salt = "salt";
+		String generatedPassword = password;
+	    try {
+	    	MessageDigest md = MessageDigest.getInstance("SHA-1");
+	    	md.update(salt.getBytes("UTF-8"));
+	    	byte[] bytes = md.digest(password.getBytes("UTF-8"));
+	    	StringBuilder sb = new StringBuilder();
+	    	for(int i=0; i< bytes.length ;i++) {
+	    		sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+	    	}
+	    	generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+        	e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	    return generatedPassword;
 	}
 
 	/* (non-Javadoc)
@@ -118,12 +136,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User validateUser(User user) {
-		// TODO Auto-generated method stub
 		logger.info("Validating user: " + user);
 		
 		User temp = userRepository.findByUserEmail(user.getuser_email());
 //		System.out.println("Temp: " + temp);
-		if(user.getuser_password().equals(securePassword(temp.getuser_password()))) {
+		if(temp.getuser_password().equals(securePassword(user.getuser_password()))) {
 //			System.out.println("Temp password: " + temp.getuser_password());
 			return temp;
 		}
@@ -162,5 +179,42 @@ public class UserServiceImpl implements UserService {
     public List<User> findUsersByFirstName(String first_name) {
         return userRepository.findByFirstName(first_name);
     }
+
+	@Override 
+	public String forgotPassword(String email) {
+		
+		logger.info("Resetting password: " + email);
+		
+		User current = userRepository.findByUserEmail(email);
+		
+		if (current != null) {
+			String newPass = "qwe123abc";
+			if (emailPassword(email, newPass)) {
+				current.setuser_password(securePassword(newPass));
+				userRepository.update(current);
+				return "Success!";
+			}
+			else {
+				return "Not an email!";
+			}
+		}
+		return "Not a user!";
+	}
+	
+	@Autowired
+    public JavaMailSender emailSender;
+	
+	private boolean emailPassword(String email, String newPass) {
+		try {
+	        SimpleMailMessage message = new SimpleMailMessage(); 
+	        message.setTo(email); 
+	        message.setSubject("Password Reset"); 
+	        message.setText("Here is your new password: " + newPass + " .\nMake sure to reset it after logging in again.");
+	        emailSender.send(message);	        
+	        return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 	
 }

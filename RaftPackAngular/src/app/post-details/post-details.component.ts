@@ -17,7 +17,7 @@ export class PostDetailsComponent implements OnInit {
   likePost() {
     console.log(this.postId, this.userId);
     this.postService.likePost(this.postId, this.userId).subscribe(message => {
-      this.message = message; console.log(message);
+      this.message.text = message; console.log(message);
     });
   }
 

@@ -3,10 +3,14 @@ package com.revature.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Image;
 import com.revature.model.Post;
 import com.revature.model.User;
-import com.revature.pojo.Message;
 import com.revature.service.PostService;
 import com.revature.service.UserService;
 
@@ -50,10 +52,10 @@ public class UserController {
 	 */
 	// @RequestMapping(value="/registerHero.app", method=RequestMethod.POST)
 	@PostMapping("/registerUser.app")
-	public @ResponseBody ResponseEntity<Message> registerUser(@RequestBody User user) {
+	public @ResponseBody ResponseEntity<String> registerUser(@RequestBody User user) {
 		System.out.println("Sending this now: " + user);
 		userService.registerUser(user);
-		return new ResponseEntity<>(new Message("USER REGISTERED SUCCESSFULLY..."), HttpStatus.OK);
+		return new ResponseEntity<>("USER REGISTERED SUCCESSFULLY...", HttpStatus.OK);
 	}
 
 	/**
@@ -142,9 +144,9 @@ public class UserController {
 	 * @return the response entity
 	 */
 	@PostMapping("/createPost.app")
-	public @ResponseBody ResponseEntity<Message> createPost(@RequestBody Post post) {
+	public @ResponseBody ResponseEntity<String> createPost(@RequestBody Post post) {
 		ps.createPost(post);
-		return new ResponseEntity<>(new Message("Ok"), HttpStatus.OK);
+		return new ResponseEntity<>("Ok", HttpStatus.OK);
 	}
 
 	/**
@@ -177,10 +179,10 @@ public class UserController {
 	 * @return the response entity
 	 */
 	@PostMapping("/likePost")
-	public @ResponseBody ResponseEntity<Message> likePost(@RequestBody Map<String, Integer> req) {
+	public @ResponseBody ResponseEntity<String> likePost(@RequestBody Map<String, Integer> req) {
 		System.out.println(req.get("postId") + " " + req.get("userId"));
 		ps.likePost(req.get("postId"), req.get("userId"));
-		return new ResponseEntity<>(new Message("Liked"), HttpStatus.OK);
+		return new ResponseEntity<>("Liked", HttpStatus.OK);
 	}
 	
 	/**
@@ -194,6 +196,27 @@ public class UserController {
 		return new ResponseEntity<>(ps.getImage(post.getPostId()), HttpStatus.OK);
 	}
 	
-
+	@PostMapping("/forgot.app")
+	public @ResponseBody ResponseEntity<String> forgotPassword(@RequestBody String email) {
+		return new ResponseEntity<>(userService.forgotPassword(email.replace('"', ' ').trim()), HttpStatus.OK);
+	}
+	
+	@Bean
+	public JavaMailSender getJavaMailSender() {
+	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	    mailSender.setHost("smtp.gmail.com");
+	    mailSender.setPort(587);
+	     
+	    mailSender.setUsername("rp.do.not.reply@gmail.com");
+	    mailSender.setPassword("qwe123abc");
+	     
+	    Properties props = mailSender.getJavaMailProperties();
+	    props.put("mail.transport.protocol", "smtp");
+	    props.put("mail.smtp.auth", "true");
+	    props.put("mail.smtp.starttls.enable", "true");
+	    props.put("mail.debug", "true");
+	     
+	    return mailSender;
+	}
 
 }

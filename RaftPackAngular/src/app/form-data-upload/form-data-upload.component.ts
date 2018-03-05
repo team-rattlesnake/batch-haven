@@ -69,7 +69,7 @@ export class FormdataUploadComponent {
             this.loading = false;
           }, 1000);
           this.sendNotification(user, this.post.message);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['./dashboard']);
         });
       });
     } else {
@@ -85,7 +85,7 @@ export class FormdataUploadComponent {
           this.loading = false;
         }, 1000);
         this.sendNotification(user, this.post.message);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['./dashboard']);
       });
     }
 

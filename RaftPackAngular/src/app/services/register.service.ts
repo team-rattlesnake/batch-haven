@@ -12,7 +12,7 @@ import { Message } from '../models/message.model';
 export class RegisterService {
     constructor(private http: Http) { }
 
-    public registerUser(user: User): Observable<Message> {
+    public registerUser(user: User): Observable<string> {
         const body  = JSON.stringify(user);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options: RequestOptions = new RequestOptions({ headers: headers });
@@ -24,7 +24,7 @@ export class RegisterService {
             .post(`http://localhost:8090/RaftPackSpring/registerUser.app`, body, options)
             .map((response: Response) => {
 
-                return <Message>response.json();
+                return <string>response.json();
             })
             .catch(this.handleError);
     }

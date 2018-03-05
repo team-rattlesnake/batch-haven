@@ -14,4 +14,5 @@ public interface UserService {
 	List<Post> getPosts(int userId);
 	User updateUser(User user);
 	public List<User> findUsersByFirstName(String first_name);
+	public String forgotPassword(String email);
 }
