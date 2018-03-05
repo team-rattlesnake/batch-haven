@@ -12,17 +12,23 @@
 
                 <input [(ngModel)]="user.last_name" placeholder="LastName" class="form-control" />
 
-                <input [(ngModel)]="user.user_email" type="email" placeholder="Email" class="form-control" (blur)="emailTyped= true" />
+                <input [(ngModel)]="user.user_email" type="email" placeholder="Email" class="form-control"  required minlength="4" (blur)="emailTyped= true" />
 
                 <div *ngIf="emailTyped">
-                    <input [(ngModel)]="user.user_email" type="email" placeholder="Confirm Email" class="form-control" />
+                    <input [(ngModel)]="user.user_email" type="email" placeholder="Confirm Email" required minlength="4" class="form-control" />
                 </div>
-                <input [(ngModel)]="user.user_password" type="password" placeholder="Password" class="form-control" (blur)="passwordTyped= true"
-                />
+                <input [(ngModel)]="user.user_password" type="password" placeholder="Password" class="form-control"  required minlength="8" (blur)="passwordTyped= true" />
 
                 <div *ngIf="passwordTyped">
-                    <input [(ngModel)]="user.user_password" type="password" placeholder="Confirm Password" class="form-control" />
+                    <input [(ngModel)]="user.user_password" type="password" placeholder="Confirm Password"  required minlength="8" class="form-control" />
                 </div>
+
+                <div *ngIf="user.user_password.errors.required">
+                    Password is required.
+                  </div>
+                  <div *ngIf="user.user_password.errors.minlength">
+                    Password must be at least 8 characters long.
+                  </div>
 
                 <input [(ngModel)]="user.gender" type="gender" placeholder="Gender" class="form-control" />
 
