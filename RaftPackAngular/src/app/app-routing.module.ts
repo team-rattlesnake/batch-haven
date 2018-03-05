@@ -9,6 +9,7 @@ import { PostComponent } from './post/post.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { FriendProfileComponent } from './friend-profile/friend-profile.component';
+import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
 
 
 
@@ -18,7 +19,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'login/register', component : RegisterComponent},
     { path: 'modify-user-info', component : ModifyUserInfoComponent},
-    { path: 'profile', component : ProfileComponent},
+    { path: 'profile', component : ProfilePostsComponent},
     { path: 'profile/:id', component : ProfileComponent},
     { path: 'createPost', component : PostComponent},
     { path: 'post', component: PostDetailsComponent },

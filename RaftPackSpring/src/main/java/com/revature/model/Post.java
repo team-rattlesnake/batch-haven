@@ -67,8 +67,8 @@ public class Post {
 	@JoinColumn(name="USER_ID")
 	private User user;
 
-	@ManyToMany(mappedBy="likedPosts")
-	//@Fetch(value = FetchMode.SUBSELECT)
+	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JsonIgnore
 	private List<User> likers = new ArrayList<>();
 	
@@ -124,13 +124,13 @@ public class Post {
 		this.user = user;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
+//	public List<Comment> getComments() {
+//		return comments;
+//	}
+//
+//	public void setComments(List<Comment> comments) {
+//		this.comments = comments;
+//	}
 
 	public List<User> getLikers() {
 		return likers;
@@ -142,12 +142,12 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", message=" + message + ", images=" + images + ", numOfLikes=" + numOfLikes
+		return "Post [postId=" + postId + ", message=" + message + ", numOfLikes=" + numOfLikes
 				+ ", user=" + user.toStringTwo() + ", likers=" + printLikers(likers) + "]";
 	}
 	
 	public String toStringTwo() {
-		return "Post [postId=" + postId + ", message=" + message + ", image=" + images + ", numOfLikes=" + numOfLikes
+		return "Post [postId=" + postId + ", message=" + message + ", numOfLikes=" + numOfLikes
 				+ "]";
 	}
 	
@@ -163,7 +163,7 @@ public class Post {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+//		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		//result = prime * result + ((images == null) ? 0 : images.hashCode());
 		result = prime * result + ((likers == null) ? 0 : likers.hashCode());
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
@@ -183,11 +183,11 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
-			return false;
+//		if (comments == null) {
+//			if (other.comments != null)
+//				return false;
+//		} else if (!comments.equals(other.comments))
+//			return false;
 		// if (images == null) {
 		// 	if (other.images != null)
 		if (image == null) {

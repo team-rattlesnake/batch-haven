@@ -106,6 +106,7 @@ public class PostServiceImpl implements PostService {
 		System.out.println(post);
 		ur.update(liker);
 		pr.update(post);
+	}
 		
 	public Post updatePost(Post post) {
 		

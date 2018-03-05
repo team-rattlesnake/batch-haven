@@ -62,6 +62,16 @@ public class UserController {
 	public @ResponseBody ResponseEntity<List<Post>> getPost(@RequestBody int userId) {
 		return new ResponseEntity<>(userService.getPosts(userId), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/getUsersByFirstName.app", params = {"firstName"})
+    public @ResponseBody ResponseEntity<List<User>> getUsersByFirstName(@RequestParam(value = "firstName") String firstName) {
+        return new ResponseEntity<>(userService.findUsersByFirstName(firstName), HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/getUserById.app", params = {"userId"})
+    public @ResponseBody ResponseEntity<User> getUserById(@RequestParam(value = "userId") int userId ) {
+        return new ResponseEntity<>(userService.findUser(userId), HttpStatus.OK);
+    }
 
 	@GetMapping("/getAllPosts.app")
 	public @ResponseBody ResponseEntity<List<Post>> getAllPosts() {
